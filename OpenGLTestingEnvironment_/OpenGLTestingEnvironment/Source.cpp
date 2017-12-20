@@ -1,6 +1,8 @@
 #include <glad\glad.h>
 #include <GLFW\glfw3.h>
 #include <iostream>
+#include "Triangle.h"
+#include "Shaders.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -8,23 +10,38 @@ void processInput(GLFWwindow *window);
 // settings
 const unsigned int SCR_WIDTH  = 800;
 const unsigned int SCR_HEIGHT = 600;
+
 float vertices[] = {
-	-0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
+	-1.0f, 0.0f, 0.0f,
+	 1.0f, 0.0f, 0.0f,
+	 0.0f,  1.0f, 0.0f
 }; // triangle vertices
-const char *vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"}\0";
-const char *fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\n\0";
+float othervert[] = {
+	-1.0f, -1.0f, 0.0f,
+	1.0f, -1.0f, 0.0f,
+	0.0f, 0.0f, 0.0f
+};
+/*
+float newvert[] = {
+	-0.5f, -0.5f, 0.0f,
+	-0.5f,  0.5f, 0.0f,
+	 0.5f, -0.5f, 0.0f,
+	 0.5f,  0.5f, 0.0f
+};
+const char *vertexShaderSource = 	"#version 330 core\n"
+									"layout (location = 0) in vec3 aPos;\n"
+									"void main()\n"
+									"{\n"
+									"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+									"}\0";
+
+const char *fragmentShaderSource =	"#version 330 core\n"
+									"out vec4 FragColor;\n"
+									"void main()\n"
+									"{\n"
+									"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+									"}\n\0";
+*/
 
 int main() {
 	// glfw: initialize and configure
@@ -38,7 +55,7 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this to fix compilation on OS X
 #endif
 
-
+	
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Testing Environment", NULL, NULL); // Creates window object
 	if (window == NULL) {
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -60,15 +77,22 @@ int main() {
 	}
 
 	/// Triangle
-
+	Triangle *firstTriangle = new Triangle();
+	/*
 	unsigned int VBO; // Vertex Buffer Object
 	unsigned int VAO; // Vertex Array Object
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	
+	glBufferData(GL_ARRAY_BUFFER, sizeof(othervert), othervert, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(othervert), othervert, GL_STATIC_DRAW);
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	//glEnableVertexAttribArray(0);
 
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
@@ -102,7 +126,7 @@ int main() {
 	
 
 	glUseProgram(shaderProgram);
-	glBindVertexArray(VAO);
+	glBindVertexArray(VAO);*/
 	
 
 	/// Render Loop
@@ -118,6 +142,8 @@ int main() {
 		glClearColor(0.3f, 0.2f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
+		//firstTriangle->Draw();
+		//glDrawArrays(PC_RECTANGLE, 0, 4);
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
