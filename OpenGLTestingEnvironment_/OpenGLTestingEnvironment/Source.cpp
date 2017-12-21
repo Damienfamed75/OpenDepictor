@@ -73,21 +73,23 @@ int main() {
 		glClearColor(0.3f, 0.2f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
+		firstTriangle->CleanUp();
 
 		// animation testing
-		/*
+		
 		firstTriangle->UpdatePos(
-			Vector3(c1.x += animSpeed, c1.y -= animSpeed, c1.z += animSpeed),
-			Vector3(c2.x += animSpeed, c2.y -= animSpeed, c2.z -= animSpeed),
-			Vector3(c3.x += animSpeed, c3.y += (animSpeed * 2), c3.z += animSpeed)
+			Vector3(GetVal(&c1.x, animSpeed, &blArr.a1), GetVal(&c1.y, animSpeed, &blArr.a2), c1.z),
+			Vector3(GetVal(&c2.x, animSpeed, &blArr.a3), GetVal(&c2.y, animSpeed, &blArr.a4), c2.z),
+			Vector3(GetVal(&c3.x, animSpeed, &blArr.a5), GetVal(&c3.y, animSpeed, &blArr.a6), c3.z)
 		);
-		//*/
+		/*
 		// color animation testing
 		firstTriangle->UpdateColor(
 			Color(GetVal(&cl1.r, j, &blArr.a1),GetVal(&cl1.g, j, &blArr.a2),GetVal(&cl1.b, j, &blArr.a3), cl1.a),
 			Color(GetVal(&cl2.r, j, &blArr.a4), GetVal(&cl2.g, j, &blArr.a5), GetVal(&cl2.b, j, &blArr.a6), cl2.a),
 			Color(GetVal(&cl3.r, j, &blArr.a7), GetVal(&cl3.g, j, &blArr.a8), GetVal(&cl3.b, j, &blArr.a9), cl3.a)
 		);
+		//*/
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
@@ -109,7 +111,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 
 
 int IsNeg(float *v_) {
-	if (*v_ < 0.0)
+	if (*v_ < -1.0)
 		return 1;
 	else if (*v_ > 1)
 		return 0;

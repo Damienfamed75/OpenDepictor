@@ -24,6 +24,7 @@ public:
 		0.0f, 1.0f, 0.0f, 1.0f,
 		0.0f, 0.0f, 1.0f, 1.0f
 	};
+	void CleanUp();
 	void CreateVBO();
 	void DestroyVBO();
 	void CreateShaders();

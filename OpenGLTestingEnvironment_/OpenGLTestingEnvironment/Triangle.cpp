@@ -125,3 +125,7 @@ void Triangle::UpdateColor(Color col1_, Color col2_, Color col3_) {
 	Colors[10] = col3_.b;
 	Colors[11] = col3_.a;
 }
+void Triangle::CleanUp() {
+	DestroyShaders();
+	DestroyVBO();
+}
