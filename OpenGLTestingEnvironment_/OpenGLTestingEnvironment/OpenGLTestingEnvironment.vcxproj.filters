@@ -16,6 +16,9 @@
     <Filter Include="Resource Files\textures">
       <UniqueIdentifier>{02af4db7-d251-474f-9e3f-bd43d67475e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\VariableObjects">
+      <UniqueIdentifier>{9475d2bb-0f9f-497b-b3b9-bcf0f76c896f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -27,10 +30,34 @@
     <ClCompile Include="TextureLoading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files\VariableObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Header Files\VariableObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="BoolArray.h">
+      <Filter>Header Files\VariableObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
