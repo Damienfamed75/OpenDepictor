@@ -118,12 +118,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\Desktop\glad\src\glad.c" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TextureLoading.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoolArray.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Triangle.h" />

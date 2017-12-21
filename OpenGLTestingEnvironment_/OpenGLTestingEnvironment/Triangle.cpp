@@ -9,6 +9,7 @@ Triangle::Triangle() {
 	CreateVBO();
 	CreateShaders();
 	DestroyShaders();
+	DestroyVBO();
 	cout << "Triangle(def) Successfully Created!" << endl;
 }
 Triangle::Triangle(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
@@ -28,6 +29,7 @@ Triangle::Triangle(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
 	CreateVBO();
 	CreateShaders();
 	DestroyShaders();
+	DestroyVBO();
 	cout << "Triangle(cust) Successfully Created!" << endl;
 }
 void Triangle::CreateVBO() {
@@ -49,6 +51,7 @@ void Triangle::CreateVBO() {
 	glEnableVertexAttribArray(1);
 }
 void Triangle::DestroyVBO() {
+	cout << "(Triangle) Destroying VBO" << endl;
 	GLenum ErrorCheckValue = glGetError();
 
 	glDisableVertexAttribArray(1);
@@ -60,6 +63,7 @@ void Triangle::DestroyVBO() {
 
 	glBindVertexArray(0);
 	glDeleteVertexArrays(1, &VAO);
+	cout << "(Triangle) Successfully Destroyed VBO" << endl;
 }
 void Triangle::CreateShaders() {
 	GLenum ErrorCheckValue = glGetError();
@@ -79,6 +83,7 @@ void Triangle::CreateShaders() {
 	glUseProgram(shaderProgram);
 }
 void Triangle::DestroyShaders() {
+	cout << "(Triangle) Destroying Shaders..." << endl;
 	GLenum ErrorCheckValue = glGetError();
 
 	glUseProgram(0);
@@ -90,6 +95,7 @@ void Triangle::DestroyShaders() {
 	glDeleteShader(vertexShaderId);
 
 	glDeleteProgram(shaderProgram);
+	cout << "(Triangle) Successfully Destroyed Shaders" << endl;
 }
 void Triangle::UpdatePos(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
 	Vertices[0] = coord1_.x;
@@ -104,4 +110,30 @@ void Triangle::UpdatePos(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
 	Vertices[9] = coord3_.y;
 	Vertices[10] = coord3_.z;
 	Vertices[11] = coord3_.w;
+}
+void Triangle::UpdateColor(Color col1_, Color col2_, Color col3_) {
+	/*Colors[0]  = CORRECT_NUM(col1_.r);
+	Colors[1]  = CORRECT_NUM(col1_.g);
+	Colors[2]  = CORRECT_NUM(col1_.b);
+	Colors[3]  = CORRECT_NUM(col1_.a);
+	Colors[4]  = CORRECT_NUM(col2_.r);
+	Colors[5]  = CORRECT_NUM(col2_.g);
+	Colors[6]  = CORRECT_NUM(col2_.b);
+	Colors[7]  = CORRECT_NUM(col2_.a);
+	Colors[8]  = CORRECT_NUM(col3_.r);
+	Colors[9]  = CORRECT_NUM(col3_.g);
+	Colors[10] = CORRECT_NUM(col3_.b);
+	Colors[11] = CORRECT_NUM(col3_.a);*/
+	Colors[0] = col1_.r;
+	Colors[1] = col1_.g;
+	Colors[2] = col1_.b;
+	Colors[3] = col1_.a;
+	Colors[4] = col2_.r;
+	Colors[5] = col2_.g;
+	Colors[6] = col2_.b;
+	Colors[7] = col2_.a;
+	Colors[8] = col3_.r;
+	Colors[9] = col3_.g;
+	Colors[10] = col3_.b;
+	Colors[11] = col3_.a;
 }
