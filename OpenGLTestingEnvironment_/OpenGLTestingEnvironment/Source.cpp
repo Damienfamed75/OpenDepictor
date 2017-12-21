@@ -77,7 +77,16 @@ int main() {
 	}
 
 	/// Triangle
-	Triangle *firstTriangle = new Triangle();
+	Vector3 c1 = Vector3(-1.0f, 0.0f, 0.0f);
+	Vector3 c2 = Vector3(-0.5f, 1.0f, 0.0f);
+	Vector3 c3 = Vector3(0.0f, 0.0f, 0.0f);
+	/*Triangle *firstTriangle = new Triangle(
+		Vector3(-1.0f, 0.0f, 0.0f),
+		Vector3(-0.5f, 1.0f, 0.0f),
+		Vector3( 0.0f, 0.0f, 0.0f)
+	);*/
+	Triangle *firstTriangle = new Triangle(c1, c2, c3);
+
 	/*
 	unsigned int VBO; // Vertex Buffer Object
 	unsigned int VAO; // Vertex Array Object
@@ -128,7 +137,7 @@ int main() {
 	glUseProgram(shaderProgram);
 	glBindVertexArray(VAO);*/
 	
-
+	float j = 0.005f;
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
 	 * is told to stop explicitly by the user or other means.
@@ -139,11 +148,19 @@ int main() {
 		processInput(window);
 
 		/// rendering commands here
+		firstTriangle->CreateShaders();
+		firstTriangle->CreateVBO();
 		glClearColor(0.3f, 0.2f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
-		//firstTriangle->Draw();
-		//glDrawArrays(PC_RECTANGLE, 0, 4);
+
+		// animation testing
+		firstTriangle->UpdatePos(
+			Vector3(c1.x += j, c1.y += j, c1.z += j),
+			Vector3(c2.x -= j, c2.y -= j, c2.z -= j),
+			Vector3(c3.x += j, c3.y += j, c3.z += j)
+		);
+
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);

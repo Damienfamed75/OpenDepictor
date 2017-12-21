@@ -1,18 +1,42 @@
 #pragma once
+#ifndef SHADERS_H
+#define SHADERS_H
+const GLchar* VertexShader = {
+	"#version 400\n"\
 
-#include <glad\glad.h>
-#include <GLFW\glfw3.h>
+	"layout(location=0) in vec4 in_Position;\n"\
+	"layout(location=1) in vec4 in_Color;\n"\
+	"out vec4 ex_Color;\n"\
 
-const char *vertexShaderSource =	"#version 330 core\n"
-									"layout (location = 0) in vec3 aPos;\n"
-									"void main()\n"
-									"{\n"
-									"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-									"}\0";
+	"void main(void)\n"\
+	"{\n"\
+	"  gl_Position = in_Position;\n"\
+	"  ex_Color = in_Color;\n"\
+	"}\n"
+};
+const GLchar* FragmentShader =
+{
+	"#version 400\n"\
 
-const char *fragmentShaderSource =	"#version 330 core\n"
-									"out vec4 FragColor;\n"
-									"void main()\n"
-									"{\n"
-									"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-									"}\n\0";
+	"in vec4 ex_Color;\n"\
+	"out vec4 out_Color;\n"\
+
+	"void main(void)\n"\
+	"{\n"\
+	"  out_Color = ex_Color;\n"\
+	"}\n"
+};
+const GLchar* UniformFragmentShader =
+{
+	"#version 150 core\n"\
+
+	"uniform vec3 triangColor;\n"\
+	
+	"out vec4 outColor\n"\
+	
+	"void main()\n"\
+	"{\n"\
+	"	outColor = vec4(triangleColor, 1.0);\n"\
+	"}\n"
+};
+#endif
