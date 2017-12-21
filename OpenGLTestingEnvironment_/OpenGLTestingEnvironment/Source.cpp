@@ -10,21 +10,22 @@ const unsigned int SCR_WIDTH  = 800;
 const unsigned int SCR_HEIGHT = 600;
 float vertices[] = {
 	-0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
+	 0.5f, -0.5f, 1.0f,
+	 0.0f,  0.5f, 0.5f
 }; // triangle vertices
-const char *vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"}\0";
-const char *fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\n\0";
+const GLchar *vertexShaderSource =		"#version 330 core\n"
+										"layout (location = 0) in vec3 aPos;\n"
+										"void main()\n"
+										"{\n"
+										"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+										"}\0";
+
+const GLchar *fragmentShaderSource =	"#version 330 core\n"
+										"out vec4 FragColor;\n"
+										"void main()\n"
+	/*hello there*/						"{\n"
+										"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+										"}\n\0";
 
 int main() {
 	// glfw: initialize and configure
@@ -40,7 +41,7 @@ int main() {
 
 
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Testing Environment", NULL, NULL); // Creates window object
-	if (window == NULL) {
+	if (window == NULL) { // Checks if the window was created correctly
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 		return -1;
@@ -60,18 +61,21 @@ int main() {
 	}
 
 	/// Triangle
-
+	// buffer objects: assigning out buffer objects for our vertex arrays
+	// ------------------------------------------------------------------
 	unsigned int VBO; // Vertex Buffer Object
 	unsigned int VAO; // Vertex Array Object
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 	glGenBuffers(1, &VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO); // binds our buffer object
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // Sets the purpose of our vertices to draw
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
+	// shaders: assigning out shaders to unsigned ints and linking them with a program
+	// -------------------------------------------------------------------------------
 	unsigned int vertexShader;
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -85,21 +89,23 @@ int main() {
 	unsigned int shaderProgram;
 	shaderProgram = glCreateProgram();
 
+
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
 	glLinkProgram(shaderProgram);
 
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
+	glDeleteShader(vertexShader); // Properly disposes the shaders since it's now linked in a program.
+	glDeleteShader(fragmentShader); // ditto
 	
+	// textures: setting up texture properties
+	// ---------------------------------------
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 	float borderColor[] = { 1.0f, 1.0f, 0.0f, 1.0f };
 	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);  // filtering mode
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	
 
 	glUseProgram(shaderProgram);
 	glBindVertexArray(VAO);
@@ -128,11 +134,11 @@ int main() {
 	return 0;
 }
 
-void processInput(GLFWwindow *window) {
+void processInput(GLFWwindow *window) { // sets the ESCAPE key to close the application
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-	glViewport(0, 0, width, height);
+	glViewport(0, 0, width, height); // called every frame to change the viewport accordingly to the size of the window
 }
