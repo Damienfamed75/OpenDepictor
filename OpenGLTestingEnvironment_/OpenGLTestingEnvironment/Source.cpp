@@ -54,10 +54,10 @@ int main() {
 	Vector3 c2 =  Vector3(-0.5f, 1.0f, 0.0f);
 	Vector3 c3 =  Vector3(0.0f, 0.0f, 0.0f);
 	BoolArray blArr = BoolArray();
-	Triangle *firstTriangle = new Triangle(c1, c2, c3);
+	Triangle *firstTriangle = new Triangle();
 	
 	float j = 0.004f;
-	float animSpeed = 0.001f;
+	float animSpeed = 0.004f;
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
 	 * is told to stop explicitly by the user or other means.
@@ -75,18 +75,19 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		// animation testing
+		/*
 		firstTriangle->UpdatePos(
 			Vector3(c1.x += animSpeed, c1.y -= animSpeed, c1.z += animSpeed),
 			Vector3(c2.x += animSpeed, c2.y -= animSpeed, c2.z -= animSpeed),
 			Vector3(c3.x += animSpeed, c3.y += (animSpeed * 2), c3.z += animSpeed)
 		);
+		//*/
 		// color animation testing
 		firstTriangle->UpdateColor(
 			Color(GetVal(&cl1.r, j, &blArr.a1),GetVal(&cl1.g, j, &blArr.a2),GetVal(&cl1.b, j, &blArr.a3), cl1.a),
 			Color(GetVal(&cl2.r, j, &blArr.a4), GetVal(&cl2.g, j, &blArr.a5), GetVal(&cl2.b, j, &blArr.a6), cl2.a),
 			Color(GetVal(&cl3.r, j, &blArr.a7), GetVal(&cl3.g, j, &blArr.a8), GetVal(&cl3.b, j, &blArr.a9), cl3.a)
 		);
-		std::cout << cl1.r << std::endl;
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
@@ -105,6 +106,7 @@ void processInput(GLFWwindow *window) {
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
 }
+
 
 int IsNeg(float *v_) {
 	if (*v_ < 0.0)

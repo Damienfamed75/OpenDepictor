@@ -112,18 +112,6 @@ void Triangle::UpdatePos(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
 	Vertices[11] = coord3_.w;
 }
 void Triangle::UpdateColor(Color col1_, Color col2_, Color col3_) {
-	/*Colors[0]  = CORRECT_NUM(col1_.r);
-	Colors[1]  = CORRECT_NUM(col1_.g);
-	Colors[2]  = CORRECT_NUM(col1_.b);
-	Colors[3]  = CORRECT_NUM(col1_.a);
-	Colors[4]  = CORRECT_NUM(col2_.r);
-	Colors[5]  = CORRECT_NUM(col2_.g);
-	Colors[6]  = CORRECT_NUM(col2_.b);
-	Colors[7]  = CORRECT_NUM(col2_.a);
-	Colors[8]  = CORRECT_NUM(col3_.r);
-	Colors[9]  = CORRECT_NUM(col3_.g);
-	Colors[10] = CORRECT_NUM(col3_.b);
-	Colors[11] = CORRECT_NUM(col3_.a);*/
 	Colors[0] = col1_.r;
 	Colors[1] = col1_.g;
 	Colors[2] = col1_.b;
