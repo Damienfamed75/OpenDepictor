@@ -51,7 +51,6 @@ void Triangle::CreateVBO() {
 	glEnableVertexAttribArray(1);
 }
 void Triangle::DestroyVBO() {
-	cout << "(Triangle) Destroying VBO" << endl;
 	GLenum ErrorCheckValue = glGetError();
 
 	glDisableVertexAttribArray(1);
@@ -63,7 +62,6 @@ void Triangle::DestroyVBO() {
 
 	glBindVertexArray(0);
 	glDeleteVertexArrays(1, &VAO);
-	cout << "(Triangle) Successfully Destroyed VBO" << endl;
 }
 void Triangle::CreateShaders() {
 	GLenum ErrorCheckValue = glGetError();
@@ -83,7 +81,6 @@ void Triangle::CreateShaders() {
 	glUseProgram(shaderProgram);
 }
 void Triangle::DestroyShaders() {
-	cout << "(Triangle) Destroying Shaders..." << endl;
 	GLenum ErrorCheckValue = glGetError();
 
 	glUseProgram(0);
@@ -95,7 +92,6 @@ void Triangle::DestroyShaders() {
 	glDeleteShader(vertexShaderId);
 
 	glDeleteProgram(shaderProgram);
-	cout << "(Triangle) Successfully Destroyed Shaders" << endl;
 }
 void Triangle::UpdatePos(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
 	Vertices[0] = coord1_.x;
@@ -128,4 +124,21 @@ void Triangle::UpdateColor(Color col1_, Color col2_, Color col3_) {
 void Triangle::CleanUp() {
 	DestroyShaders();
 	DestroyVBO();
+}
+void Triangle::Move(float x, float y) {
+	Vertices[0] += x;
+	Vertices[4] += x;
+	Vertices[8] += x;
+	Vertices[1] += y;
+	Vertices[5] += y;
+	Vertices[9] += y;
+}
+void Triangle::MoveTo(float x, float y) {
+	throw ERROR_CALL_NOT_IMPLEMENTED;
+}
+void Triangle::Transfer(float x, float y, float animSpeed) {
+	// TODO: FIND CENTER POINT OF TRIANGLE AND REVERSE ENGINEER FOR MOVETO() AND TRANSFERTO()
+}
+void Triangle::TransferTo(float x, float y, float animSpeed) {
+	throw ERROR_CALL_NOT_IMPLEMENTED;
 }
