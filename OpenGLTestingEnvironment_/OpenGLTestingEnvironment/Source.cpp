@@ -14,6 +14,8 @@ const unsigned int SCR_WIDTH  = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 int main() {
+
+#pragma region GLFW_INITIALIZATION
 	// glfw: initialize and configure
 	// ------------------------------
 	glfwInit();
@@ -46,6 +48,8 @@ int main() {
 		return -1;
 	}
 
+#pragma endregion
+
 	/// Triangle
 	Color cl1 = Color(1.0f, 0.0f, 0.0f, 1.0f); // Color for coord1
 	Color cl2 = Color(0.0f, 1.0f, 0.0f, 1.0f); // Color for coord2
@@ -58,6 +62,8 @@ int main() {
 	
 	float j = 0.004f;
 	float animSpeed = 0.01f;
+
+
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
 	 * is told to stop explicitly by the user or other means.
@@ -82,7 +88,6 @@ int main() {
 			Vector3(GetVal(&c2.x, animSpeed, &blArr.a3), GetVal(&c2.y, animSpeed, &blArr.a4), c2.z),
 			Vector3(GetVal(&c3.x, animSpeed, &blArr.a5), GetVal(&c3.y, animSpeed, &blArr.a6), c3.z)
 		);
-		/*/
 		// color animation testing
 		/*firstTriangle->UpdateColor(
 			Color(GetVal(&cl1.r, j, &blArr.a1), GetVal(&cl1.g, j, &blArr.a2), GetVal(&cl1.b, j, &blArr.a3), cl1.a),
@@ -111,9 +116,9 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 int IsNeg(float *v_) {
 	if (*v_ < 0.0)
 		return 1;
-	else if (*v_ > 1)
+	else if (*v_ > 1.0)
 		return 0;
-	return 2;
+	return -1;
 }
 float GetVal(float *v, float j, bool *t) {
 	if (*t)
