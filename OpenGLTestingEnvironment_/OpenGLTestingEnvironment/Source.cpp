@@ -5,6 +5,7 @@
 #include "Triangle.h"
 #include "Shaders.h"
 #include "BoolArray.h"
+#include "RegularPolygon.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -66,7 +67,9 @@ int main() {
 	Vector3 *k1 = new Vector3(-0.8f, 0.5f, 0.0f);
 	Vector3 *k2 = new Vector3(0.5f, 0.5f, 0.0f);
 	Vector3 *k3 = new Vector3(0.8f, 0.0f, 0.0f);
-	Triangle *secondTriangle = new Triangle(*k1, *k2, *k3);
+	Triangle *secondTriangle = new Triangle();
+	RegularPolygon *firstPolygon = new RegularPolygon(0.25f, 0.25f, 0.0f, 0.25f, 40);
+	RegularPolygon *secondPolygon = new RegularPolygon(-0.3f, -0.25f, 0.0f, 0.3f, 24);
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
 	 * is told to stop explicitly by the user or other means.
@@ -82,8 +85,9 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT);
 		//drawCircle(SCR_WIDTH / 2, SCR_HEIGHT / 2, 1, 1, 20);
 		firstTriangle->Draw();
-		secondTriangle->Draw();
-
+		//secondTriangle->Draw();
+		firstPolygon->Draw();
+		secondPolygon->Draw();
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);

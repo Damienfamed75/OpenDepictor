@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\Desktop\glad\src\glad.c" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="RegularPolygon.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TextureLoading.cpp" />
     <ClCompile Include="Triangle.cpp" />

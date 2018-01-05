@@ -15,10 +15,23 @@ public:
 	Triangle();
 	Triangle(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_);
 	GLfloat Vertices[9] = {
-		-0.8f, -0.8f, 0.0f,
-		-0.8f, 0.8f, 0.0f, 
-		0.8f, 0.8f, 0.0f
+		-0.8f, -0.8f,
+		-0.8f, 0.8f,
+		0.8f, 0.8f,
+		0.0f, 0.1f
 	};
+	/*GLfloat Vertices[24] = {
+		0.0f,  0.0f,
+		0.5f,  0.5f,
+		-0.5f, -0.5f,
+		-1.0f, -1.0f,
+		-0.5f, -0.5f,
+		0.5f,  0.5f,
+		1.0f,  1.0f,
+		0.5f,  0.5f,
+	};*/
+	
+	
 	GLfloat Colors[16] = {
 		1.0f, 0.0f, 0.0f, 1.0f,
 		0.0f, 1.0f, 0.0f, 1.0f,
