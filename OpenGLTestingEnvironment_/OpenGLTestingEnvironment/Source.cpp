@@ -1,13 +1,14 @@
 #include <glad\glad.h>
 #include <GLFW\glfw3.h>
 #include <iostream>
+#include <math.h>
 #include "Triangle.h"
 #include "Shaders.h"
 #include "BoolArray.h"
 
-float GetVal(float *v, float j, bool *t);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
+void drawCircle(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLint numOfSides);
 
 // settings
 const unsigned int SCR_WIDTH  = 800;
@@ -18,7 +19,7 @@ int main() {
 #pragma region GLFW_INITIALIZATION
 	// glfw: initialize and configure
 	// ------------------------------
-	glfwInit();
+	glfwInit(); // initializes the library
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -34,7 +35,7 @@ int main() {
 		glfwTerminate();
 		return -1;
 	}
-	glfwMakeContextCurrent(window);
+	glfwMakeContextCurrent(window); // makes the window's context current
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	
 	/// Glad Initilization
@@ -47,23 +48,25 @@ int main() {
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
+	/*
+	glViewport(0.0f, 0.0f, SCR_WIDTH, SCR_HEIGHT);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, SCR_WIDTH, 0, SCR_HEIGHT, 0, 1);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();*/
 
 #pragma endregion
 
 	/// Triangle
-	Color cl1 = Color(1.0f, 0.0f, 0.0f, 1.0f); // Color for coord1
-	Color cl2 = Color(0.0f, 1.0f, 0.0f, 1.0f); // Color for coord2
-	Color cl3 = Color(0.0f, 0.0f, 1.0f, 1.0f); // Color for coord3
-	Vector3 c1 =  Vector3(-1.0f, 0.0f, 0.0f); // coord1
-	Vector3 c2 =  Vector3(-0.5f, 1.0f, 0.0f); // coord2
-	Vector3 c3 =  Vector3(0.0f, 0.0f, 0.0f);  // coord3
-	BoolArray blArr = BoolArray();
-	Triangle *firstTriangle = new Triangle();
-	
-	float j = 0.004f;
-	float animSpeed = 0.01f;
-
-
+	Vector3 *c1 = new Vector3(-0.8f, 0.8f, 0.0f);
+	Vector3 *c2 = new Vector3(-0.5f, 0.5f, 0.0f);
+	Vector3 *c3 = new Vector3(-0.8f, 0.0f, 0.0f);
+	Triangle *firstTriangle = new Triangle(*c1, *c2, *c3);
+	Vector3 *k1 = new Vector3(-0.8f, 0.5f, 0.0f);
+	Vector3 *k2 = new Vector3(0.5f, 0.5f, 0.0f);
+	Vector3 *k3 = new Vector3(0.8f, 0.0f, 0.0f);
+	Triangle *secondTriangle = new Triangle(*k1, *k2, *k3);
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
 	 * is told to stop explicitly by the user or other means.
@@ -73,33 +76,21 @@ int main() {
 		/// ------
 		processInput(window);
 		
-		/// rendering commands here
-		firstTriangle->CreateShaders();
-		firstTriangle->CreateVBO();
-		glClearColor(0.3f, 0.2f, 1.0f, 1.0f);
+		/// rendering commands
+		/// ------------------
+		glClearColor(0.08f, 0.04f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-		firstTriangle->CleanUp();
+		//drawCircle(SCR_WIDTH / 2, SCR_HEIGHT / 2, 1, 1, 20);
+		firstTriangle->Draw();
+		secondTriangle->Draw();
 
-		// animation testing
-		/*/
-		firstTriangle->UpdatePos(
-			Vector3(GetVal(&c1.x, animSpeed, &blArr.a1), GetVal(&c1.y, animSpeed, &blArr.a2), c1.z),
-			Vector3(GetVal(&c2.x, animSpeed, &blArr.a3), GetVal(&c2.y, animSpeed, &blArr.a4), c2.z),
-			Vector3(GetVal(&c3.x, animSpeed, &blArr.a5), GetVal(&c3.y, animSpeed, &blArr.a6), c3.z)
-		);
-		// color animation testing
-		/*firstTriangle->UpdateColor(
-			Color(GetVal(&cl1.r, j, &blArr.a1), GetVal(&cl1.g, j, &blArr.a2), GetVal(&cl1.b, j, &blArr.a3), cl1.a),
-			Color(GetVal(&cl2.r, j, &blArr.a4), GetVal(&cl2.g, j, &blArr.a5), GetVal(&cl2.b, j, &blArr.a6), cl2.a),
-			Color(GetVal(&cl3.r, j, &blArr.a7), GetVal(&cl3.g, j, &blArr.a8), GetVal(&cl3.b, j, &blArr.a9), cl3.a)
-		);*/
-		//*/
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	free(firstTriangle);
 	glfwTerminate(); // Properly cleans and deletes all resources that were allocated.
 	return 0;
 }
@@ -113,21 +104,29 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
 }
 
-int IsNeg(float *v_) {
-	if (*v_ < 0.0)
-		return 1;
-	else if (*v_ > 1.0)
-		return 0;
-	return -1;
-}
-float GetVal(float *v, float j, bool *t) {
-	if (*t)
-		*v += j;
-	else if (!*t)
-		*v -= j;
-	if (IsNeg(v) == 0)
-		*t = false;
-	else if (IsNeg(v) == 1)
-		*t = true;
-	return *v;
+void drawCircle(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLint numOfSides) {
+	int numOfVertices = numOfSides + 2;
+	GLfloat doublePi = 2.0f * 3.14159265358979323846;
+
+	GLfloat* circleVerticesX = new GLfloat[numOfVertices];
+	GLfloat* circleVerticesY = new GLfloat[numOfVertices];
+	GLfloat* circleVerticesZ = new GLfloat[numOfVertices];
+	
+	circleVerticesX[0] = x;
+	circleVerticesY[0] = y;
+	circleVerticesZ[0] = z;
+
+	for (int i = 1; i < numOfVertices; i++) {
+		circleVerticesX[i] = x + (radius * cos(i * doublePi / numOfSides));
+		circleVerticesY[i] = y + (radius * sin(i * doublePi / numOfSides));
+		circleVerticesZ[i] = z;
+	}
+
+	GLfloat* allCircleVertices = new GLfloat[(numOfVertices) * 3];
+
+	for (int i = 0; i < numOfVertices; i++) {
+		allCircleVertices[i * 3]	   = circleVerticesX[i];
+		allCircleVertices[(i * 3) + 1] = circleVerticesY[i];
+		allCircleVertices[(i * 3) + 2] = circleVerticesZ[i];
+	}
 }

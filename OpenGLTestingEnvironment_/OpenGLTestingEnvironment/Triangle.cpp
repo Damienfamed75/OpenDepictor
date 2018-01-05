@@ -17,15 +17,12 @@ Triangle::Triangle(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
 	Vertices[0]  = coord1_.x;
 	Vertices[1]  = coord1_.y;
 	Vertices[2]  = coord1_.z;
-	Vertices[3]  = coord1_.w;
-	Vertices[4]  = coord2_.x;
-	Vertices[5]  = coord2_.y;
-	Vertices[6]  = coord2_.z;
-	Vertices[7]  = coord2_.w;
-	Vertices[8]  = coord3_.x;
-	Vertices[9]  = coord3_.y;
-	Vertices[10] = coord3_.z;
-	Vertices[11] = coord3_.w;
+	Vertices[3]  = coord2_.x;
+	Vertices[4]  = coord2_.y;
+	Vertices[5]  = coord2_.z;
+	Vertices[6]  = coord3_.x;
+	Vertices[7]  = coord3_.y;
+	Vertices[8]  = coord3_.z;
 	CreateVBO();
 	CreateShaders();
 	DestroyShaders();
@@ -41,7 +38,8 @@ void Triangle::CreateVBO() {
 	glGenBuffers(1, &VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VAO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
+	//glBufferData(GL_ARRAY_BUFFER, 66, Vertices, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
 
 	glGenBuffers(1, &colorBuffer);
@@ -97,15 +95,12 @@ void Triangle::UpdatePos(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
 	Vertices[0] = coord1_.x;
 	Vertices[1] = coord1_.y;
 	Vertices[2] = coord1_.z;
-	Vertices[3] = coord1_.w;
-	Vertices[4] = coord2_.x;
-	Vertices[5] = coord2_.y;
-	Vertices[6] = coord2_.z;
-	Vertices[7] = coord2_.w;
-	Vertices[8] = coord3_.x;
-	Vertices[9] = coord3_.y;
-	Vertices[10] = coord3_.z;
-	Vertices[11] = coord3_.w;
+	Vertices[3] = coord2_.x;
+	Vertices[4] = coord2_.y;
+	Vertices[5] = coord2_.z;
+	Vertices[6] = coord3_.x;
+	Vertices[7] = coord3_.y;
+	Vertices[8] = coord3_.z;
 }
 void Triangle::UpdateColor(Color col1_, Color col2_, Color col3_) {
 	Colors[0] = col1_.r;
@@ -141,4 +136,10 @@ void Triangle::Transfer(float x, float y, float animSpeed) {
 }
 void Triangle::TransferTo(float x, float y, float animSpeed) {
 	throw ERROR_CALL_NOT_IMPLEMENTED;
+}
+void Triangle::Draw() {
+	CreateShaders();
+	CreateVBO();
+	glDrawArrays(GL_TRIANGLES, 0, 4);
+	CleanUp();
 }

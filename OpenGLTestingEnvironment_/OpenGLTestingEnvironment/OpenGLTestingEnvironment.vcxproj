@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="BoolArray.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="RegularPolygon.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Triangle.h" />
