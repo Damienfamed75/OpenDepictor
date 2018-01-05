@@ -19,11 +19,11 @@ public:
 	GLint numOfSides;
 	int numOfVertices;
 	
-	GLfloat *circleVerticesX;// = new GLfloat[numOfVertices];
-	GLfloat *circleVerticesY;
-	GLfloat *circleVerticesZ;
-	GLfloat allCircleVertices[128];
-	//GLfloat *allCircleVertices;
+	GLfloat *polygonVerticesX;// = new GLfloat[numOfVertices];
+	GLfloat *polygonVerticesY;
+	GLfloat *polygonVerticesZ;
+	GLfloat allPolygonVertices[128];
+	//GLfloat *allPolygonVertices;
 	
 	RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_);
 
@@ -69,6 +69,7 @@ public:
 	void CreateShaders();
 	void DestroyShaders();
 	void CleanUp();
+	void ColorTestChange();
 private:
 	GLuint vertexShaderId, fragmentShaderId,
 		colorBuffer, VAO, VBO, shaderProgram;

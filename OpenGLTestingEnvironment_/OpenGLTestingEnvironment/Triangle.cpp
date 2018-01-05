@@ -38,8 +38,7 @@ void Triangle::CreateVBO() {
 	glGenBuffers(1, &VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VAO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
-	//glBufferData(GL_ARRAY_BUFFER, 66, Vertices, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
 
 	glGenBuffers(1, &colorBuffer);
@@ -132,6 +131,7 @@ void Triangle::MoveTo(float x, float y) {
 	throw ERROR_CALL_NOT_IMPLEMENTED;
 }
 void Triangle::Transfer(float x, float y, float animSpeed) {
+	throw ERROR_CALL_NOT_IMPLEMENTED;
 	// TODO: FIND CENTER POINT OF TRIANGLE AND REVERSE ENGINEER FOR MOVETO() AND TRANSFERTO()
 }
 void Triangle::TransferTo(float x, float y, float animSpeed) {
