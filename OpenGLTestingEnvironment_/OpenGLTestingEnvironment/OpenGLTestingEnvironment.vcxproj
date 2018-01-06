@@ -133,7 +133,6 @@
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BoolArray.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="RegularPolygon.h" />
     <ClInclude Include="Shaders.h" />

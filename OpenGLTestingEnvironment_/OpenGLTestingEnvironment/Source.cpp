@@ -1,10 +1,8 @@
 #include <glad\glad.h>
 #include <GLFW\glfw3.h>
 #include <iostream>
-#include <math.h>
 #include "Triangle.h"
 #include "Shaders.h"
-#include "BoolArray.h"
 #include "RegularPolygon.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -58,7 +56,7 @@ int main() {
 
 #pragma endregion
 
-	/// Triangle
+	/// Instantiation
 	Vector3 *k1 = new Vector3(-0.8f, 0.8f, 0.0f);
 	Vector3 *k3 = new Vector3(-0.8f, 0.0f, 0.0f);
 	Vector3 *k2 = new Vector3( 0.5f, 0.5f, 0.0f);
@@ -66,6 +64,7 @@ int main() {
 	RegularPolygon *firstPolygon = new RegularPolygon(0.25f, 0.25f, 0.0f, 0.2f, 40);
 	RegularPolygon *secondPolygon = new RegularPolygon(-0.3f, -0.25f, 0.0f, 0.35f, 8);
 	secondPolygon->ColorTestChange(); // debugging for color change
+	
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
 	 * is told to stop explicitly by the user or other means.

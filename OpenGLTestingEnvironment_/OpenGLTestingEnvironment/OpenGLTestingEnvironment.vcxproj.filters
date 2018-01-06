@@ -59,9 +59,6 @@
     <ClInclude Include="Vector3.h">
       <Filter>Header Files\VariableObjects</Filter>
     </ClInclude>
-    <ClInclude Include="BoolArray.h">
-      <Filter>Header Files\VariableObjects</Filter>
-    </ClInclude>
     <ClInclude Include="RegularPolygon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
