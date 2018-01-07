@@ -46,13 +46,6 @@ int main() {
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
-	/*
-	glViewport(0.0f, 0.0f, SCR_WIDTH, SCR_HEIGHT);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0, SCR_WIDTH, 0, SCR_HEIGHT, 0, 1);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();*/
 
 #pragma endregion
 
