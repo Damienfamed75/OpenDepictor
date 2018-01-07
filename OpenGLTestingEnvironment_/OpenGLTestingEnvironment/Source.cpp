@@ -53,10 +53,11 @@ int main() {
 	Vector3 *k1 = new Vector3(-0.8f, 0.8f, 0.0f);
 	Vector3 *k3 = new Vector3(-0.8f, 0.0f, 0.0f);
 	Vector3 *k2 = new Vector3( 0.5f, 0.5f, 0.0f);
-	Triangle *myTriangle = new Triangle(*k1, *k2, *k3);
-	RegularPolygon *firstPolygon = new RegularPolygon(0.25f, 0.25f, 0.0f, 0.2f, 40);
-	RegularPolygon *secondPolygon = new RegularPolygon(-0.3f, -0.25f, 0.0f, 0.35f, 8);
-	secondPolygon->ColorTestChange(); // debugging for color change
+	
+	Triangle myTriangle(*k1, *k2, *k3);
+	RegularPolygon firstPolygon(0.25f, 0.25f, 0.0f, 0.2f, 40);
+	RegularPolygon secondPolygon(-0.3f, -0.25f, 0.0f, 0.35f, 8);
+	secondPolygon.ColorTestChange(); // debugging for color change
 	
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
@@ -72,9 +73,9 @@ int main() {
 		glClearColor(0.08f, 0.04f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		myTriangle->Draw();
-		firstPolygon->Draw();
-		secondPolygon->Draw();
+		myTriangle.Draw();
+		firstPolygon.Draw();
+		secondPolygon.Draw();
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
