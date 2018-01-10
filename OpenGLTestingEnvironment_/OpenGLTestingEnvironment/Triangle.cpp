@@ -124,14 +124,14 @@ void Triangle::Move(float x, float y) { // TODO REFACTOR
 	Vertices[9] += y;
 }
 void Triangle::MoveTo(float x, float y) {
-	throw ERROR_CALL_NOT_IMPLEMENTED;
+	return;
 }
 void Triangle::Transfer(float x, float y, float animSpeed) {
-	throw ERROR_CALL_NOT_IMPLEMENTED;
+	return;
 	// TODO: FIND CENTER POINT OF TRIANGLE AND REVERSE ENGINEER FOR MOVETO() AND TRANSFERTO()
 }
 void Triangle::TransferTo(float x, float y, float animSpeed) {
-	throw ERROR_CALL_NOT_IMPLEMENTED;
+	return;
 }
 void Triangle::Draw() {
 	CreateShaders();
