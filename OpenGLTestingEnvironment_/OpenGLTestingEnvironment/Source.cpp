@@ -6,6 +6,7 @@
 #include "RegularPolygon.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void joystick_callback(int joy, int event);
 void processInput(GLFWwindow *window);
 
 // settings
@@ -34,6 +35,7 @@ int main() {
 		return -1;
 	}
 	glfwMakeContextCurrent(window); // makes the window's context current
+	glfwSetJoystickCallback(joystick_callback);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	
 	/// Glad Initilization
@@ -57,8 +59,16 @@ int main() {
 	Triangle myTriangle(*k1, *k2, *k3);
 	RegularPolygon firstPolygon(0.25f, 0.25f, 0.0f, 0.2f, 40);
 	RegularPolygon secondPolygon(-0.3f, -0.25f, 0.0f, 0.35f, 8);
-	secondPolygon.ColorChange(0.5f, 0.0f, 0.9f); // debugging for color change
+	RegularPolygon thirdPolygon(0.7f, -0.4f, 0.0f, 0.2f, 4);
+	secondPolygon.UpdateColor(0.5f, 0.0f, 0.9f);
+	firstPolygon.UpdateColor(0.9f, 0.0f, 0.2f);
+	thirdPolygon.UpdateColor(0.3f, 0.8f, 0.1f);
 	
+	// deleting pointers
+	delete(k1);
+	delete(k2);
+	delete(k3);
+
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
 	 * is told to stop explicitly by the user or other means.
@@ -67,34 +77,41 @@ int main() {
 		/// inputs
 		/// ------
 		processInput(window);
-
-		int count;
-		int buttonCount;
-		int pointNumber = 3;
-		const unsigned char *buttonAxes = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
-		const float *axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &count);
-		if (buttonAxes[0] == GLFW_PRESS)
-			pointNumber = 1;
-		if (buttonAxes[1] == GLFW_PRESS)
-			pointNumber = 2;
-		if (buttonAxes[2] == GLFW_PRESS)
-			pointNumber = 0;
 		
+		int joyCount, buttonCount, pointNumber = 3;
+		
+		const unsigned char *buttonAxes = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount); // NULL if controller is unplugged
+		const float *joyAxes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &joyCount); // NULL if controller is unplugged
+		
+		// Make sure to check if the controller is present before checking input axes
+		if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) {
+			if (buttonAxes[0] == GLFW_PRESS)
+				pointNumber = 1;
+			if (buttonAxes[1] == GLFW_PRESS)
+				pointNumber = 2;
+			if (buttonAxes[2] == GLFW_PRESS)
+				pointNumber = 0;
+		}
+		
+
 		/// rendering commands
 		/// ------------------
-		glClearColor(0.08f, 0.04f, 0.3f, 1.0f);
+		glClearColor(0.08f, 0.04f, 0.3f, 1.0f); // sets background color
 		glClear(GL_COLOR_BUFFER_BIT);
-
 		myTriangle.Draw();
+		if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) {
+			if (pointNumber != 3) {
+				myTriangle.Vertices[(pointNumber * 3)] += (joyAxes[0] * 0.01f); // adds to joystick's X-axis
+				myTriangle.Vertices[(pointNumber * 3) + 1] += (joyAxes[1] * 0.01f); // adds to joystick's Y-axis
+				RegularPolygon selectionPoint(myTriangle.Vertices[(pointNumber * 3)], myTriangle.Vertices[(pointNumber * 3) + 1], 0.0f, 0.01f, 8);
+				// creates a new polygon where the selected vertex is
+				selectionPoint.Draw();
+			}
+		}
 		firstPolygon.Draw();
 		secondPolygon.Draw();
+		thirdPolygon.Draw();
 
-		if (pointNumber != 3) {
-			myTriangle.Vertices[(pointNumber * 3)] += (axes[0] * 0.01);
-			myTriangle.Vertices[(pointNumber * 3) + 1] += (axes[1] * 0.01);
-			RegularPolygon selectionPoint(myTriangle.Vertices[(pointNumber * 3)], myTriangle.Vertices[(pointNumber * 3) + 1], 0.0f, 0.01f, 8);
-			selectionPoint.Draw();
-		}
 
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
@@ -112,7 +129,7 @@ void processInput(GLFWwindow *window) {
 
 	/// Input testing
 
-	/// Xbox controller Layout
+	/// Xbox controller Layout (Buttons)
 	// 0: A			7: Start
 	// 1: B			8: LJoyButton	
 	// 2: X			9: RJoyButton
@@ -125,4 +142,11 @@ void processInput(GLFWwindow *window) {
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
+}
+
+void joystick_callback(int joy, int event) {
+	if (event == GLFW_CONNECTED)
+		std::cout << "connected joystick: " << joy << std::endl;
+	else if (event == GLFW_DISCONNECTED)
+		std::cout << "disconnected joystick: " << joy << std::endl;
 }

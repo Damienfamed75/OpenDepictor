@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef SHADERS_H
 #define SHADERS_H
 
@@ -15,6 +16,7 @@ const GLchar* VertexShader = {
 	"  ex_Color = in_Color;\n"\
 	"}\n"
 };
+
 const GLchar* FragmentShader =
 {
 	"#version 400\n"\
@@ -27,6 +29,7 @@ const GLchar* FragmentShader =
 	"  out_Color = ex_Color;\n"\
 	"}\n"
 };
+
 const GLchar* UniformFragmentShader =
 {
 	"#version 150 core\n"\
@@ -40,4 +43,5 @@ const GLchar* UniformFragmentShader =
 	"	outColor = vec4(triangleColor, 1.0);\n"\
 	"}\n"
 };
+
 #endif

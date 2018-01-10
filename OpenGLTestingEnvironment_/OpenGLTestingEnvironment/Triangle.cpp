@@ -5,15 +5,12 @@ using std::cout;
 using std::endl;
 
 Triangle::Triangle() {
-	cout << "Creating Triangle(def)..." << endl;
 	CreateVBO();
 	CreateShaders();
 	DestroyShaders();
 	DestroyVBO();
-	cout << "Triangle(def) Successfully Created!" << endl;
 }
-Triangle::Triangle(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
-	cout << "Creating Triangle(cust)..." << endl;
+Triangle::Triangle(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) { // TODO REFACTOR
 	Vertices[0]  = coord1_.x;
 	Vertices[1]  = coord1_.y;
 	Vertices[2]  = coord1_.z;
@@ -27,7 +24,6 @@ Triangle::Triangle(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
 	CreateShaders();
 	DestroyShaders();
 	DestroyVBO();
-	cout << "Triangle(cust) Successfully Created!" << endl;
 }
 void Triangle::CreateVBO() {
 	GLenum ErrorCheckValue = glGetError();
@@ -90,7 +86,7 @@ void Triangle::DestroyShaders() {
 
 	glDeleteProgram(shaderProgram);
 }
-void Triangle::UpdatePos(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
+void Triangle::UpdatePos(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) { // TODO REFACTOR
 	Vertices[0] = coord1_.x;
 	Vertices[1] = coord1_.y;
 	Vertices[2] = coord1_.z;
@@ -101,7 +97,7 @@ void Triangle::UpdatePos(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_) {
 	Vertices[7] = coord3_.y;
 	Vertices[8] = coord3_.z;
 }
-void Triangle::UpdateColor(Color col1_, Color col2_, Color col3_) {
+void Triangle::UpdateColor(Color col1_, Color col2_, Color col3_) { // TODO REFACTOR
 	Colors[0] = col1_.r;
 	Colors[1] = col1_.g;
 	Colors[2] = col1_.b;
@@ -119,7 +115,7 @@ void Triangle::CleanUp() {
 	DestroyShaders();
 	DestroyVBO();
 }
-void Triangle::Move(float x, float y) {
+void Triangle::Move(float x, float y) { // TODO REFACTOR
 	Vertices[0] += x;
 	Vertices[4] += x;
 	Vertices[8] += x;

@@ -7,20 +7,25 @@
 extern const GLchar* VertexShader;
 extern const GLchar* FragmentShader;
 
+
+#ifndef TRIANGLE_H
+#define TRIANGLE_H
+
+
 class Triangle {
 public:
 	Vector3 coord1 = Vector3(-0.8f, -0.8f, 0.0f);
-	Vector3 coord2 = Vector3(-0.8f,  0.8f, 0.0f);
-	Vector3 coord3 = Vector3( 0.8f,  0.8f,  0.0f);
+	Vector3 coord2 = Vector3(-0.8f, 0.8f, 0.0f);
+	Vector3 coord3 = Vector3(0.8f, 0.8f, 0.0f);
 	Triangle();
 	Triangle(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_);
 	GLfloat Vertices[12] = {
 		-0.8f, -0.8f, 0.0f,
 		-0.8f,  0.8f, 0.0f,
-	 	 0.8f,  0.8f, 0.0f,
-		 0.0f,  0.1f, 0.0f
+		0.8f,  0.8f, 0.0f,
+		0.0f,  0.1f, 0.0f
 	};
-	
+
 	GLfloat Colors[16] = {
 		1.0f, 0.0f, 0.0f, 1.0f,
 		0.0f, 1.0f, 0.0f, 1.0f,
@@ -43,3 +48,5 @@ private:
 	GLuint vertexShaderId, fragmentShaderId,
 		colorBuffer, VAO, VBO, shaderProgram;
 };
+
+#endif // !TRIANGLE_H
