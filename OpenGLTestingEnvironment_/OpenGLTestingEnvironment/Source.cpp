@@ -12,6 +12,7 @@ void processInput(GLFWwindow *window);
 const unsigned int SCR_WIDTH  = 800;
 const unsigned int SCR_HEIGHT = 600;
 
+
 int main() {
 
 #pragma region GLFW_INITIALIZATION
@@ -26,7 +27,6 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this to fix compilation on OS X
 #endif
 
-	
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Testing Environment", NULL, NULL); // Creates window object
 	if (window == NULL) {
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -57,7 +57,7 @@ int main() {
 	Triangle myTriangle(*k1, *k2, *k3);
 	RegularPolygon firstPolygon(0.25f, 0.25f, 0.0f, 0.2f, 40);
 	RegularPolygon secondPolygon(-0.3f, -0.25f, 0.0f, 0.35f, 8);
-	secondPolygon.ColorTestChange(); // debugging for color change
+	secondPolygon.ColorChange(0.5f, 0.0f, 0.9f); // debugging for color change
 	
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
@@ -67,6 +67,18 @@ int main() {
 		/// inputs
 		/// ------
 		processInput(window);
+
+		int count;
+		int buttonCount;
+		int pointNumber = 3;
+		const unsigned char *buttonAxes = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+		const float *axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &count);
+		if (buttonAxes[0] == GLFW_PRESS)
+			pointNumber = 1;
+		if (buttonAxes[1] == GLFW_PRESS)
+			pointNumber = 2;
+		if (buttonAxes[2] == GLFW_PRESS)
+			pointNumber = 0;
 		
 		/// rendering commands
 		/// ------------------
@@ -76,6 +88,14 @@ int main() {
 		myTriangle.Draw();
 		firstPolygon.Draw();
 		secondPolygon.Draw();
+
+		if (pointNumber != 3) {
+			myTriangle.Vertices[(pointNumber * 3)] += (axes[0] * 0.01);
+			myTriangle.Vertices[(pointNumber * 3) + 1] += (axes[1] * 0.01);
+			RegularPolygon selectionPoint(myTriangle.Vertices[(pointNumber * 3)], myTriangle.Vertices[(pointNumber * 3) + 1], 0.0f, 0.01f, 8);
+			selectionPoint.Draw();
+		}
+
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
@@ -89,6 +109,18 @@ int main() {
 void processInput(GLFWwindow *window) {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
+
+	/// Input testing
+
+	/// Xbox controller Layout
+	// 0: A			7: Start
+	// 1: B			8: LJoyButton	
+	// 2: X			9: RJoyButton
+	// 3: Y		   10: D-Pad Up
+	// 4: LBumper  11: D-Pad Right
+	// 5: RBumper  12: D-Pad Down
+	// 6: Back	   13: D-Pad Left
+
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {

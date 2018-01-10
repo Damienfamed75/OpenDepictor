@@ -12,10 +12,11 @@ RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, G
 	numOfSides = numOfSides_;
 	numOfVertices = numOfSides + 2;
 	
-	polygonVerticesX   = new GLfloat[numOfVertices];
-	polygonVerticesY   = new GLfloat[numOfVertices];
-	polygonVerticesZ   = new GLfloat[numOfVertices];
-	//allPolygonVertices = new GLfloat[(numOfVertices) * 3];
+	polygonVerticesX    = new GLfloat[numOfVertices];
+	polygonVerticesY    = new GLfloat[numOfVertices];
+	polygonVerticesZ    = new GLfloat[numOfVertices];
+	allPolygonVertices = new GLfloat[(numOfVertices) * 3];
+	allColors = new GLfloat[(numOfVertices) * 4];
 
 	Setup();
 	CreateVBO();
@@ -30,13 +31,19 @@ void RegularPolygon::Setup() {
 	polygonVerticesY[0] = y;
 	polygonVerticesZ[0] = z;
 
+	for (int i = 0; i < numOfVertices; i++) {
+		allColors[(i * 4)] = 1.0f;
+		allColors[(i * 4) + 1] = 1.0f;
+		allColors[(i * 4) + 2] = 1.0f;
+		allColors[(i * 4) + 3] = 1.0f;
+	}
 	for (int i = 1; i < numOfVertices; i++) {
 		polygonVerticesX[i] = x + (r * cos(i * doublePi / numOfSides));
 		polygonVerticesY[i] = y + (r * sin(i * doublePi / numOfSides));
 		polygonVerticesZ[i] = z;
 	}
 	for (int i = 0; i < numOfVertices; i++) {
-		allPolygonVertices[i * 3]	    = polygonVerticesX[i];
+		allPolygonVertices[i * 3] = polygonVerticesX[i];
 		allPolygonVertices[(i * 3) + 1] = polygonVerticesY[i];
 		allPolygonVertices[(i * 3) + 2] = polygonVerticesZ[i];
 	}
@@ -52,13 +59,13 @@ void RegularPolygon::CreateVBO() {
 
 	glGenBuffers(1, &VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VAO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(allPolygonVertices), allPolygonVertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 512, allPolygonVertices, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
 
 	glGenBuffers(1, &colorBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Colors), Colors, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 1024, Colors, GL_STATIC_DRAW);
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(1);
 }
@@ -113,11 +120,11 @@ void RegularPolygon::CleanUp() {
 	DestroyVBO();
 }
 
-void RegularPolygon::ColorTestChange() {
+void RegularPolygon::ColorChange(float r, float g, float b) {
 	for (int i = 0; i < 64; i++) {
-		Colors[i * 4] = 0.40f;
-		Colors[(i * 4) + 1] = 0.32f;
-		Colors[(i * 4) + 2] = 0.75f;
+		Colors[i * 4]	    = r;
+		Colors[(i * 4) + 1] = g;
+		Colors[(i * 4) + 2] = b;
 	}
 }
 
