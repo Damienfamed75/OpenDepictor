@@ -38,6 +38,10 @@ public:
 	void DestroyShaders();
 	void CleanUp();
 	void Rotate(float angle);
+	void MoveTo(float x_, float y_, float z_);
+	void Move(float x_, float y_, float z_);
+	void Translate(float x_, float y_, float z_, double time);
+	void TranslateTo(float x_, float y_, float z_, float time);
 	void UpdateColor(float r, float g, float b);
 private:
 	GLuint vertexShaderId, fragmentShaderId,

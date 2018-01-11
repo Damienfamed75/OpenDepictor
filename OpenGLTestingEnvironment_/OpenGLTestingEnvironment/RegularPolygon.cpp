@@ -18,6 +18,13 @@ RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, G
 	allPolygonVertices = new GLfloat[(numOfVertices) * 3];
 	Colors			   = new GLfloat[(numOfVertices) * 4];
 
+	for (int i = 0; i < numOfVertices; i++) { // DEFAULT COLOR IS WHITE
+		Colors[(i * 4)] = 1.0f;
+		Colors[(i * 4) + 1] = 1.0f;
+		Colors[(i * 4) + 2] = 1.0f;
+		Colors[(i * 4) + 3] = 1.0f;
+	}
+
 	Setup();
 	CreateVBO();
 	CreateShaders();
@@ -30,12 +37,6 @@ void RegularPolygon::Setup() {
 	polygonVerticesY[0] = y; // center coord y
 	polygonVerticesZ[0] = z; // center coord z
 
-	for (int i = 0; i < numOfVertices; i++) { // DEFAULT COLOR IS WHITE
-		Colors[(i * 4)]	   = 1.0f;
-		Colors[(i * 4) + 1] = 1.0f;
-		Colors[(i * 4) + 2] = 1.0f;
-		Colors[(i * 4) + 3] = 1.0f;
-	}
 	for (int i = 1; i < numOfVertices; i++) {
 		polygonVerticesX[i] = x + (r * cos(i * doublePi / numOfSides));
 		polygonVerticesY[i] = y + (r * sin(i * doublePi / numOfSides));
@@ -146,4 +147,27 @@ void RegularPolygon::Rotate(float angle) { // TODO FINISH
 		//allPolygonVertices[i * 3] = ((xC * cos(angle)) - (yC * sin(angle)));
 		//allPolygonVertices[(i * 3) + 1] = ((xC * sin(angle)) - (yC * cos(angle)));
 	}
+}
+
+void RegularPolygon::MoveTo(float x_, float y_, float z_) {
+	x = x_;
+	y = y_;
+	z = z_;
+	Setup();
+}
+
+void RegularPolygon::Move(float x_, float y_, float z_) {
+	for (int i = 0; i < numOfVertices; i++) {
+		allPolygonVertices[i * 3] += x_;
+		allPolygonVertices[(i * 3) + 1] += y_;
+		allPolygonVertices[(i * 3) + 2] += z_;
+	}
+}
+
+void RegularPolygon::Translate(float x_, float y_, float z_, double time) {
+	return;
+}
+
+void RegularPolygon::TranslateTo(float x_, float y_, float z_, float time) {
+	return;
 }

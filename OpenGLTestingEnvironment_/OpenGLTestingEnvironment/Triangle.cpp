@@ -126,9 +126,8 @@ void Triangle::Move(float x, float y) { // TODO REFACTOR
 void Triangle::MoveTo(float x, float y) {
 	return;
 }
-void Triangle::Transfer(float x, float y, float animSpeed) {
+void Triangle::Translate(float x, float y, float animSpeed) {
 	return;
-	// TODO: FIND CENTER POINT OF TRIANGLE AND REVERSE ENGINEER FOR MOVETO() AND TRANSFERTO()
 }
 void Triangle::TransferTo(float x, float y, float animSpeed) {
 	return;

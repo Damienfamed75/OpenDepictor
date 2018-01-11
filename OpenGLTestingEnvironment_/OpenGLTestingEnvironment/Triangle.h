@@ -40,7 +40,7 @@ public:
 	void DestroyShaders();
 	void Move(float x, float y);
 	void MoveTo(float x, float y);
-	void Transfer(float x, float y, float animSpeed);
+	void Translate(float x, float y, float animSpeed);
 	void TransferTo(float x, float y, float animSpeed);
 	void UpdatePos(Vector3 coord1_, Vector3 coord2_, Vector3 coord3_);
 	void UpdateColor(Color col1_, Color col2_, Color col3_);
