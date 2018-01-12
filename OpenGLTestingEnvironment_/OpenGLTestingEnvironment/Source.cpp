@@ -1,5 +1,10 @@
-#include <glad\glad.h>
-#include <GLFW\glfw3.h>
+#include <glad/glad.h>
+
+#ifdef _WINDOWS_
+	#error windows.h was included!
+#endif
+
+#include <GLFW/glfw3.h>
 #include <iostream>
 #include "Triangle.h"
 #include "Shaders.h"
@@ -33,6 +38,7 @@ int main(int argc, char** argv) {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this to fix compilation on OS X
 #endif
 
+
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Testing Environment", NULL, NULL); // Creates window object
 	if (window == NULL) {
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -40,7 +46,7 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 	glfwMakeContextCurrent(window); // makes the window's context current
-	glfwSetJoystickCallback(joystick_callback);
+	//glfwSetJoystickCallback(joystick_callback);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	/// Glad Initilization
 	/* passing GLAD the function to load the address of the
@@ -52,6 +58,7 @@ int main(int argc, char** argv) {
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
+	
 
 #pragma endregion
 
