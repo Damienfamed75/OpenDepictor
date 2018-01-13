@@ -1,5 +1,9 @@
-#include <glad\glad.h>
-#include <GLFW\glfw3.h>
+#include <glad/glad.h>
+#ifdef _WINDOWS_
+	#error windows.h was included!
+#endif
+
+#include <GLFW/glfw3.h>
 #include <iostream>
 #include "Triangle.h"
 #include "Shaders.h"
@@ -8,18 +12,15 @@
 #define DEBUG
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void joystick_callback(int joy, int event);
 void processInput(GLFWwindow *window);
 
-// Width of default window
+// settings
 const unsigned int SCR_WIDTH  = 800;
-// Height of default window
 const unsigned int SCR_HEIGHT = 600;
 
 // TODO - ADD TEXT
 // https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_Text_Rendering_01
 // https://www.freetype.org/download.html
-
 
 int main(int argc, char** argv) {
 
@@ -30,9 +31,11 @@ int main(int argc, char** argv) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this to fix compilation on OS X
 #endif
+
 
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Testing Environment", NULL, NULL); // Creates window object
 	if (window == NULL) {
@@ -41,7 +44,6 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 	glfwMakeContextCurrent(window); // makes the window's context current
-	glfwSetJoystickCallback(joystick_callback);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	/// Glad Initilization
 	/* passing GLAD the function to load the address of the
@@ -53,6 +55,7 @@ int main(int argc, char** argv) {
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
+	
 
 #pragma endregion
 
@@ -109,6 +112,7 @@ int main(int argc, char** argv) {
 				pointNumber = 0;
 		}
 		
+		
 #pragma endregion
 
 #pragma region RENDERING_COMMANDS
@@ -116,14 +120,22 @@ int main(int argc, char** argv) {
 		/// ------------------
 		glClearColor(0.08f, 0.04f, 0.3f, 1.0f); // sets background color
 		glClear(GL_COLOR_BUFFER_BIT);
-		
 
 		myTriangle.Draw();
-		
+
 		if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) {
 			if (pointNumber != 3) {
+
+#ifdef _WIN32
 				myTriangle.Vertices[(pointNumber * 3)] += (joyAxes[0] * 0.01f); // adds to joystick's X-axis
 				myTriangle.Vertices[(pointNumber * 3) + 1] += (joyAxes[1] * 0.01f); // adds to joystick's Y-axis
+#else
+				myTriangle.Vertices[(pointNumber * 3)] += 
+					((joyAxes[0] > 0.12f ? joyAxes[0] : joyAxes[0] < -0.12f ? joyAxes[0] : 0) * 0.01f);
+				myTriangle.Vertices[(pointNumber * 3) + 1] += 
+					((joyAxes[1] > 0.12f ? joyAxes[1] : joyAxes[1] < -0.12f ? joyAxes[1] : 0) * -0.01f); // Unix controller's Y-axis is backwards
+#endif // Compensation for Unix's lack of a deadzone
+
 				selectionPoint.MoveTo(myTriangle.Vertices[(pointNumber * 3)], myTriangle.Vertices[(pointNumber * 3) + 1], selectionPoint.z);
 				selectionPoint.Draw();
 			}
@@ -160,17 +172,9 @@ int main(int argc, char** argv) {
 void processInput(GLFWwindow *window) {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
-}
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-	glViewport(0, 0, width, height);
-}
+	/// Input testing
 
-void joystick_callback(int joy, int event) {
-	if (event == GLFW_CONNECTED)
-		std::cout << "connected joystick: " << joy << std::endl;
-	else if (event == GLFW_DISCONNECTED)
-		std::cout << "disconnected joystick: " << joy << std::endl;
 	/// Xbox controller Layout (Buttons)
 	// 0: A			7: Start
 	// 1: B			8: LJoyButton	
@@ -179,4 +183,9 @@ void joystick_callback(int joy, int event) {
 	// 4: LBumper  11: D-Pad Right
 	// 5: RBumper  12: D-Pad Down
 	// 6: Back	   13: D-Pad Left
+
+}
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
 }
