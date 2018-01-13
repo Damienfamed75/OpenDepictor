@@ -1,6 +1,8 @@
 #include <glad/glad.h>
 #ifdef _WINDOWS_
+#ifndef _WIN32
 	#error windows.h was included!
+#endif
 #endif
 
 #include <GLFW/glfw3.h>
