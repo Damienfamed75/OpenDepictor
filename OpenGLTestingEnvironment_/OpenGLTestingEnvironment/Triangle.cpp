@@ -1,4 +1,4 @@
-#include "Triangle.h"
+#include "HeaderFiles/Triangle.h"
 #include <iostream>
 
 using std::cout;

@@ -134,12 +134,12 @@
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="RegularPolygon.h" />
-    <ClInclude Include="Shaders.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="Triangle.h" />
-    <ClInclude Include="Vector3.h" />
+    <ClInclude Include="HeaderFiles\RegularPolygon.h" />
+    <ClInclude Include="HeaderFiles\stb_image.h" />
+    <ClInclude Include="HeaderFiles\Triangle.h" />
+    <ClInclude Include="HeaderFiles\VariableObjects\Color.h" />
+    <ClInclude Include="HeaderFiles\VariableObjects\Shaders.h" />
+    <ClInclude Include="HeaderFiles\VariableObjects\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\Desktop\container.jpg" />

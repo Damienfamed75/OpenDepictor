@@ -1,4 +1,4 @@
-#include "Color.h"
+#include "HeaderFiles/VariableObjects/Color.h"
 
 
 Color::Color(float r_, float g_, float b_, float a_) {

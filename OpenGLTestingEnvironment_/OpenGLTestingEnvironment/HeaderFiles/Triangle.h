@@ -1,8 +1,8 @@
 #pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "Vector3.h"
-#include "Color.h"
+#include "VariableObjects/Vector3.h"
+#include "VariableObjects/Color.h"
 
 extern const GLchar* VertexShader;
 extern const GLchar* FragmentShader;

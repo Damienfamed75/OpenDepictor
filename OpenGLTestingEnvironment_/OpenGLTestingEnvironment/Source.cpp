@@ -7,9 +7,9 @@
 
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "Triangle.h"
-#include "Shaders.h"
-#include "RegularPolygon.h"
+#include "HeaderFiles/Triangle.h"
+#include "HeaderFiles/VariableObjects/Shaders.h"
+#include "HeaderFiles/RegularPolygon.h"
 
 #define DEBUG
 

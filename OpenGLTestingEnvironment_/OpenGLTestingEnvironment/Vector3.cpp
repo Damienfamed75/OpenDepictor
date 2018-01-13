@@ -1,4 +1,4 @@
-#include "Vector3.h"
+#include "HeaderFiles/VariableObjects/Vector3.h"
 
 #ifndef CHOOSE
 #define CHOOSE(i,x,y,z) (i == 1? x : i == 2 ? y : z)

@@ -44,23 +44,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stb_image.h">
+    <ClInclude Include="HeaderFiles\RegularPolygon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Triangle.h">
+    <ClInclude Include="HeaderFiles\Triangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Shaders.h">
+    <ClInclude Include="HeaderFiles\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Color.h">
+    <ClInclude Include="HeaderFiles\VariableObjects\Color.h">
       <Filter>Header Files\VariableObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3.h">
+    <ClInclude Include="HeaderFiles\VariableObjects\Vector3.h">
       <Filter>Header Files\VariableObjects</Filter>
     </ClInclude>
-    <ClInclude Include="RegularPolygon.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="HeaderFiles\VariableObjects\Shaders.h">
+      <Filter>Header Files\VariableObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

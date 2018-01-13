@@ -1,4 +1,4 @@
-#include "RegularPolygon.h"
+#include "HeaderFiles/RegularPolygon.h"
 #include <iostream>
 
 using std::cout;
