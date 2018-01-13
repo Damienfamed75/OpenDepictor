@@ -11,13 +11,15 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void joystick_callback(int joy, int event);
 void processInput(GLFWwindow *window);
 
-// settings
+// Width of default window
 const unsigned int SCR_WIDTH  = 800;
+// Height of default window
 const unsigned int SCR_HEIGHT = 600;
 
 // TODO - ADD TEXT
 // https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_Text_Rendering_01
 // https://www.freetype.org/download.html
+
 
 int main(int argc, char** argv) {
 
@@ -28,7 +30,6 @@ int main(int argc, char** argv) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this to fix compilation on OS X
 #endif
@@ -159,18 +160,6 @@ int main(int argc, char** argv) {
 void processInput(GLFWwindow *window) {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
-
-	/// Input testing
-
-	/// Xbox controller Layout (Buttons)
-	// 0: A			7: Start
-	// 1: B			8: LJoyButton	
-	// 2: X			9: RJoyButton
-	// 3: Y		   10: D-Pad Up
-	// 4: LBumper  11: D-Pad Right
-	// 5: RBumper  12: D-Pad Down
-	// 6: Back	   13: D-Pad Left
-
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
@@ -182,4 +171,12 @@ void joystick_callback(int joy, int event) {
 		std::cout << "connected joystick: " << joy << std::endl;
 	else if (event == GLFW_DISCONNECTED)
 		std::cout << "disconnected joystick: " << joy << std::endl;
+	/// Xbox controller Layout (Buttons)
+	// 0: A			7: Start
+	// 1: B			8: LJoyButton	
+	// 2: X			9: RJoyButton
+	// 3: Y		   10: D-Pad Up
+	// 4: LBumper  11: D-Pad Right
+	// 5: RBumper  12: D-Pad Down
+	// 6: Back	   13: D-Pad Left
 }
