@@ -32,7 +32,6 @@ _________________
 > *This compiler is made for Unix use, but we're going to*
 > *be using this on both systems.*
 
-<br>
 
 <h4>Linux Mint</h4>
 
@@ -53,31 +52,22 @@ When this is installed you can move on to [installing GLFW.](#GLFWInstall)
 
 Installing GCC/G++ is going to require you do to do a little bit more work
 in Windows. If you're going to be using *Visual Studio* *(not include Visual Studio Code)* then you can skip this step.
-<br>
 **1.** First you're going to want to pick a folder where you
 want to install *G++*. It's recommended you put this straight into your
 `C:` drive, but you can choose a different one if you wish.
-<br>
 2. Now you'll want to download [this executable.](fhttp://www1.cmc.edu/pages/faculty/alee/g++/full.exe) 
 *This download was provided by [Arthur H. Lee](http://www1.cmc.edu/pages/faculty/alee/) for his Computer Science students.*
-<br>
 3. Place the executable *full.exe* to `C:\full.exe` by using the **Save Link As...** or **Save Target As...**
-<br>
 4. Now run the executable. This will install *G++* *"and a lot of other things that you don't really need"* on your hard drive.
-<br>
 5. Locate where the `bin` folder was created from the installation.
 This location should be somewhere like: `C:\cygnus\cygwin-b20\H-i586-cygwin32\bin`
-<br>
 6. Now you should add this to the `Path` environment variable. You get here by doing the following 
 `Start -> Control Panel -> System and Security -> System -> Change Settings -> Advanced -> Environment Variables`
 Now here you can see the `Path` variable. This could be a User variable, System variable, or both. What you need to do is add the *G++* `bin` path in the `Path` variables *`(If you have it in both System and User then add it to System)`* by clicking the `Edit...` button and then clicking `New`.
 **Make sure you do not delete any other values.**
-<br>
 7. Restart your computer. When your computer is restarted you should see a `Cygwin B20` or other `Cygwin Solutions` entry in your Start menu. **Don't use them!**
-<br>
 8. Now you should be able to use the `g++` command froma DOS command prompt window. For example if I want to compile a simple program at `C:\MyAppDirectory\HelloWorld.cpp` then I use the `cd` command to connect to the `C:\MyAppDirectory\` folder and enter:
 `g++ -g HelloWorld.cpp -o HelloWorld -lm` then you should be able to run the application through command prompt.
-<br>
 9. Now you can delete the `full.exe` file you saved from earlier and now *GCC/G++* is installed! Now you can move on to [installing GLFW.](#GLFWInstall)
 
 __________________
@@ -87,7 +77,6 @@ __________________
 > *for the use with OpenGL. We're using this library because it*
 > *handles simple things like joystick and keyboard inputs for us.*
 
-<br>
 
 <h4>Linux Mint</h4>
 
@@ -96,17 +85,15 @@ On Linux we have to manually compile the library framework ourselves
 So first off we're going to need the source code of GLFW and clone it.
 
 1. [Clone the GLFW repository.](https://github.com/glfw/glfw)
-<br>
 2. Luckily GLFW is quite easy to compile. All we need to do is quickly install *CMake*. Quickly just run this command to install *CMake*
 `sudo apt-get install cmake`
 This should quickly run and install *CMake* for you.
-<br>
 3. Now locate where you cloned the repository and direct your terminal to the root folder. Now what you'll want to do is run these commands.
 `cmake .`
 `make`
 `make install`
 These commands should install the library to `usr/local/include`
-<br>
+
 4. Now that we have GLFW let's [install GLAD.](#GLADInstall)
 
 <h4>Windows 10</h4>
@@ -119,14 +106,11 @@ binaries and linking your flavor of text-editor to it.
 Don't download the 64-bit binaries unless *you know that you NEED them!*
 You can download these anywhere you'd like. Just make sure you know
 where you downloaded them to.
-<br>
 2. Now you should have a zipped folder and you just need to extract it quickly.
-<br>
 3. Once it's extracted you can go inside and see multiple folders such as 
 `include` and `lib-vc2012` what you're going to be doing is using the 
 `lib-vc2015` folder for linking your libraries even if you have a newer
 version of Visual Studio *(Or Visual Studio Code)*.
-<br>
 4. Now that you have GLFW installed you won't have to do anything with these
 files until you begin setting up your environment. Next step is to [download GLAD.](#GLADInstall)
 
@@ -144,7 +128,6 @@ Setting up *GLAD* is going to be very similar to setting up GLFW. We just need t
 clone the official repository and compile it for ourselves using CMake.
 
 1. [Clone the repository.](https://github.com/Dav1dde/glad)
-<br>
 2. Locate the directory and direct your terminal to the root folder.
 3. Run these commands
 `cmake .`
@@ -160,15 +143,10 @@ Downloading GLAD is quite easy on Windows. It's just going to require you to
 go through their easy web service.
 
 1. [Go to their web service.](http://glad.dav1d.de/)
-<br>
 2. For 'language' choose "C/C++"
-<br>
 3. 'Specification' choose "OpenGL"
-<br>
 4. API you want to change 'gl' to "Version 3.3" and leave the rest empty.
-<br>
 5. For the 'Profile' you want to choose "Core"
-<br>
 6. Now at the bottom of the page just click "Generate" and you should
 be visited by a page that should list three things.
 `include`
@@ -176,7 +154,6 @@ be visited by a page that should list three things.
 `glad.zip`
 What you're going to want to do is click `glad.zip` and save it somewhere
 you won't forget.
-<br>
 7. Now extract the zipped folder like you did for GLFW and you're now ready
 to [setup your Development Environment.](#DevEnvSetup)
 
@@ -188,7 +165,6 @@ _____________
 > *cases if you need help with these specific things.*
 > *This isn't going to cover setting up intellisense for VSCode.*
 
-<br>
 
 <h4>GCC/G++ Commands</h4>
 
@@ -313,19 +289,13 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 2. Go to the project properties via the dropdown menu located at the top of the screen.
 ![dropdown menu][propertiesdropdown]
 3. In this menu go to `VC++ Directories` and edit the `Include Directories`
-<br>
 4. In here you want ot add the directories to GLFW and GLAD's include folders.
-<br>
 5. Next you want to edit the `Library Directories` and add GLFW's `lib-vc2015` folder.
-<br>
 6. Next open the `Linker` tab on the left side of the window and select `Input`
-<br>
 7. Now here you'll want to edit the `Additional Dependencies` and add these libraries.
 `glfw3.lib`
 `opengl32.lib`
-<br>
 8. Now you want to go to your GLAD folder and open the `src` folder. In here you should find a file named `glad.c` Drag and drop this into your project Solution Explorer.
-<br>
 9. Now Visual Studio should be all setup and now your code should be able to compile by just hitting `F5`
 
 
