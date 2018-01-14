@@ -1,5 +1,5 @@
-#Instructions
--------------
+# Instructions
+_____________
 
 [//]: # (Picture instantiation)
 
@@ -9,13 +9,13 @@
 
 [propertiesdropdown]: https://i.imgur.com/eDqdH3M.jpg "properties drop down menu"
 
-####Overview
+#### Overview
 - [Installing GCC/G++](#GCCInstall)
 - [Installing GLFW 3.3](#GLFWInstall)
 - [Installing GLAD](#GLADInstall)
 - [Setting up your Development Environment](#DevEnvSetup)
 _________________
-#####Disclaimer
+##### Disclaimer
 _These instructions were only tested for Linux Mint Cinnamon and Windows 10
 If you are having troubles getting these files to work in your own instance.
 You can contact me at: <damienstamates@gmail.com>_
