@@ -131,6 +131,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TextureLoading.cpp" />
     <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +141,6 @@
     <ClInclude Include="HeaderFiles\VariableObjects\Color.h" />
     <ClInclude Include="HeaderFiles\VariableObjects\Shaders.h" />
     <ClInclude Include="HeaderFiles\VariableObjects\Vector3.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\..\..\Desktop\container.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

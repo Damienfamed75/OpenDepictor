@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resource Files\textures">
-      <UniqueIdentifier>{02af4db7-d251-474f-9e3f-bd43d67475e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\VariableObjects">
       <UniqueIdentifier>{9475d2bb-0f9f-497b-b3b9-bcf0f76c896f}</UniqueIdentifier>
     </Filter>
@@ -42,6 +39,9 @@
     <ClCompile Include="RegularPolygon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HeaderFiles\RegularPolygon.h">
@@ -62,10 +62,5 @@
     <ClInclude Include="HeaderFiles\VariableObjects\Shaders.h">
       <Filter>Header Files\VariableObjects</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\..\..\Desktop\container.jpg">
-      <Filter>Resource Files\textures</Filter>
-    </Image>
   </ItemGroup>
 </Project>
