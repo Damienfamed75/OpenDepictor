@@ -289,7 +289,7 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 2. Go to the project properties via the dropdown menu located at the top of the screen.
 ![dropdown menu][propertiesdropdown]
 3. In this menu go to `VC++ Directories` and edit the `Include Directories`
-4. In here you want ot add the directories to GLFW and GLAD's include folders.
+4. In here you want to add the directories to GLFW and GLAD's include folders.
 5. Next you want to edit the `Library Directories` and add GLFW's `lib-vc2015` folder.
 6. Next open the `Linker` tab on the left side of the window and select `Input`
 7. Now here you'll want to edit the `Additional Dependencies` and add these libraries.
