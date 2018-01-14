@@ -1,4 +1,8 @@
+#ifndef GLAD_H
 #include <glad/glad.h>
+#define GLAD_H
+#endif
+
 #ifdef _WINDOWS_
 #ifndef _WIN32
 	#error windows.h was included!
@@ -152,6 +156,7 @@ int main(int argc, char** argv) {
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
 #ifdef DEBUG
+		/*
 		double currentTime = glfwGetTime();
 		nbFrames++;
 		if (currentTime - lastTime >= 1.0) { // if last FPS print was more than 1 second ago
@@ -160,6 +165,7 @@ int main(int argc, char** argv) {
 			nbFrames = 0;
 			lastTime += 1.0;
 		}
+		*/
 #endif // DEBUG
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -185,7 +191,6 @@ void processInput(GLFWwindow *window) {
 	// 4: LBumper  11: D-Pad Right
 	// 5: RBumper  12: D-Pad Down
 	// 6: Back	   13: D-Pad Left
-
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
