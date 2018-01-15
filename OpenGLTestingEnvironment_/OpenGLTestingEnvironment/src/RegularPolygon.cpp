@@ -1,6 +1,6 @@
-#ifndef REGULARPOLYGON_H
-	#include "../include/RegularPolygon.h"
-#endif //!REGULARPOLYGON_H
+#ifndef REGULARPOLYGON_HPP
+	#include "../include/RegularPolygon.hpp"
+#endif //!REGULARPOLYGON_HPP
 
 #ifndef _GLIBCXX_IOSTREAM
 	#include <iostream>

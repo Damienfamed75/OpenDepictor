@@ -21,8 +21,8 @@ extern const GLchar* VertexShader;
 extern const GLchar* FragmentShader;
 
 
-#ifndef REGULARPOLYGON_H
-#define REGULARPOLYGON_H
+#ifndef REGULARPOLYGON_HPP
+#define REGULARPOLYGON_HPP
 
 
 class RegularPolygon {

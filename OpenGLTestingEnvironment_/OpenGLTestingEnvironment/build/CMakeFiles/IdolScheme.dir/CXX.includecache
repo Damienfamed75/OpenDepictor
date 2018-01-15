@@ -6,37 +6,7 @@
 
 #IncludeRegexTransform: 
 
-../include/stb_image.h
-stb_image.h
-../include/stb_image.h
-stdio.h
--
-stdarg.h
--
-stddef.h
--
-stdlib.h
--
-string.h
--
-limits.h
--
-math.h
--
-stdio.h
--
-assert.h
--
-stdint.h
--
-emmintrin.h
--
-intrin.h
--
-arm_neon.h
--
-
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.hpp
 glad/glad.h
 -
 GLFW/glfw3.h
@@ -44,29 +14,29 @@ GLFW/glfw3.h
 math.h
 -
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.hpp
 glad/glad.h
 -
 GLFW/glfw3.h
 -
-VariableObjects/Vector3.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
-VariableObjects/Color.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
+VariableObjects/Vector3.hpp
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.hpp
+VariableObjects/Color.hpp
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.hpp
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.hpp
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.h
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.hpp
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.hpp
 
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Color.cpp
-../include/VariableObjects/Color.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
+../include/VariableObjects/Color.hpp
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.hpp
 
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/RegularPolygon.cpp
-../include/RegularPolygon.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+../include/RegularPolygon.hpp
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.hpp
 iostream
 -
 
@@ -75,12 +45,12 @@ glad/glad.h
 -
 GLFW/glfw3.h
 -
-../include/Triangle.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
-../include/VariableObjects/Shaders.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.h
-../include/RegularPolygon.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+../include/Triangle.hpp
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.hpp
+../include/VariableObjects/Shaders.hpp
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.hpp
+../include/RegularPolygon.hpp
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.hpp
 iostream
 -
 
@@ -93,14 +63,14 @@ GLAD/glad.h
 -
 
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Triangle.cpp
-../include/Triangle.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
+../include/Triangle.hpp
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.hpp
 iostream
 -
 
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Vector3.cpp
-../include/VariableObjects/Vector3.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
+../include/VariableObjects/Vector3.hpp
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.hpp
 
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/stb_image.cpp
 

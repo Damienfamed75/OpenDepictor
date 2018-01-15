@@ -1,6 +1,6 @@
-#ifndef TRIANGLE_H
-	#include "../include/Triangle.h"
-#endif //!TRIANGLE_H
+#ifndef TRIANGLE_HPP
+	#include "../include/Triangle.hpp"
+#endif //!TRIANGLE_HPP
 
 #ifndef _GLIBCXX_IOSTREAM
 	#include <iostream>

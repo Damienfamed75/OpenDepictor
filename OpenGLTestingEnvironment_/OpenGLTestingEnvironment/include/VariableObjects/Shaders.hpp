@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef SHADERS_H
-#define SHADERS_H
+#ifndef SHADERS_HPP
+#define SHADERS_HPP
 
 const GLchar* VertexShader = {
 	"#version 400\n"\

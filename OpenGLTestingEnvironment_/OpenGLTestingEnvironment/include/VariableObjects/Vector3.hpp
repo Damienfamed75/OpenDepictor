@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef VECTOR3_H
-#define VECTOR3_H
+#ifndef VECTOR3_HPP
+#define VECTOR3_HPP
 
 struct Vector3 {
 public:

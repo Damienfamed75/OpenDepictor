@@ -4,28 +4,27 @@
 CMakeFiles/IdolScheme.dir/assets/glad.c.o
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/assets/glad.c
 CMakeFiles/IdolScheme.dir/src/Color.cpp.o
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.hpp
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Color.cpp
 CMakeFiles/IdolScheme.dir/src/RegularPolygon.cpp.o
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.hpp
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/RegularPolygon.cpp
 CMakeFiles/IdolScheme.dir/src/Source.cpp.o
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.h
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.hpp
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.hpp
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.hpp
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.hpp
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.hpp
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Source.cpp
 CMakeFiles/IdolScheme.dir/src/TextureLoading.cpp.o
- ../include/stb_image.h
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/TextureLoading.cpp
 CMakeFiles/IdolScheme.dir/src/Triangle.cpp.o
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.hpp
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.hpp
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.hpp
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Triangle.cpp
 CMakeFiles/IdolScheme.dir/src/Vector3.cpp.o
- /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.hpp
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Vector3.cpp
 CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/stb_image.cpp
