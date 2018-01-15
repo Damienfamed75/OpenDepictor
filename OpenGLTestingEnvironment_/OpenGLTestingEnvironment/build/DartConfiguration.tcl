@@ -11,7 +11,7 @@ BuildDirectory: /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: unknown
+Site: damien-XPS-15-9550
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: Linux-c++
@@ -34,7 +34,7 @@ NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
 ConfigureCommand: "/usr/bin/cmake" "/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment"
-MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
+MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 
 # version control
@@ -52,7 +52,6 @@ SVNUpdateOptions:
 
 # Git options
 GITCommand: /usr/bin/git
-GITInitSubmodules: 
 GITUpdateOptions: 
 GITUpdateCustom: 
 
@@ -70,7 +69,7 @@ UpdateType:
 
 # Compiler info
 Compiler: /usr/bin/c++
-CompilerVersion: 6.2.0
+CompilerVersion: 5.4.0
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 
@@ -78,7 +77,7 @@ ValgrindCommand:
 ValgrindCommandOptions: 
 MemoryCheckType: 
 MemoryCheckSanitizerOptions: 
-MemoryCheckCommand: /usr/bin/valgrind
+MemoryCheckCommand: MEMORYCHECK_COMMAND-NOTFOUND
 MemoryCheckCommandOptions: 
 MemoryCheckSuppressionFile: 
 
