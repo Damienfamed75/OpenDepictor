@@ -8,20 +8,20 @@
 	#include <GLFW/glfw3.h>
 #endif
 
-#ifndef VECTOR3_HPP
-	#include "VariableObjects/Vector3.hpp"
-#endif //!VECTOR3_HPP
+#ifndef VECTOR3_H
+	#include "VariableObjects/Vector3.h"
+#endif //!VECTOR3_H
 
-#ifndef COLOR_HPP
-	#include "VariableObjects/Color.hpp"
-#endif //!COLOR_HPP
+#ifndef COLOR_H
+	#include "VariableObjects/Color.h"
+#endif //!COLOR_H
 
 extern const GLchar* VertexShader;
 extern const GLchar* FragmentShader;
 
 
-#ifndef TRIANGLE_HPP
-#define TRIANGLE_HPP
+#ifndef TRIANGLE_H
+#define TRIANGLE_H
 
 
 class Triangle {

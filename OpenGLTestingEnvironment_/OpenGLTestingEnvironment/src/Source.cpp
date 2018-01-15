@@ -14,17 +14,17 @@
 	#include <GLFW/glfw3.h>
 #endif //!_glfw3_h_
 
-#ifndef TRIANGLE_HPP
-	#include "../include/Triangle.hpp"
-#endif //!TRIANGLE_HPP
+#ifndef TRIANGLE_H
+	#include "../include/Triangle.h"
+#endif //!TRIANGLE_H
 
-#ifndef SHADERS_HPP
-	#include "../include/VariableObjects/Shaders.hpp"
-#endif //!SHADERS_HPP
+#ifndef SHADERS_H
+	#include "../include/VariableObjects/Shaders.h"
+#endif //!SHADERS_H
 
-#ifndef REGULARPOLYGON_HPP
-	#include "../include/RegularPolygon.hpp"
-#endif //!REGULARPOLYGON_HPP
+#ifndef REGULARPOLYGON_H
+	#include "../include/RegularPolygon.h"
+#endif //!REGULARPOLYGON_H
 
 #ifndef _GLIBCXX_IOSTREAM
 	#include <iostream>

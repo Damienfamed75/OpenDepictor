@@ -6,7 +6,7 @@ include(CTest)
 enable_testing()
 
 file(GLOB_RECURSE IdolSchemeProj_SOURCES "src/*.cpp")
-file(GLOB_RECURSE IdolSchemeProj_HEADERS "include/*.hpp")
+file(GLOB_RECURSE IdolSchemeProj_HEADERS "include/*.h")
 
 set(IdolSchemeProj_INCLUDE_DIRS "")
 foreach(_headerFile ${IdolSchemeProj_HEADERS}) # Adds each Header to list

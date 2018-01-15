@@ -1,5 +1,5 @@
-#ifndef COLOR_HPP
-	#include "../include/VariableObjects/Color.hpp"
+#ifndef COLOR_H
+	#include "../include/VariableObjects/Color.h"
 #endif //!COLOR_H
 
 
