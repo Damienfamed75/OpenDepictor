@@ -1,6 +1,6 @@
-#ifndef VECTOR3_H
-	#include "../include/VariableObjects/Vector3.h"
-#endif //!VECTOR3_H
+#ifndef VECTOR3_HPP
+	#include "../include/VariableObjects/Vector3.hpp"
+#endif //!VECTOR3_HPP
 
 #ifndef CHOOSE
 	#define CHOOSE(i,x,y,z) (i == 1? x : i == 2 ? y : z)
