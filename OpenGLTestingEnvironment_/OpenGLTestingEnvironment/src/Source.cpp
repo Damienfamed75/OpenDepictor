@@ -35,6 +35,7 @@
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
+void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods);
 
 
 
@@ -161,6 +162,21 @@ int main(int argc, char** argv) {
 				selectionPoint.Draw();
 			}
 		}
+		int keyW = glfwGetKey(window, GLFW_KEY_W);
+		int keyA = glfwGetKey(window, GLFW_KEY_A);
+		int keyS = glfwGetKey(window, GLFW_KEY_S);
+		int keyD = glfwGetKey(window, GLFW_KEY_D);
+
+
+		if(keyW == GLFW_PRESS)
+			myTriangle.Vertices[1] += ((JOY_SENSITIVITY * JOY_MODIFIER) * 0.05f);
+		if(keyS == GLFW_PRESS)
+			myTriangle.Vertices[1] -= ((JOY_SENSITIVITY * JOY_MODIFIER) * 0.05f);
+		if(keyA == GLFW_PRESS)
+			myTriangle.Vertices[0] -= ((JOY_SENSITIVITY * JOY_MODIFIER) * 0.05f);
+		if(keyD == GLFW_PRESS)
+			myTriangle.Vertices[0] += ((JOY_SENSITIVITY * JOY_MODIFIER) * 0.05f);
+
 
 		firstPolygon.Draw();
 		secondPolygon.Draw();
