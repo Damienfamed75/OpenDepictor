@@ -28,7 +28,11 @@
 
 #ifndef _GLIBCXX_IOSTREAM
 	#include <iostream>
-#endif
+#endif //!_GLIBCXX_IOSTREAM
+
+//#ifndef CONTROLLERHANDLER_H
+//	#include "../include/ControllerHandler.h"
+//#endif //!CONTROLLERHANDLER_H
 
 #define DEBUG
 
@@ -41,6 +45,7 @@ void processInput(GLFWwindow *window);
 // settings
 const unsigned int SCR_WIDTH  = 800;
 const unsigned int SCR_HEIGHT = 600;
+const unsigned int JOY_SENSITIVITY = 12;
 
 
 // TODO - ADD TEXT
@@ -134,7 +139,7 @@ int main(int argc, char** argv) {
 				pointNumber = 0;
 		}
 		
-
+		
 
 
 		/// rendering commands (drawing new shapes and such)

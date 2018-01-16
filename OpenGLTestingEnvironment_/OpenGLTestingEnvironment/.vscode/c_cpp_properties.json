@@ -31,7 +31,6 @@
                 "/usr/include/c++/6.2.0",
                 "/usr/include/c++/6.2.0/x86_64-unknown-linux",
                 "/usr/include/linux",
-                "$HOME/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/assets",
                 "${workspaceRoot}/assets",
                 "${workspaceRoot}"
             ],
@@ -42,7 +41,6 @@
                     "/usr/include",
                     "/usr/local/include",
                     "/usr/include/linux",
-                    "$HOME/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/assets",
                     "${workspaceRoot}/assets",
                     "${workspaceRoot}"
                 ],
