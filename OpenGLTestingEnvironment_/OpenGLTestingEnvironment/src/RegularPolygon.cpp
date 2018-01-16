@@ -6,8 +6,12 @@
 	#include <iostream>
 #endif //!_GLIBCXX_IOSTREAM
 
+
+
 using std::cout;
 using std::endl;
+
+
 
 RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_) {
 	x = x_;

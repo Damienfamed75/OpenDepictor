@@ -36,13 +36,17 @@
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 
+
+
 // settings
 const unsigned int SCR_WIDTH  = 800;
 const unsigned int SCR_HEIGHT = 600;
 
+
 // TODO - ADD TEXT
 // https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_Text_Rendering_01
 // https://www.freetype.org/download.html
+
 
 int main(int argc, char** argv) {
 
@@ -96,11 +100,6 @@ int main(int argc, char** argv) {
 	secondPolygon.UpdateColor(0.5f, 0.0f, 0.9f);
 	firstPolygon.UpdateColor(0.9f, 0.0f, 0.2f);
 	thirdPolygon.UpdateColor(0.3f, 0.8f, 0.1f);
-	
-#ifdef DEBUG
-	double lastTime = glfwGetTime();
-	int nbFrames = 0;
-#endif
 
 	// deleting pointers
 	delete(k1);
@@ -109,12 +108,13 @@ int main(int argc, char** argv) {
 
 #pragma endregion
 
+
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
 	 * is told to stop explicitly by the user or other means.
 	 */
 	while (!glfwWindowShouldClose(window)) {
-#pragma region INPUTS
+		
 		/// inputs
 		/// ------
 		processInput(window);
@@ -134,13 +134,12 @@ int main(int argc, char** argv) {
 				pointNumber = 0;
 		}
 		
-		
-#pragma endregion
 
-#pragma region RENDERING_COMMANDS
-		/// rendering commands
-		/// ------------------
-		glClearColor(0.08f, 0.04f, 0.3f, 1.0f); // sets background color
+
+
+		/// rendering commands (drawing new shapes and such)
+		/// ------------------------------------------------
+		glClearColor(0.08f, 0.04f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		myTriangle.Draw();
@@ -166,24 +165,11 @@ int main(int argc, char** argv) {
 		firstPolygon.Draw();
 		secondPolygon.Draw();
 		thirdPolygon.Draw();
-#pragma endregion
 
-#pragma region POLLING_EVENTS
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
-#ifdef DEBUG
-		double currentTime = glfwGetTime();
-		nbFrames++;
-		if (currentTime - lastTime >= 1.0) { // if last FPS print was more than 1 second ago
-			std::cout << "FPS: " << nbFrames << std::endl;
-
-			nbFrames = 0;
-			lastTime += 1.0;
-		}
-#endif // DEBUG
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-#pragma endregion
 
 	}
 

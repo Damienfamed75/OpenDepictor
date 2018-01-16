@@ -6,8 +6,12 @@
 	#include <iostream>
 #endif //!_GLIBCXX_IOSTREAM
 
+
+
 using std::cout;
 using std::endl;
+
+
 
 Triangle::Triangle() {
 	CreateVBO();

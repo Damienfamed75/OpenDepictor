@@ -28,12 +28,12 @@
             "includePath": [
                 "/usr/include",
                 "/usr/local/include",
-                "/home/Documents/git/glad/include",
-                "/home/Documents/git/glfw/include",
-                "${workspaceRoot}",
                 "/usr/include/c++/6.2.0",
                 "/usr/include/c++/6.2.0/x86_64-unknown-linux",
-                "/usr/include/linux"
+                "/usr/include/linux",
+                "$HOME/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/assets",
+                "${workspaceRoot}/assets",
+                "${workspaceRoot}"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -41,9 +41,9 @@
                 "path": [
                     "/usr/include",
                     "/usr/local/include",
-                    "$HOME/Documents/git/glad/include",
-                    "$HOME/Documents/git/glfw/include",
                     "/usr/include/linux",
+                    "$HOME/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/assets",
+                    "${workspaceRoot}/assets",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": false,
@@ -77,23 +77,6 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             }
-        },
-        {
-            "name": "glad",
-            "includePath": [
-                "C:/Users/damie/Desktop/glad/include/*",
-                "${workspaceRoot}"
-            ],
-            "intelliSenseMode": "msvc-x64"
-        },
-        {
-            "name": "OpenGL",
-            "includePath": [
-                "C:/Users/damie/Desktop/OpenGL/include/*",
-                "C:/Users/damie/Desktop/OpenGL/lib-vc2015/*",
-                "${workspaceRoot}"
-            ],
-            "intelliSenseMode": "msvc-x64"
         }
     ],
     "version": 3

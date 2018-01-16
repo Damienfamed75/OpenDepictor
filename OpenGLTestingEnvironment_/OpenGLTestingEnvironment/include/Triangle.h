@@ -20,8 +20,10 @@ extern const GLchar* VertexShader;
 extern const GLchar* FragmentShader;
 
 
+
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
+
 
 
 class Triangle {

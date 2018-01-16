@@ -1,7 +1,13 @@
 #pragma once
 
+#ifndef __glad_h_
+	#include <glad/glad.h>
+#endif //!__glad_h_
+
 #ifndef SHADERS_H
 #define SHADERS_H
+
+
 
 const GLchar* VertexShader = {
 	"#version 400\n"\
