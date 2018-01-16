@@ -30,10 +30,6 @@
 	#include <iostream>
 #endif //!_GLIBCXX_IOSTREAM
 
-//#ifndef CONTROLLERHANDLER_H
-//	#include "../include/ControllerHandler.h"
-//#endif //!CONTROLLERHANDLER_H
-
 #define DEBUG
 
 
@@ -45,7 +41,8 @@ void processInput(GLFWwindow *window);
 // settings
 const unsigned int SCR_WIDTH  = 800;
 const unsigned int SCR_HEIGHT = 600;
-const unsigned int JOY_SENSITIVITY = 12;
+const int JOY_SENSITIVITY = 12;
+const float JOY_MODIFIER = 0.02f;
 
 
 // TODO - ADD TEXT
@@ -120,8 +117,8 @@ int main(int argc, char** argv) {
 	 */
 	while (!glfwWindowShouldClose(window)) {
 		
-		/// inputs
-		/// ------
+		/// inputs (button presses, mouse movements, etc.)
+		/// ----------------------------------------------
 		processInput(window);
 		
 		int joyCount, buttonCount, pointNumber = 3;
@@ -138,9 +135,6 @@ int main(int argc, char** argv) {
 			if (buttonAxes[2] == GLFW_PRESS)
 				pointNumber = 0;
 		}
-		
-		
-
 
 		/// rendering commands (drawing new shapes and such)
 		/// ------------------------------------------------
@@ -149,17 +143,18 @@ int main(int argc, char** argv) {
 
 		myTriangle.Draw();
 
+		// place into new file.
 		if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) {
 			if (pointNumber != 3) {
 
 #ifdef _WIN32
-				myTriangle.Vertices[(pointNumber * 3)] += (joyAxes[0] * 0.01f); // adds to joystick's X-axis
-				myTriangle.Vertices[(pointNumber * 3) + 1] += (joyAxes[1] * 0.01f); // adds to joystick's Y-axis
+				myTriangle.Vertices[(pointNumber * 3)] += (joyAxes[0] * (JOY_SENSITIVITY * JOY_MODIFIER))); // adds to joystick's X-axis
+				myTriangle.Vertices[(pointNumber * 3) + 1] += (joyAxes[1] * (JOY_SENSITIVITY * JOY_MODIFIER)); // adds to joystick's Y-axis
 #else
 				myTriangle.Vertices[(pointNumber * 3)] += 
-					((joyAxes[0] > 0.12f ? joyAxes[0] : joyAxes[0] < -0.12f ? joyAxes[0] : 0) * 0.01f);
+					((joyAxes[0] > 0.12f ? joyAxes[0] : joyAxes[0] < -0.12f ? joyAxes[0] : 0) * (JOY_SENSITIVITY * JOY_MODIFIER));
 				myTriangle.Vertices[(pointNumber * 3) + 1] += 
-					((joyAxes[1] > 0.12f ? joyAxes[1] : joyAxes[1] < -0.12f ? joyAxes[1] : 0) * -0.01f); // Unix controller's Y-axis is backwards
+					((joyAxes[1] > 0.12f ? joyAxes[1] : joyAxes[1] < -0.12f ? joyAxes[1] : 0) * (JOY_SENSITIVITY * -JOY_MODIFIER)); // Unix controller's Y-axis is backwards
 #endif // Compensation for Unix's lack of a deadzone
 
 				selectionPoint.MoveTo(myTriangle.Vertices[(pointNumber * 3)], myTriangle.Vertices[(pointNumber * 3) + 1], selectionPoint.z);
