@@ -1,17 +1,26 @@
 #include "../include/DebugVertexController.h"
-
 #include <iostream>
 
-const int SWITCH_KEY = GLFW_KEY_F;
+int SWITCH_KEY = GLFW_KEY_F; // key binding for switching vertices.
+int pntNumKey = 0; // vertex tracker
 int switchKeyPreviousState = GLFW_RELEASE;
 int switchKeyCurrentState;
-int pntNumKey = 0;
 
+//! TODO: add Deadzone modifier.
 
-void DebugVertexController::controlTriangle(GLFWwindow *window, Triangle *triangle, RegularPolygon *selector, int joystick) {
-	// variables
-	// ---------
-	
+void DebugVertexController::controlTriangle(GLFWwindow *window, Triangle *triangle, RegularPolygon *selector, int joystick = 0) {
+	/// argument checks
+	/// ---------------
+	if(window == NULL)
+		throw std::invalid_argument("Window parameter equal to NULL");
+	if(triangle == NULL)
+		throw std::invalid_argument("Triangle parameter equal to NULL");
+	if(selector == NULL)
+		throw std::invalid_argument("RegularPolygon parameter equal to NULL");
+		
+
+	/// variables
+	/// ---------
 	int keyW = glfwGetKey(window, GLFW_KEY_W);
 	int keyA = glfwGetKey(window, GLFW_KEY_A);
 	int keyS = glfwGetKey(window, GLFW_KEY_S);
@@ -21,29 +30,35 @@ void DebugVertexController::controlTriangle(GLFWwindow *window, Triangle *triang
 	switchKeyCurrentState = switchKey;
 
 
-	// joystick input (underrides keyboard input)
-	// ------------------------------------------
+	/// joystick input (underrides keyboard input)
+	/// ------------------------------------------
 	if(glfwJoystickPresent(joystick) == GLFW_TRUE && 
 		(keyW != GLFW_PRESS && keyA != GLFW_PRESS && keyS != GLFW_PRESS && keyD != GLFW_PRESS && switchKeyCurrentState != GLFW_PRESS)) {
 
 		int joyCount, buttonCount, pointNumber = 3;
 		const unsigned char *buttonAxes = glfwGetJoystickButtons(joystick, &buttonCount);
 		const float *joyAxes = glfwGetJoystickAxes(joystick, &joyCount);
-	
+
+		// causes argument NULL pointer exception? I'm not sure why.
+		//pointNumber = (buttonAxes[0] == GLFW_PRESS ? 1 : buttonAxes[1] == GLFW_PRESS ? 2 : 0);
+		
 		if (buttonAxes[0] == GLFW_PRESS)
 			pointNumber = 1;
 		if (buttonAxes[1] == GLFW_PRESS)
 			pointNumber = 2;
 		if (buttonAxes[2] == GLFW_PRESS)
 			pointNumber = 0;
+		
 
-		if (pointNumber != 3) {
+		//! optimized for xbox controllers
+		if (pointNumber != 3) { // updating vertex coordinates.
 #ifdef _WIN32
 			triangle->Vertices[(pointNumber * 3)] += (joyAxes[0] * ((float)JOY_SENSITIVITY * JOY_MODIFIER));
 			
 			triangle->Vertices[(pointNumber * 3) + 1] += (joyAxes[1] * ((float)JOY_SENSITIVITY * JOY_MODIFIER));
 #else //!_WIN32
 			
+			// Unix machines don't have a dead-zone.
 			triangle->Vertices[(pointNumber * 3)] += 
 				((joyAxes[0] > 0.12f ? joyAxes[0] : joyAxes[0] < -0.12f ? joyAxes[0] : 0) * ((float)JOY_SENSITIVITY *  JOY_MODIFIER));
 			
@@ -57,13 +72,15 @@ void DebugVertexController::controlTriangle(GLFWwindow *window, Triangle *triang
 
 	}
 
-	// keyboard input (overrides controller input)
-	// -------------------------------------------
+	/// keyboard input (overrides controller input)
+	/// -------------------------------------------
 	if (switchKey == GLFW_PRESS && switchKey != switchKeyPreviousState) // switching vertices
 		if (pntNumKey == 2)
 			pntNumKey = 0;
 		else pntNumKey++;
 
+
+	// updating triangle vertex coordinates.
 	if (keyW == GLFW_PRESS)
 		triangle->Vertices[(pntNumKey * 3) + 1] += ((JOY_SENSITIVITY * JOY_MODIFIER));
 	if (keyS == GLFW_PRESS)
@@ -78,6 +95,5 @@ void DebugVertexController::controlTriangle(GLFWwindow *window, Triangle *triang
 		selector->MoveTo(triangle->Vertices[(pntNumKey * 3)], triangle->Vertices[(pntNumKey * 3) + 1], selector->z);
 		selector->Draw();
 	}
-
 	
 }

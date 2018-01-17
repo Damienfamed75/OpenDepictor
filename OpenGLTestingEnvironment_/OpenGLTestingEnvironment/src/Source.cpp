@@ -152,15 +152,7 @@ void processInput(GLFWwindow *window) {
 		glfwSetWindowShouldClose(window, true);
 
 	/// Input testing
-
-	/// Xbox controller Layout (Buttons)
-	// 0: A			7: Start
-	// 1: B			8: LJoyButton	
-	// 2: X			9: RJoyButton
-	// 3: Y		   10: D-Pad Up
-	// 4: LBumper  11: D-Pad Right
-	// 5: RBumper  12: D-Pad Down
-	// 6: Back	   13: D-Pad Left
+	/// -------------
 
 }
 
