@@ -30,20 +30,20 @@
 	#include <iostream>
 #endif //!_GLIBCXX_IOSTREAM
 
+#include "../include/DebugVertexController.h"
+
 #define DEBUG
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
-void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods);
-
 
 
 // settings
 const unsigned int SCR_WIDTH  = 800;
 const unsigned int SCR_HEIGHT = 600;
-const int JOY_SENSITIVITY = 12;
-const float JOY_MODIFIER = 0.02f;
+const GLint JOY_SENSITIVITY = 12;
+const GLfloat JOY_MODIFIER = 0.001f;
 
 
 // TODO - ADD TEXT
@@ -74,6 +74,7 @@ int main(int argc, char** argv) {
 	}
 	glfwMakeContextCurrent(window); // makes the window's context current
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
 	/// Glad Initilization
 	/* passing GLAD the function to load the address of the
 	* OpenGL function pointers which is OS-specific. GLFW
@@ -98,7 +99,7 @@ int main(int argc, char** argv) {
 	RegularPolygon firstPolygon(0.25f, 0.25f, 0.0f, 0.2f, 40);
 	RegularPolygon secondPolygon(-0.3f, -0.25f, 0.0f, 0.35f, 8);
 	RegularPolygon thirdPolygon(0.7f, -0.4f, 0.0f, 0.2f, 4);
-	RegularPolygon selectionPoint(0.0f, 0.0f, 0.0f, 0.01f, 8);
+	RegularPolygon selector(0.0f, 0.0f, 0.0f, 0.01f, 8);
 
 	secondPolygon.UpdateColor(0.5f, 0.0f, 0.9f);
 	firstPolygon.UpdateColor(0.9f, 0.0f, 0.2f);
@@ -121,21 +122,6 @@ int main(int argc, char** argv) {
 		/// inputs (button presses, mouse movements, etc.)
 		/// ----------------------------------------------
 		processInput(window);
-		
-		int joyCount, buttonCount, pointNumber = 3;
-		
-		const unsigned char *buttonAxes = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount); // NULL if controller is unplugged
-		const float *joyAxes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &joyCount); // NULL if controller is unplugged
-		
-		// Make sure to check if the controller is present before checking input axes
-		if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) {
-			if (buttonAxes[0] == GLFW_PRESS)
-				pointNumber = 1;
-			if (buttonAxes[1] == GLFW_PRESS)
-				pointNumber = 2;
-			if (buttonAxes[2] == GLFW_PRESS)
-				pointNumber = 0;
-		}
 
 		/// rendering commands (drawing new shapes and such)
 		/// ------------------------------------------------
@@ -144,39 +130,7 @@ int main(int argc, char** argv) {
 
 		myTriangle.Draw();
 
-		// place into new file.
-		if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) {
-			if (pointNumber != 3) {
-
-#ifdef _WIN32
-				myTriangle.Vertices[(pointNumber * 3)] += (joyAxes[0] * (JOY_SENSITIVITY * JOY_MODIFIER))); // adds to joystick's X-axis
-				myTriangle.Vertices[(pointNumber * 3) + 1] += (joyAxes[1] * (JOY_SENSITIVITY * JOY_MODIFIER)); // adds to joystick's Y-axis
-#else
-				myTriangle.Vertices[(pointNumber * 3)] += 
-					((joyAxes[0] > 0.12f ? joyAxes[0] : joyAxes[0] < -0.12f ? joyAxes[0] : 0) * (JOY_SENSITIVITY * JOY_MODIFIER));
-				myTriangle.Vertices[(pointNumber * 3) + 1] += 
-					((joyAxes[1] > 0.12f ? joyAxes[1] : joyAxes[1] < -0.12f ? joyAxes[1] : 0) * (JOY_SENSITIVITY * -JOY_MODIFIER)); // Unix controller's Y-axis is backwards
-#endif // Compensation for Unix's lack of a deadzone
-
-				selectionPoint.MoveTo(myTriangle.Vertices[(pointNumber * 3)], myTriangle.Vertices[(pointNumber * 3) + 1], selectionPoint.z);
-				selectionPoint.Draw();
-			}
-		}
-		int keyW = glfwGetKey(window, GLFW_KEY_W);
-		int keyA = glfwGetKey(window, GLFW_KEY_A);
-		int keyS = glfwGetKey(window, GLFW_KEY_S);
-		int keyD = glfwGetKey(window, GLFW_KEY_D);
-
-
-		if(keyW == GLFW_PRESS)
-			myTriangle.Vertices[1] += ((JOY_SENSITIVITY * JOY_MODIFIER) * 0.05f);
-		if(keyS == GLFW_PRESS)
-			myTriangle.Vertices[1] -= ((JOY_SENSITIVITY * JOY_MODIFIER) * 0.05f);
-		if(keyA == GLFW_PRESS)
-			myTriangle.Vertices[0] -= ((JOY_SENSITIVITY * JOY_MODIFIER) * 0.05f);
-		if(keyD == GLFW_PRESS)
-			myTriangle.Vertices[0] += ((JOY_SENSITIVITY * JOY_MODIFIER) * 0.05f);
-
+		DebugVertexController::controlTriangle(window, &myTriangle, &selector, GLFW_JOYSTICK_1);
 
 		firstPolygon.Draw();
 		secondPolygon.Draw();
