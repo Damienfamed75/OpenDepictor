@@ -6,10 +6,18 @@ CMakeFiles/IdolScheme.dir/assets/glad.c.o
 CMakeFiles/IdolScheme.dir/src/Color.cpp.o
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Color.cpp
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/DebugVertexController.cpp
 CMakeFiles/IdolScheme.dir/src/RegularPolygon.cpp.o
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/RegularPolygon.cpp
 CMakeFiles/IdolScheme.dir/src/Source.cpp.o
+ /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
  /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h

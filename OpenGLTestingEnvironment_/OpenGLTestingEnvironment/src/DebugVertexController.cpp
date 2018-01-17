@@ -45,10 +45,10 @@ void DebugVertexController::controlTriangle(GLFWwindow *window, Triangle *triang
 #else //!_WIN32
 			
 			triangle->Vertices[(pointNumber * 3)] += 
-				((joyAxes[0] > 0.12f ? joyAxes[0] : joyAxes[0] < -0.12f ? joyAxes[0] : 0) * ((float)JOY_SENSITIVITY *  JOY_MODIFIER)));
+				((joyAxes[0] > 0.12f ? joyAxes[0] : joyAxes[0] < -0.12f ? joyAxes[0] : 0) * ((float)JOY_SENSITIVITY *  JOY_MODIFIER));
 			
 			triangle->Vertices[(pointNumber * 3) + 1] += 
-				((joyAxes[1] > 0.12f ? joyAxes[1] : joyAxes[1] < -0.12f ? joyAxes[1] : 0) * ((float)JOY_SENSITIVITY * -JOY_MODIFIER)));
+				((joyAxes[1] > 0.12f ? joyAxes[1] : joyAxes[1] < -0.12f ? joyAxes[1] : 0) * ((float)JOY_SENSITIVITY * -JOY_MODIFIER));
 #endif // Compensation for Unix' lack of a deadzone.
 			
 			selector->MoveTo(triangle->Vertices[(pointNumber * 3)], triangle->Vertices[(pointNumber * 3) + 1], selector->z);

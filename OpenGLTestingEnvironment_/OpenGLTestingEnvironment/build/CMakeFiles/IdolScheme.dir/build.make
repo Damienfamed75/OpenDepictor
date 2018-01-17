@@ -201,9 +201,33 @@ CMakeFiles/IdolScheme.dir/src/Source.cpp.o.provides: CMakeFiles/IdolScheme.dir/s
 CMakeFiles/IdolScheme.dir/src/Source.cpp.o.provides.build: CMakeFiles/IdolScheme.dir/src/Source.cpp.o
 
 
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o: CMakeFiles/IdolScheme.dir/flags.make
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o: ../src/DebugVertexController.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o -c /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/DebugVertexController.cpp
+
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/DebugVertexController.cpp > CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.i
+
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/DebugVertexController.cpp -o CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.s
+
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o.requires:
+
+.PHONY : CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o.requires
+
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o.provides: CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o.requires
+	$(MAKE) -f CMakeFiles/IdolScheme.dir/build.make CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o.provides.build
+.PHONY : CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o.provides
+
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o.provides.build: CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o
+
+
 CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o: CMakeFiles/IdolScheme.dir/flags.make
 CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o: ../src/stb_image.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o -c /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/stb_image.cpp
 
 CMakeFiles/IdolScheme.dir/src/stb_image.cpp.i: cmake_force
@@ -227,7 +251,7 @@ CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o.provides.build: CMakeFiles/IdolSch
 
 CMakeFiles/IdolScheme.dir/src/Color.cpp.o: CMakeFiles/IdolScheme.dir/flags.make
 CMakeFiles/IdolScheme.dir/src/Color.cpp.o: ../src/Color.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/IdolScheme.dir/src/Color.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/IdolScheme.dir/src/Color.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IdolScheme.dir/src/Color.cpp.o -c /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Color.cpp
 
 CMakeFiles/IdolScheme.dir/src/Color.cpp.i: cmake_force
@@ -257,6 +281,7 @@ IdolScheme_OBJECTS = \
 "CMakeFiles/IdolScheme.dir/src/TextureLoading.cpp.o" \
 "CMakeFiles/IdolScheme.dir/src/RegularPolygon.cpp.o" \
 "CMakeFiles/IdolScheme.dir/src/Source.cpp.o" \
+"CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o" \
 "CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o" \
 "CMakeFiles/IdolScheme.dir/src/Color.cpp.o"
 
@@ -269,11 +294,12 @@ IdolScheme: CMakeFiles/IdolScheme.dir/src/Triangle.cpp.o
 IdolScheme: CMakeFiles/IdolScheme.dir/src/TextureLoading.cpp.o
 IdolScheme: CMakeFiles/IdolScheme.dir/src/RegularPolygon.cpp.o
 IdolScheme: CMakeFiles/IdolScheme.dir/src/Source.cpp.o
+IdolScheme: CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o
 IdolScheme: CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o
 IdolScheme: CMakeFiles/IdolScheme.dir/src/Color.cpp.o
 IdolScheme: CMakeFiles/IdolScheme.dir/build.make
 IdolScheme: CMakeFiles/IdolScheme.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable IdolScheme"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable IdolScheme"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/IdolScheme.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -287,6 +313,7 @@ CMakeFiles/IdolScheme.dir/requires: CMakeFiles/IdolScheme.dir/src/Triangle.cpp.o
 CMakeFiles/IdolScheme.dir/requires: CMakeFiles/IdolScheme.dir/src/TextureLoading.cpp.o.requires
 CMakeFiles/IdolScheme.dir/requires: CMakeFiles/IdolScheme.dir/src/RegularPolygon.cpp.o.requires
 CMakeFiles/IdolScheme.dir/requires: CMakeFiles/IdolScheme.dir/src/Source.cpp.o.requires
+CMakeFiles/IdolScheme.dir/requires: CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o.requires
 CMakeFiles/IdolScheme.dir/requires: CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o.requires
 CMakeFiles/IdolScheme.dir/requires: CMakeFiles/IdolScheme.dir/src/Color.cpp.o.requires
 

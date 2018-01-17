@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/IdolScheme.dir/src/TextureLoading.cpp.o"
   "CMakeFiles/IdolScheme.dir/src/RegularPolygon.cpp.o"
   "CMakeFiles/IdolScheme.dir/src/Source.cpp.o"
+  "CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o"
   "CMakeFiles/IdolScheme.dir/src/stb_image.cpp.o"
   "CMakeFiles/IdolScheme.dir/src/Color.cpp.o"
   "IdolScheme.pdb"

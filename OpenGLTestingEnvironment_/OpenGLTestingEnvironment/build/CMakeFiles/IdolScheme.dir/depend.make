@@ -6,9 +6,17 @@ CMakeFiles/IdolScheme.dir/assets/glad.c.o: ../assets/glad.c
 CMakeFiles/IdolScheme.dir/src/Color.cpp.o: ../include/VariableObjects/Color.h
 CMakeFiles/IdolScheme.dir/src/Color.cpp.o: ../src/Color.cpp
 
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o: ../include/DebugVertexController.h
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o: ../include/RegularPolygon.h
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o: ../include/Triangle.h
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o: ../include/VariableObjects/Color.h
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o: ../include/VariableObjects/Vector3.h
+CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.o: ../src/DebugVertexController.cpp
+
 CMakeFiles/IdolScheme.dir/src/RegularPolygon.cpp.o: ../include/RegularPolygon.h
 CMakeFiles/IdolScheme.dir/src/RegularPolygon.cpp.o: ../src/RegularPolygon.cpp
 
+CMakeFiles/IdolScheme.dir/src/Source.cpp.o: ../include/DebugVertexController.h
 CMakeFiles/IdolScheme.dir/src/Source.cpp.o: ../include/RegularPolygon.h
 CMakeFiles/IdolScheme.dir/src/Source.cpp.o: ../include/Triangle.h
 CMakeFiles/IdolScheme.dir/src/Source.cpp.o: ../include/VariableObjects/Color.h
