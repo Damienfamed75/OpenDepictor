@@ -52,7 +52,7 @@ When this is installed you can move on to [installing GLFW.](#GLFWInstall)
 
 Installing GCC/G++ is going to require you do to do a little bit more work
 in Windows. If you're going to be using *Visual Studio* *(not include Visual Studio Code)* then you can skip this step.
-**1.** First you're going to want to pick a folder where you
+1. First you're going to want to pick a folder where you
 want to install *G++*. It's recommended you put this straight into your
 `C:` drive, but you can choose a different one if you wish.
 2. Now you'll want to download [this executable.](fhttp://www1.cmc.edu/pages/faculty/alee/g++/full.exe) 
@@ -198,11 +198,29 @@ what works and what doesn't for your needs.
 `-L<path to libraries>`
 `-lopengl32`
 `-lglfw3 or -lglfw`
-`-lglad32`
+`-lglad`
 `-lkernel32`
 `-luser32`
 `-lgdi32`
 `-lws3_32`
+
+<h4>Using CMake</h4>
+
+We use CMake primarily when building versions of this application now,
+because it's easier to manage and type out than long and teadious
+GCC/G++ commands.
+
+To this project built you first go into terminal and direct it to
+the build folder within the root of the project.
+
+Next you want to type in `rm -rf ./*` which will delete all the files
+within the folder.
+
+Then you'll type in `cmake ..` which tells cmake to place all the CMake files
+in your current folder, but it's building the parent folder.
+
+Now type in `make` which will compile the project and once it's done type in
+`./IdolScheme` which will run the application.
 
 <h4>Linking Visual Studio</h4>
 
