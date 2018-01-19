@@ -3,8 +3,8 @@
 #include <cstring>
 
 
-#ifndef RENDERINGOBJECTS_H
-#define RENDERINGOBJECTS_H
+#ifndef RENDERINGOBJECTS_HPP
+#define RENDERINGOBJECTS_HPP
 
 template<class object>
 class RenderingObjects {
@@ -22,9 +22,9 @@ public:
 	void Clear(); // clears array memory
 	void Delete(unsigned int pos); // delete array item.
 	void *getptr(); // get void* pointer to array data.
-
+	
 	enum exception { MEMFAIL }; // change over to new file.
-	void DrawShape(int x) { (this->array[x]).Draw(); }
+	void DrawShape(int x) { (this->array[x]).Draw(); } // if it's not a pointer.
 	void Update(int x) { ((int*)this->array[x])(); }
 private:
 	object *array; // pointer for array's memory
@@ -35,7 +35,7 @@ private:
 	const static int rendering_objects_mult = 2; // multiplier
 };
 
-///////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 template<class object>
 RenderingObjects<object>::RenderingObjects() {
@@ -151,4 +151,4 @@ void RenderingObjects<object>::Add(const object &item) {
 
 
 
-#endif //!RENDERINGOBJECTS_H
+#endif //!RENDERINGOBJECTS_HPP

@@ -24,7 +24,7 @@
     <ClInclude Include="include\RegularPolygon.h" />
     <ClInclude Include="include\Triangle.h" />
     <ClInclude Include="include\VariableObjects\Color.h" />
-    <ClInclude Include="include\VariableObjects\RenderingObjects.h" />
+    <ClInclude Include="include\VariableObjects\RenderingObjects.hpp" />
     <ClInclude Include="include\VariableObjects\Shaders.h" />
     <ClInclude Include="include\VariableObjects\Vector3.h" />
   </ItemGroup>
@@ -34,7 +34,6 @@
     <ClCompile Include="src\DebugVertexController.cpp" />
     <ClCompile Include="src\Note.cpp" />
     <ClCompile Include="src\RegularPolygon.cpp" />
-    <ClCompile Include="src\RenderingObjects.cpp" />
     <ClCompile Include="src\Source.cpp" />
     <ClCompile Include="src\stb_image.cpp" />
     <ClCompile Include="src\TextureLoading.cpp" />

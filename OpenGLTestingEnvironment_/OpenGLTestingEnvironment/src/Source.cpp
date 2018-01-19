@@ -42,9 +42,9 @@
 	#include "../include/DebugVertexController.h"
 #endif //!DEBUGVERTEXCONTROLLER_H
 
-#ifndef RENDERINGOBJECTS_H
-	#include "../include/VariableObjects/RenderingObjects.h"
-#endif //!RENDERINGOBJECTS_H
+#ifndef RENDERINGOBJECTS_HPP
+	#include "../include/VariableObjects/RenderingObjects.hpp"
+#endif //!RENDERINGOBJECTS_HPP
 
 
 #define DEBUG
@@ -173,18 +173,11 @@ int main(int argc, char** argv) {
 		// AVG CPU USAGE: 8-13%
 		//for(int i = 0; i < 3; i++)
 		//	objects.DrawShape(i);
-		
 
 		//((testObj->getptr())[0])();
 		//((int)testObj[0].getptr())();
 		//(testObj->Update(0));
 
-
-		//thirdPolygon.Draw();
-		//firstPolygon.Draw();
-		//secondPolygon.Draw();
-		//thirdPolygon.Draw();
-		//myNote.Draw();
 
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
@@ -203,14 +196,7 @@ void processInput(GLFWwindow *window) {
 
 	/// Input testing
 	/// -------------
-	int buttonCount;
-	const unsigned char *buttonAxes = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
-	const char *name = glfwGetJoystickName(GLFW_JOYSTICK_1);
-
-	for (int i = 0; i < buttonCount; i++) {
-		if (buttonAxes[i] == GLFW_PRESS)
-			std::cout << name << ": " << i << std::endl;
-	}
+	
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
