@@ -30,7 +30,22 @@
 	#include <iostream>
 #endif //!_GLIBCXX_IOSTREAM
 
-#include "../include/DebugVertexController.h"
+#ifndef _VECTOR_
+	#include <vector>
+#endif //!_VECTOR_
+
+#ifndef NOTE_H
+	#include "../include/Note.h"
+#endif //!NOTE_H
+
+#ifndef DEBUGVERTEXCONTROLLER_H
+	#include "../include/DebugVertexController.h"
+#endif //!DEBUGVERTEXCONTROLLER_H
+
+#ifndef RENDERINGOBJECTS_H
+	#include "../include/VariableObjects/RenderingObjects.h"
+#endif //!RENDERINGOBJECTS_H
+
 
 #define DEBUG
 
@@ -91,19 +106,35 @@ int main(int argc, char** argv) {
 
 #pragma region INSTANTIATIONS
 	/// Instantiation
+	//RenderingObjects<bool> objects;
+	RenderingObjects<RegularPolygon> objects;
+	RenderingObjects<RegularPolygon> *polygons = new RenderingObjects<RegularPolygon>();
+
 	Vector3 *k1 = new Vector3(-0.8f, 0.8f, 0.0f);
 	Vector3 *k3 = new Vector3(-0.8f, 0.0f, 0.0f);
 	Vector3 *k2 = new Vector3( 0.5f, 0.5f, 0.0f);
-	
+
 	Triangle myTriangle(*k1, *k2, *k3);
 	RegularPolygon firstPolygon(0.25f, 0.25f, 0.0f, 0.2f, 40);
 	RegularPolygon secondPolygon(-0.3f, -0.25f, 0.0f, 0.35f, 8);
 	RegularPolygon thirdPolygon(0.7f, -0.4f, 0.0f, 0.2f, 4);
 	RegularPolygon selector(0.0f, 0.0f, 0.0f, 0.01f, 8);
+	Note myNote(0.f, 0.f);
 
 	secondPolygon.UpdateColor(0.5f, 0.0f, 0.9f);
 	firstPolygon.UpdateColor(0.9f, 0.0f, 0.2f);
 	thirdPolygon.UpdateColor(0.3f, 0.8f, 0.1f);
+
+
+	//objects.Add(secondPolygon.Update());
+	//objects.Add(thirdPolygon.Update());
+	//objects.Add(myTriangle.Update());
+
+	polygons->Add(firstPolygon);
+	polygons->Add(secondPolygon);
+	polygons->Add(thirdPolygon);
+	polygons->Add(myNote);
+	//testObj->Add(myTriangle.Update());
 
 	// deleting pointers
 	delete(k1);
@@ -129,12 +160,31 @@ int main(int argc, char** argv) {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		myTriangle.Draw();
+		
 
 		DebugVertexController::controlTriangle(window, &myTriangle, &selector, GLFW_JOYSTICK_1);
+		
+		// AVG MEM USAGE: 57MB
+		// AVG CPU USAGE: 5-8%
+		for(unsigned int i = 0; i < polygons->GetSize(); i++)
+			(((RegularPolygon*)polygons->getptr())[i]).Draw();
+		
+		// AVG MEM USAGE: 57MB
+		// AVG CPU USAGE: 8-13%
+		//for(int i = 0; i < 3; i++)
+		//	objects.DrawShape(i);
+		
 
-		firstPolygon.Draw();
-		secondPolygon.Draw();
-		thirdPolygon.Draw();
+		//((testObj->getptr())[0])();
+		//((int)testObj[0].getptr())();
+		//(testObj->Update(0));
+
+
+		//thirdPolygon.Draw();
+		//firstPolygon.Draw();
+		//secondPolygon.Draw();
+		//thirdPolygon.Draw();
+		//myNote.Draw();
 
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
@@ -153,7 +203,14 @@ void processInput(GLFWwindow *window) {
 
 	/// Input testing
 	/// -------------
+	int buttonCount;
+	const unsigned char *buttonAxes = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+	const char *name = glfwGetJoystickName(GLFW_JOYSTICK_1);
 
+	for (int i = 0; i < buttonCount; i++) {
+		if (buttonAxes[i] == GLFW_PRESS)
+			std::cout << name << ": " << i << std::endl;
+	}
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {

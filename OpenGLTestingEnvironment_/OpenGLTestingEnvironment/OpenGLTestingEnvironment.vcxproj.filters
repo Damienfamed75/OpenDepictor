@@ -36,6 +36,12 @@
     <ClInclude Include="include\DebugVertexController.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Note.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VariableObjects\RenderingObjects.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Color.cpp">
@@ -63,6 +69,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\DebugVertexController.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Note.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderingObjects.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

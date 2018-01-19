@@ -147,3 +147,8 @@ void Triangle::Draw() {
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	CleanUp();
 }
+
+int Triangle::Update() {
+	std::cout << "triangle" << std::endl;
+	return 0;
+}

@@ -17,7 +17,6 @@
 #endif // !M_PI
 
 
-
 extern const GLchar* VertexShader;
 extern const GLchar* FragmentShader;
 
@@ -39,12 +38,16 @@ public:
 	GLfloat *polygonVerticesZ;
 	GLfloat *allPolygonVertices;
 	GLfloat *Colors;
-	
+
+	friend class Note;
+
+	RegularPolygon() {}
 	RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_);
 
 	void Setup();
 	void CreateVBO();
 	void Draw();
+	int Update();
 	void DestroyVBO();
 	void CreateShaders();
 	void DestroyShaders();

@@ -50,6 +50,7 @@ public:
 	void CreateVBO();
 	void DestroyVBO();
 	void Draw();
+	int Update();
 	void CreateShaders();
 	void DestroyShaders();
 	void Move(float x, float y);

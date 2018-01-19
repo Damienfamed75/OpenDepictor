@@ -48,7 +48,6 @@ void DebugVertexController::controlTriangle(GLFWwindow *window, Triangle *triang
 			pointNumber = 2;
 		if (buttonAxes[2] == GLFW_PRESS)
 			pointNumber = 0;
-		
 
 		//! optimized for xbox controllers
 		if (pointNumber != 3) { // updating vertex coordinates.

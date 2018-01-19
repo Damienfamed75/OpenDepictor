@@ -35,10 +35,6 @@ RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, G
 	}
 
 	Setup();
-	CreateVBO();
-	CreateShaders();
-	DestroyShaders();
-	DestroyVBO();
 }
 
 void RegularPolygon::Setup() {
@@ -66,7 +62,7 @@ void RegularPolygon::CreateVBO() {
 
 	glGenBuffers(1, &VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VAO);
-	glBufferData(GL_ARRAY_BUFFER, 512, allPolygonVertices, GL_STATIC_DRAW); // It works but I don't know why
+	glBufferData(GL_ARRAY_BUFFER, 1024, allPolygonVertices, GL_STATIC_DRAW); // It works but I'd like it redone.
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
 
@@ -179,4 +175,9 @@ void RegularPolygon::Translate(float x_, float y_, float z_, double time) {
 
 void RegularPolygon::TranslateTo(float x_, float y_, float z_, float time) {
 	return;
+}
+
+int RegularPolygon::Update() {
+	std::cout << "polygon" << std::endl;
+	return 0;
 }
