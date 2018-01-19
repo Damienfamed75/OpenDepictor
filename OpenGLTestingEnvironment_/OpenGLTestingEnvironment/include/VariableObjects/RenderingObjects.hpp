@@ -25,7 +25,7 @@ public:
 	
 	enum exception { MEMFAIL }; // change over to new file.
 	void DrawShape(int x) { (this->array[x]).Draw(); } // if it's not a pointer.
-	void Update(int x) { ((int*)this->array[x])(); }
+	//void Update(int x) { ((int*)this->array[x])(); }
 private:
 	object *array; // pointer for array's memory
 	unsigned int size; // size of array (elements)

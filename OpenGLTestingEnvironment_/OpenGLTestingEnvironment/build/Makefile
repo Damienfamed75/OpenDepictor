@@ -601,6 +601,33 @@ src/DebugVertexController.cpp.s:
 	$(MAKE) -f CMakeFiles/IdolScheme.dir/build.make CMakeFiles/IdolScheme.dir/src/DebugVertexController.cpp.s
 .PHONY : src/DebugVertexController.cpp.s
 
+src/Note.o: src/Note.cpp.o
+
+.PHONY : src/Note.o
+
+# target to build an object file
+src/Note.cpp.o:
+	$(MAKE) -f CMakeFiles/IdolScheme.dir/build.make CMakeFiles/IdolScheme.dir/src/Note.cpp.o
+.PHONY : src/Note.cpp.o
+
+src/Note.i: src/Note.cpp.i
+
+.PHONY : src/Note.i
+
+# target to preprocess a source file
+src/Note.cpp.i:
+	$(MAKE) -f CMakeFiles/IdolScheme.dir/build.make CMakeFiles/IdolScheme.dir/src/Note.cpp.i
+.PHONY : src/Note.cpp.i
+
+src/Note.s: src/Note.cpp.s
+
+.PHONY : src/Note.s
+
+# target to generate assembly for a file
+src/Note.cpp.s:
+	$(MAKE) -f CMakeFiles/IdolScheme.dir/build.make CMakeFiles/IdolScheme.dir/src/Note.cpp.s
+.PHONY : src/Note.cpp.s
+
 src/RegularPolygon.o: src/RegularPolygon.cpp.o
 
 .PHONY : src/RegularPolygon.o
@@ -812,6 +839,9 @@ help:
 	@echo "... src/DebugVertexController.o"
 	@echo "... src/DebugVertexController.i"
 	@echo "... src/DebugVertexController.s"
+	@echo "... src/Note.o"
+	@echo "... src/Note.i"
+	@echo "... src/Note.s"
 	@echo "... src/RegularPolygon.o"
 	@echo "... src/RegularPolygon.i"
 	@echo "... src/RegularPolygon.s"
