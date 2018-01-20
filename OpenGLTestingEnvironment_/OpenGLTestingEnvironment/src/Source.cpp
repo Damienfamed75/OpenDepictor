@@ -134,6 +134,7 @@ int main(int argc, char** argv) {
 	polygons->Add(secondPolygon);
 	polygons->Add(thirdPolygon);
 	polygons->Add(myNote);
+
 	//testObj->Add(myTriangle.Update());
 
 	// deleting pointers

@@ -1,7 +1,8 @@
 #pragma once
 
-#include <cstring>
-
+#ifndef _CSTRING_
+	#include <cstring>
+#endif //!_CSTRING_
 
 #ifndef RENDERINGOBJECTS_HPP
 #define RENDERINGOBJECTS_HPP
