@@ -53,12 +53,6 @@
     <ClCompile Include="src\Source.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\stb_image.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TextureLoading.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Triangle.cpp">
       <Filter>src</Filter>
     </ClCompile>

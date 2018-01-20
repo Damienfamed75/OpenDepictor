@@ -35,8 +35,6 @@
     <ClCompile Include="src\Note.cpp" />
     <ClCompile Include="src\RegularPolygon.cpp" />
     <ClCompile Include="src\Source.cpp" />
-    <ClCompile Include="src\stb_image.cpp" />
-    <ClCompile Include="src\TextureLoading.cpp" />
     <ClCompile Include="src\Triangle.cpp" />
     <ClCompile Include="src\Vector3.cpp" />
   </ItemGroup>
