@@ -2,9 +2,15 @@
 	#include "../include/Triangle.h"
 #endif //!TRIANGLE_H
 
-#ifndef _GLIBCXX_IOSTREAM
-	#include <iostream>
-#endif //!_GLIBCXX_IOSTREAM
+#ifdef _WIN32
+	#ifndef _IOSTREAM_
+		#include <iostream>
+	#endif //!_IOSTREAM_
+#else // !_WIN32
+	#ifndef _GLIBCXX_IOSTREAM
+		#include <iostream>
+	#endif //!_GLIBCXX_IOSTREAM
+#endif //!_WIN32
 
 
 

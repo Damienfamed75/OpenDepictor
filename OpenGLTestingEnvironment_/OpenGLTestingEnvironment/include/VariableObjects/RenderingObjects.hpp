@@ -4,6 +4,8 @@
 	#include <cstring>
 #endif //!_CSTRING_
 
+
+
 #ifndef RENDERINGOBJECTS_HPP
 #define RENDERINGOBJECTS_HPP
 
@@ -36,7 +38,7 @@ private:
 	const static int rendering_objects_mult = 2; // multiplier
 };
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 template<class object>
 RenderingObjects<object>::RenderingObjects() {
@@ -149,7 +151,5 @@ void RenderingObjects<object>::Add(const object &item) {
 
 	array[size - 1] = item;
 }
-
-
 
 #endif //!RENDERINGOBJECTS_HPP

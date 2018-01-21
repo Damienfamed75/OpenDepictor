@@ -26,9 +26,15 @@
 	#include "../include/RegularPolygon.h"
 #endif //!REGULARPOLYGON_H
 
-#ifndef _GLIBCXX_IOSTREAM
-	#include <iostream>
-#endif //!_GLIBCXX_IOSTREAM
+#ifdef _WIN32
+	#ifndef _IOSTREAM_
+		#include <iostream>
+	#endif //!_IOSTREAM_
+#else // !_WIN32
+	#ifndef _GLIBCXX_IOSTREAM
+		#include <iostream>
+	#endif //!_GLIBCXX_IOSTREAM
+#endif //!_WIN32
 
 #ifndef _VECTOR_
 	#include <vector>
@@ -106,8 +112,7 @@ int main(int argc, char** argv) {
 
 #pragma region INSTANTIATIONS
 	/// Instantiation
-	//RenderingObjects<bool> objects;
-	RenderingObjects<RegularPolygon> objects;
+	//! TODO make lists able to carry multiple types of objects.
 	RenderingObjects<RegularPolygon> *polygons = new RenderingObjects<RegularPolygon>();
 
 	Vector3 *k1 = new Vector3(-0.8f, 0.8f, 0.0f);
@@ -126,16 +131,12 @@ int main(int argc, char** argv) {
 	thirdPolygon.UpdateColor(0.3f, 0.8f, 0.1f);
 
 
-	//objects.Add(secondPolygon.Update());
-	//objects.Add(thirdPolygon.Update());
-	//objects.Add(myTriangle.Update());
-
 	polygons->Add(firstPolygon);
 	polygons->Add(secondPolygon);
 	polygons->Add(thirdPolygon);
 	polygons->Add(myNote);
 
-	//testObj->Add(myTriangle.Update());
+	//testObj->Add(myTriangle.Update()); // DOESN'T WORK!
 
 	// deleting pointers
 	delete(k1);
@@ -165,11 +166,13 @@ int main(int argc, char** argv) {
 
 		DebugVertexController::controlTriangle(window, &myTriangle, &selector, GLFW_JOYSTICK_1);
 		
+		// Using ptr
 		// AVG MEM USAGE: 57MB
 		// AVG CPU USAGE: 5-8%
 		for(unsigned int i = 0; i < polygons->GetSize(); i++)
-			(((RegularPolygon*)polygons->getptr())[i]).Draw();
+			(((RegularPolygon*)polygons->getptr())[i]).Draw(); // fix syntax to be more user friendly.
 		
+		// Using obj
 		// AVG MEM USAGE: 57MB
 		// AVG CPU USAGE: 8-13%
 		//for(int i = 0; i < 3; i++)
@@ -194,10 +197,6 @@ int main(int argc, char** argv) {
 void processInput(GLFWwindow *window) {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
-
-	/// Input testing
-	/// -------------
-	
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {

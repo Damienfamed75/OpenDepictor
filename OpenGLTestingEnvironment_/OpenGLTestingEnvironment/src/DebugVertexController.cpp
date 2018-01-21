@@ -1,5 +1,13 @@
-#include "../include/DebugVertexController.h"
-#include <iostream>
+#ifndef DEBUGVERTEXCONTROLLER_H
+	#include "../include/DebugVertexController.h"
+#endif //!DEBUGVERTEXCONTROLLER_H
+
+#ifndef _IOSTREAM_
+	#include <iostream>
+#endif //!_IOSTREAM_
+
+
+
 
 int SWITCH_KEY = GLFW_KEY_F; // key binding for switching vertices.
 int pntNumKey = 0; // vertex tracker

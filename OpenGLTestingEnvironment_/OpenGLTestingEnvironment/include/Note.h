@@ -5,8 +5,19 @@
 #endif // !REGULARPOLYGON_H
 
 
+
+
+
+
+
+
+
 #ifndef NOTE_H
 #define NOTE_H
+
+
+
+
 
 const GLint noteNumOfSides = 36;
 const GLfloat noteRadius = 0.15f;
