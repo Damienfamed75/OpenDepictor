@@ -19,11 +19,12 @@
 
 
 
-Note::Note(GLFWwindow *window_, GLfloat xInit, GLfloat yInit, GLfloat xFinal, GLfloat yFinal, GLdouble time, int key, int button)
+Note::Note(GLFWwindow *window_, GLfloat xInit, GLfloat yInit, GLfloat xFinal, GLfloat yFinal, GLdouble time_, int key, int button)
 	: RegularPolygon(x = (xInit), y = (yInit), 0.f, noteRadius, noteNumOfSides),
-	window(*window_), key_code(key), button_code(button),
-	shadow(new RegularPolygon(xFinal, yFinal, 0.f, noteRadius, noteNumOfSides)) {
-	shadow->UpdateColor((NOTECOL_R - 0.3f), (NOTECOL_G - 0.3f), (NOTECOL_B - 0.3f));
+	shadow(new RegularPolygon(xFinal, yFinal, 0.f, noteRadius, noteNumOfSides)),
+	window(*window_), key_code(key), button_code(button), time(time_) {
+
+	shadow->UpdateColor((NOTECOL_R - 0.3f), (NOTECOL_G - 0.3f), (NOTECOL_B - 0.3f), 0.5f);
 	//this->TranslateTo(window, xFinal, yFinal, 0.f, time);
 }
 
@@ -52,11 +53,14 @@ bool Note::Hit() {
 	return false;
 }
 void Note::Update() {
-	this->TranslateTo(&window, shadow->x, shadow->y, shadow->z, 1.4);
+	//!TODO - Fix the bug where you can slow down travel by pressing again mid-travel
+	
+	//this->TranslateTo(&window, shadow->x, shadow->y, shadow->z, time);
+	
 	bool noteHit = Hit();
 	if (noteHit) {
-		this->UpdateColor(1.0f, 0.f, 0.f);
-		// animate stuff
+		this->UpdateColor(1.0f, 0.f, 0.f, 1.0f);
+		//! TODO note death animation
 		//double timeEnd = glfwGetTime() + 1.0;
 		//if(glfwGetTime() < timeEnd) {
 			//animTemp += deltaTime * 0.6;
@@ -66,7 +70,7 @@ void Note::Update() {
 			//this->Draw();
 		//}
 	} else {
-		shadow->Draw();
-		this->UpdateColor(NOTECOL_R, NOTECOL_G, NOTECOL_B);
+		this->UpdateColor(NOTECOL_R, NOTECOL_G, NOTECOL_B, 1.0f);
 	}
+	shadow->Draw();
 }

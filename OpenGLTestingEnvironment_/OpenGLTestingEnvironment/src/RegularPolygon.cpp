@@ -24,20 +24,12 @@ int MOVE_KEY = GLFW_KEY_K;
 int moveKeyPreviousState = GLFW_RELEASE;
 int moveKeyCurrentState;
 
-RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_) {
-	x = x_;
-	y = y_;
-	z = z_;
-	r = r_;
-	numOfSides = numOfSides_;
-	numOfVertices = numOfSides + 2;
-
-	velocityX = 0;
-	velocityY = 0;
-	velocityZ = 0;
+RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_) 
+	: x(x_), y(y_), z(z_), r(r_), numOfSides(numOfSides_), numOfVertices(numOfSides + 2) {
+	
 	currentFrame = glfwGetTime();
 	lastFrame = currentFrame;
-	startFrame = -999;
+	startFrame = -999; // find better way to do this.
 	
 	polygonVerticesX   = new GLfloat[numOfVertices];
 	polygonVerticesY   = new GLfloat[numOfVertices];
@@ -141,11 +133,12 @@ void RegularPolygon::CleanUp() {
 	DestroyVBO();
 }
 
-void RegularPolygon::UpdateColor(float r, float g, float b) {
+void RegularPolygon::UpdateColor(float r, float g, float b, float a) {
 	for (int i = 0; i < numOfVertices; i++) {
 		Colors[i * 4]	    = r;
 		Colors[(i * 4) + 1] = g;
 		Colors[(i * 4) + 2] = b;
+		Colors[(i * 4) + 3] = a;
 	}
 }
 
@@ -191,7 +184,7 @@ void RegularPolygon::Translate(float x_, float y_, float z_, double time) {
 	return;
 }
 
-// Super unpredictable right now
+///! TODO fix to make more predictable.
 void RegularPolygon::TranslateTo(GLFWwindow *window, float x_, float y_, float z_, double time) {
 	
 
@@ -204,21 +197,18 @@ void RegularPolygon::TranslateTo(GLFWwindow *window, float x_, float y_, float z
 	moveKeyCurrentState = moveKey;
 
 	if (moveKey == GLFW_PRESS && moveKey != moveKeyPreviousState) {
-		startFrame = time;
-		glfwSetTime(0.0);
+		startFrame = glfwGetTime() + time;
 		currentFrame = glfwGetTime();
 		initX = x;
 		initY = y;
 		initZ = z;
+	}
 
+	if (startFrame != -999 && currentFrame < startFrame && ((x != x_) || (y != y_) || (z != z_))) {
 		velocityX = deltaTime * ((x_ - initX) / time);
 		velocityY = deltaTime * ((y_ - initY) / time);
 		velocityZ = deltaTime * ((z_ - initZ) / time);
-	}
-
-	if (startFrame != -999 && currentFrame < time && (x != x_ || y != y_)) {
 		
-
 		x += velocityX;
 		y += velocityY;
 		z += velocityZ;

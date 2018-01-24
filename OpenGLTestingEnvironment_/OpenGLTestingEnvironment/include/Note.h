@@ -18,7 +18,7 @@ const GLfloat NOTECOL_B = 1.f;
 
 class Note : public RegularPolygon {
 public:
-	Note(GLFWwindow *window, GLfloat xInit, GLfloat yInit, GLfloat xFinal, GLfloat yFinal, GLdouble time, int key, int button);
+	Note(GLFWwindow *window, GLfloat xInit, GLfloat yInit, GLfloat xFinal, GLfloat yFinal, GLdouble time_, int key, int button);
 	~Note();
 
 	void Update();
@@ -29,7 +29,7 @@ public:
 private:
 	GLFWwindow &window;
 	RegularPolygon *shadow;
-	double animTemp = 0;
+	double animTemp = 0, time;
 	int key_code, button_code, keyPrevState = GLFW_RELEASE, keyCurrState,
 		buttonPrevState = GLFW_RELEASE, buttonCurrState;
 };

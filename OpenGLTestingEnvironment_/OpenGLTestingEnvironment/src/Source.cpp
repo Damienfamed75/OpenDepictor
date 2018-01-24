@@ -57,7 +57,7 @@
 #endif //!CONTROLS_H
 
 
-//#define DEBUG
+#define DEBUG
 #define TAU (M_PI * 2.0)
 
 
@@ -126,12 +126,12 @@ int main(int argc, char** argv) {
 	double startFrame = currentFrame;
 
 	double a = 0;
-	double speed = 1.5;
+	double speed = 2.5;
 #endif //!DEBUG
 	
 	//! TODO make lists able to carry multiple types of objects.
-	RenderingObjects<RegularPolygon> *polygons = new RenderingObjects<RegularPolygon>();
-	//RenderingObjects<RegularPolygon> objects = RenderingObjects<RegularPolygon>();
+	//RenderingObjects<RegularPolygon> *polygons = new RenderingObjects<RegularPolygon>();
+	RenderingObjects<RegularPolygon> objects = RenderingObjects<RegularPolygon>();
 	
 	Vector3 *k1 = new Vector3(-0.8f, 0.8f, 0.0f);
 	Vector3 *k3 = new Vector3(-0.8f, 0.0f, 0.0f);
@@ -142,17 +142,17 @@ int main(int argc, char** argv) {
 	RegularPolygon secondPolygon(-0.4f, -0.6f, 0.0f, 0.35f, 8);
 	RegularPolygon thirdPolygon(0.7f, -0.4f, 0.0f, 0.2f, 4);
 	RegularPolygon selector(0.0f, 0.0f, 0.0f, 0.01f, 8);
-	Note myNote(window, 0.5f, 0.3f, -0.3f, -0.2f, 1.5, GLFW_KEY_Y, XBOX::BUTTON_Y);
+	//Note myNote(window, 0.5f, 0.3f, -0.3f, -0.2f, 1.5, GLFW_KEY_Y, XBOX::BUTTON_Y);
+	Note myNote(window, -.3f, 0.f, 0.f, 0.f, 1.1, GLFW_KEY_Y, XBOX::BUTTON_Y);
+	secondPolygon.UpdateColor(0.5f, 0.0f, 0.9f, 1.f);
+	firstPolygon.UpdateColor(0.9f, 0.0f, 0.2f, 1.f);
+	thirdPolygon.UpdateColor(0.3f, 0.8f, 0.1f, 1.f);
 
-	secondPolygon.UpdateColor(0.5f, 0.0f, 0.9f);
-	firstPolygon.UpdateColor(0.9f, 0.0f, 0.2f);
-	thirdPolygon.UpdateColor(0.3f, 0.8f, 0.1f);
 
-
-	polygons->Add(firstPolygon);
-	polygons->Add(secondPolygon);
-	polygons->Add(thirdPolygon);
-	polygons->Add(myNote);
+	objects.Add(firstPolygon);
+	objects.Add(secondPolygon);
+	objects.Add(thirdPolygon);
+	objects.Add(myNote);
 	
 	// deleting pointers
 	delete(k1);
@@ -179,8 +179,7 @@ int main(int argc, char** argv) {
 		a += deltaTime * speed;
 		if (a > TAU) a -= TAU;
 
-		myNote.x = cos(a) * 0.45f;
-		myNote.y = sin(a) * 0.45f;
+		myNote.x = cos(a) * 0.8f;
 		myNote.Setup();
 #endif //!DEBUG
 		/// rendering commands (drawing new shapes and such)
@@ -193,15 +192,13 @@ int main(int argc, char** argv) {
 		
 		DebugVertexController::Update(window, &myTriangle, &selector, GLFW_JOYSTICK_1);
 		myNote.Update();
-		// Using ptr
-		// AVG MEM USAGE: 57MB
-		// AVG CPU USAGE: 5-8%
-		for (unsigned int i = 0; i < polygons->GetSize(); i++) {
-			(((RegularPolygon*)polygons->getptr())[i]).Draw(); // fix syntax to be more user friendly.
-		}
 		// Using obj
 		// AVG MEM USAGE: 57MB
 		// AVG CPU USAGE: 8-13%
+		for (unsigned int i = 0; i < objects.GetSize(); i++) {
+			objects.DrawShape(i);
+		}
+		
 		//((testObj->getptr())[0])();
 		//((int)testObj[0].getptr())();
 		//(testObj->Update(0));

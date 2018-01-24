@@ -57,7 +57,7 @@ public:
 	double *GetSpeedTo(float x_, float y_, float z_, double time);
 	void Translate(float x_, float y_, float z_, double time);
 	void TranslateTo(GLFWwindow *window, float x_, float y_, float z_, double time);
-	void UpdateColor(float r, float g, float b);
+	void UpdateColor(float r, float g, float b, float a);
 private:
 	GLuint vertexShaderId, fragmentShaderId,
 		colorBuffer, VAO, VBO, shaderProgram;
