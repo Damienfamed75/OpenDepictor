@@ -6,6 +6,9 @@
 	#include <iostream>
 #endif //!_IOSTREAM_
 
+#ifndef CONTROLS_H
+	#include "../include/VariableObjects/Controls.h"
+#endif //!CONTROLS_H
 
 
 
@@ -16,7 +19,7 @@ int switchKeyCurrentState;
 
 //! TODO: add Deadzone modifier.
 
-void DebugVertexController::controlTriangle(GLFWwindow *window, Triangle *triangle, RegularPolygon *selector, int joystick = 0) {
+void DebugVertexController::Update(GLFWwindow *window, Triangle *triangle, RegularPolygon *selector, int joystick = 0) {
 	/// argument checks
 	/// ---------------
 	if(window == NULL)
@@ -50,11 +53,11 @@ void DebugVertexController::controlTriangle(GLFWwindow *window, Triangle *triang
 		// causes argument NULL pointer exception? I'm not sure why.
 		//pointNumber = (buttonAxes[0] == GLFW_PRESS ? 1 : buttonAxes[1] == GLFW_PRESS ? 2 : 0);
 		
-		if (buttonAxes[0] == GLFW_PRESS)
+		if (buttonAxes[XBOX::BUTTON_A] == GLFW_PRESS)
 			pointNumber = 1;
-		if (buttonAxes[1] == GLFW_PRESS)
+		if (buttonAxes[XBOX::BUTTON_B] == GLFW_PRESS)
 			pointNumber = 2;
-		if (buttonAxes[2] == GLFW_PRESS)
+		if (buttonAxes[XBOX::BUTTON_X] == GLFW_PRESS)
 			pointNumber = 0;
 
 		//! optimized for xbox controllers
@@ -81,10 +84,11 @@ void DebugVertexController::controlTriangle(GLFWwindow *window, Triangle *triang
 
 	/// keyboard input (overrides controller input)
 	/// -------------------------------------------
-	if (switchKey == GLFW_PRESS && switchKey != switchKeyPreviousState) // switching vertices
+	if (switchKey == GLFW_PRESS && switchKey != switchKeyPreviousState) {// switching vertices
 		if (pntNumKey == 2)
 			pntNumKey = 0;
 		else pntNumKey++;
+	}
 
 
 	// updating triangle vertex coordinates.

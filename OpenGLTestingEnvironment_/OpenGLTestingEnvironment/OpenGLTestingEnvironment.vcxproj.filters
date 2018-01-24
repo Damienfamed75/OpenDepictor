@@ -40,6 +40,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\VariableObjects\RenderingObjects.hpp">
+      <Filter>include\VariableObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VariableObjects\Controls.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

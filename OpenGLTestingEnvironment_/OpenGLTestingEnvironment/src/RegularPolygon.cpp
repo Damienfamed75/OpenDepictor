@@ -12,12 +12,17 @@
 	#endif //!_GLIBCXX_IOSTREAM
 #endif //!_WIN32
 
+#ifndef TAU
+	#define TAU (M_PI * 2.0)
+#endif //!TAU
 
 
 using std::cout;
 using std::endl;
 
-
+int MOVE_KEY = GLFW_KEY_K;
+int moveKeyPreviousState = GLFW_RELEASE;
+int moveKeyCurrentState;
 
 RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_) {
 	x = x_;
@@ -26,6 +31,13 @@ RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, G
 	r = r_;
 	numOfSides = numOfSides_;
 	numOfVertices = numOfSides + 2;
+
+	velocityX = 0;
+	velocityY = 0;
+	velocityZ = 0;
+	currentFrame = glfwGetTime();
+	lastFrame = currentFrame;
+	startFrame = -999;
 	
 	polygonVerticesX   = new GLfloat[numOfVertices];
 	polygonVerticesY   = new GLfloat[numOfVertices];
@@ -179,11 +191,51 @@ void RegularPolygon::Translate(float x_, float y_, float z_, double time) {
 	return;
 }
 
-void RegularPolygon::TranslateTo(float x_, float y_, float z_, float time) {
+// Super unpredictable right now
+void RegularPolygon::TranslateTo(GLFWwindow *window, float x_, float y_, float z_, double time) {
+	
+
+	currentFrame = glfwGetTime();
+	deltaTime = currentFrame - lastFrame;
+	lastFrame = currentFrame;
+	
+	int moveKey = glfwGetKey(window, MOVE_KEY);
+	moveKeyPreviousState = moveKeyCurrentState;
+	moveKeyCurrentState = moveKey;
+
+	if (moveKey == GLFW_PRESS && moveKey != moveKeyPreviousState) {
+		startFrame = time;
+		glfwSetTime(0.0);
+		currentFrame = glfwGetTime();
+		initX = x;
+		initY = y;
+		initZ = z;
+
+		velocityX = deltaTime * ((x_ - initX) / time);
+		velocityY = deltaTime * ((y_ - initY) / time);
+		velocityZ = deltaTime * ((z_ - initZ) / time);
+	}
+
+	if (startFrame != -999 && currentFrame < time && (x != x_ || y != y_)) {
+		
+
+		x += velocityX;
+		y += velocityY;
+		z += velocityZ;
+
+		Setup();
+	}
+}
+
+void RegularPolygon::Update() {
 	return;
 }
 
-int RegularPolygon::Update() {
-	std::cout << "polygon" << std::endl;
-	return 0;
+double *RegularPolygon::GetSpeedTo(float x_, float y_, float z_, double time) {
+	double resultX = ((x - x_) / time);
+	double resultY = ((y - y_) / time);
+	double resultZ = ((z - z_) / time);
+	double *result[3] = { &resultX, &resultY, &resultZ };
+
+	return *result;
 }

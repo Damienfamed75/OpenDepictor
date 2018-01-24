@@ -52,8 +52,13 @@
 	#include "../include/VariableObjects/RenderingObjects.hpp"
 #endif //!RENDERINGOBJECTS_HPP
 
+#ifndef CONTROLS_H
+	#include "../include/VariableObjects/Controls.h"
+#endif //!CONTROLS_H
 
-#define DEBUG
+
+//#define DEBUG
+#define TAU (M_PI * 2.0)
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -65,6 +70,8 @@ const unsigned int SCR_WIDTH  = 800;
 const unsigned int SCR_HEIGHT = 600;
 const GLint JOY_SENSITIVITY = 12;
 const GLfloat JOY_MODIFIER = 0.001f;
+int keyPrevState = GLFW_RELEASE;
+int keyCurrentState;
 
 
 // TODO - ADD TEXT
@@ -95,7 +102,7 @@ int main(int argc, char** argv) {
 	}
 	glfwMakeContextCurrent(window); // makes the window's context current
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
+	
 	/// Glad Initilization
 	/* passing GLAD the function to load the address of the
 	* OpenGL function pointers which is OS-specific. GLFW
@@ -112,19 +119,30 @@ int main(int argc, char** argv) {
 
 #pragma region INSTANTIATIONS
 	/// Instantiation
+#ifdef DEBUG	
+	double currentFrame = glfwGetTime();
+	double lastFrame = currentFrame;
+	double deltaTime;
+	double startFrame = currentFrame;
+
+	double a = 0;
+	double speed = 1.5;
+#endif //!DEBUG
+	
 	//! TODO make lists able to carry multiple types of objects.
 	RenderingObjects<RegularPolygon> *polygons = new RenderingObjects<RegularPolygon>();
-
+	//RenderingObjects<RegularPolygon> objects = RenderingObjects<RegularPolygon>();
+	
 	Vector3 *k1 = new Vector3(-0.8f, 0.8f, 0.0f);
 	Vector3 *k3 = new Vector3(-0.8f, 0.0f, 0.0f);
 	Vector3 *k2 = new Vector3( 0.5f, 0.5f, 0.0f);
 
 	Triangle myTriangle(*k1, *k2, *k3);
 	RegularPolygon firstPolygon(0.25f, 0.25f, 0.0f, 0.2f, 40);
-	RegularPolygon secondPolygon(-0.3f, -0.25f, 0.0f, 0.35f, 8);
+	RegularPolygon secondPolygon(-0.4f, -0.6f, 0.0f, 0.35f, 8);
 	RegularPolygon thirdPolygon(0.7f, -0.4f, 0.0f, 0.2f, 4);
 	RegularPolygon selector(0.0f, 0.0f, 0.0f, 0.01f, 8);
-	Note myNote(0.f, 0.f);
+	Note myNote(window, 0.5f, 0.3f, -0.3f, -0.2f, 1.5, GLFW_KEY_Y, XBOX::BUTTON_Y);
 
 	secondPolygon.UpdateColor(0.5f, 0.0f, 0.9f);
 	firstPolygon.UpdateColor(0.9f, 0.0f, 0.2f);
@@ -135,9 +153,7 @@ int main(int argc, char** argv) {
 	polygons->Add(secondPolygon);
 	polygons->Add(thirdPolygon);
 	polygons->Add(myNote);
-
-	//testObj->Add(myTriangle.Update()); // DOESN'T WORK!
-
+	
 	// deleting pointers
 	delete(k1);
 	delete(k2);
@@ -155,29 +171,37 @@ int main(int argc, char** argv) {
 		/// inputs (button presses, mouse movements, etc.)
 		/// ----------------------------------------------
 		processInput(window);
+#ifdef DEBUG
+		currentFrame = glfwGetTime();
+		deltaTime = currentFrame - lastFrame;
+		lastFrame = currentFrame;
 
+		a += deltaTime * speed;
+		if (a > TAU) a -= TAU;
+
+		myNote.x = cos(a) * 0.45f;
+		myNote.y = sin(a) * 0.45f;
+		myNote.Setup();
+#endif //!DEBUG
 		/// rendering commands (drawing new shapes and such)
 		/// ------------------------------------------------
 		glClearColor(0.08f, 0.04f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		
 		myTriangle.Draw();
 		
-
-		DebugVertexController::controlTriangle(window, &myTriangle, &selector, GLFW_JOYSTICK_1);
-		
+		DebugVertexController::Update(window, &myTriangle, &selector, GLFW_JOYSTICK_1);
+		myNote.Update();
 		// Using ptr
 		// AVG MEM USAGE: 57MB
 		// AVG CPU USAGE: 5-8%
-		for(unsigned int i = 0; i < polygons->GetSize(); i++)
+		for (unsigned int i = 0; i < polygons->GetSize(); i++) {
 			(((RegularPolygon*)polygons->getptr())[i]).Draw(); // fix syntax to be more user friendly.
-		
+		}
 		// Using obj
 		// AVG MEM USAGE: 57MB
 		// AVG CPU USAGE: 8-13%
-		//for(int i = 0; i < 3; i++)
-		//	objects.DrawShape(i);
-
 		//((testObj->getptr())[0])();
 		//((int)testObj[0].getptr())();
 		//(testObj->Update(0));

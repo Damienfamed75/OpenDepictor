@@ -24,6 +24,7 @@
     <ClInclude Include="include\RegularPolygon.h" />
     <ClInclude Include="include\Triangle.h" />
     <ClInclude Include="include\VariableObjects\Color.h" />
+    <ClInclude Include="include\VariableObjects\Controls.h" />
     <ClInclude Include="include\VariableObjects\RenderingObjects.hpp" />
     <ClInclude Include="include\VariableObjects\Shaders.h" />
     <ClInclude Include="include\VariableObjects\Vector3.h" />
