@@ -1,33 +1,34 @@
 #include "Conductor.h"
-float calcTimeDiffInS(time_t startTime, double offsetInMs) {
-	auto currTimeT = std::chrono::system_clock::to_time_t(std::chrono::high_resolution_clock::now()) - offsetInMs / 1000;  
-	return currTimeT - startTime;
-}
-
 float calcBeatsInMs(int bpm) {
 	return bpm / 60 / 1000;
 }
 
 float Conductor::calcCurrentBeat() {
-	auto timeDiffInMin = calcTimeDiffInS(std::chrono::system_clock::to_time_t(startTime), _offsetInMs) / 60;
-	return timeDiffInMin * _bpm;
+	auto timeDiffInMs = std::chrono::duration_cast<ChronoMs>(HiResClock::now() - startTime);
+	float timeDiffInM = (timeDiffInMs.count() - _offsetInMs) / 1000.0 / 60.0;
+	return timeDiffInM * (float) _bpm;
 }
 
 void Conductor::startTimer() {
+	startTime = HiResClock::now(); 
+	totalBeats = calcTotalBeats(_lengthInS, _bpm) - offsetBeats; 
+	offsetBeats = calcTotalBeats((double) _offsetInMs / 1000, _bpm);
+	beatSinceRefresh = 0.0;
 }
 
 void Conductor::refreshMembers() {
-	currTime = std::chrono::high_resolution_clock::now();  
-	timeDiff = std::chrono::duration_cast<std::chrono::milliseconds>(currTime - startTime);
-	currBeat = calcCurrentBeat() - offsetBeats;
+	currTime = HiResClock::now();  
+	timeDiff = std::chrono::duration_cast<ChronoMs>(currTime - startTime);
+	currBeat = calcCurrentBeat();
+	numBeatsSinceRefresh = fabs(currBeat) - fabs(beatSinceRefresh);
 }
 
 void Conductor::conduct() {
-	auto startTimeT = std::chrono::system_clock::to_time_t(startTime);
+	auto startTimeT = ChronoSysClock::to_time_t(startTime);
 	time_t currTimeT;
 	while(timeDiff.count() / 1000 < _lengthInS) {
 		refreshMembers();
-		currTimeT = std::chrono::system_clock::to_time_t(currTime);
+		currTimeT = ChronoSysClock::to_time_t(currTime);
 		cout << "Start time (s): " << startTimeT;
 		cout << "\nCurrent time (s): " << currTimeT;
 		cout << "\nOffset (ms): " << _offsetInMs;

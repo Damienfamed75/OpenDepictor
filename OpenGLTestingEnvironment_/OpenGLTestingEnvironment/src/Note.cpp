@@ -23,7 +23,7 @@ Note::Note(GLFWwindow *window_, GLfloat xInit, GLfloat yInit, GLfloat xFinal, GL
 	: RegularPolygon(x = (xInit), y = (yInit), 0.f, noteRadius, noteNumOfSides),
 	shadow(new RegularPolygon(xFinal, yFinal, 0.f, noteRadius, noteNumOfSides)),
 	window(*window_), key_code(key), button_code(button), time(time_) {
-
+	x = -1.0;
 	shadow->UpdateColor((NOTECOL_R - 0.3f), (NOTECOL_G - 0.3f), (NOTECOL_B - 0.3f), 0.5f);
 	//this->TranslateTo(window, xFinal, yFinal, 0.f, time);
 }
@@ -73,4 +73,11 @@ void Note::Update() {
 		this->UpdateColor(NOTECOL_R, NOTECOL_G, NOTECOL_B, 1.0f);
 	}
 	shadow->Draw();
+}
+
+void Note::MoveByBeats(GLFWwindow *window, float beats) {
+	if(x > 0.0)
+		x = -1.0;
+	else
+		x += beats;
 }

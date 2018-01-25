@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,21 +6,49 @@
 
 #IncludeRegexTransform: 
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
+../include/ChronoTypes.h
+
+../include/Conductor.h
+iostream
+-
+chrono
+-
+ctime
+-
+ChronoTypes.h
+../include/ChronoTypes.h
+math.h
+-
+
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/ChronoTypes.h
+
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Conductor.h
+iostream
+-
+chrono
+-
+ctime
+-
+ChronoTypes.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/ChronoTypes.h
+math.h
+-
+
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
 glad/glad.h
 -
 GLFW/glfw3.h
 -
 Triangle.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
 RegularPolygon.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Note.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Note.h
 RegularPolygon.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
 glad/glad.h
 -
 GLFW/glfw3.h
@@ -28,89 +56,101 @@ GLFW/glfw3.h
 math.h
 -
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
 glad/glad.h
 -
 GLFW/glfw3.h
 -
 VariableObjects/Vector3.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
 VariableObjects/Color.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/RenderingObjects.hpp
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Controls.h
+
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/RenderingObjects.hpp
 cstring
 -
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.h
 glad/glad.h
 -
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Color.cpp
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Color.cpp
 ../include/VariableObjects/Color.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/DebugVertexController.cpp
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Conductor.cpp
+Conductor.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Conductor.h
+
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/DebugVertexController.cpp
 ../include/DebugVertexController.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
 iostream
 -
+../include/VariableObjects/Controls.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Controls.h
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Note.cpp
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Note.cpp
 ../include/Note.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Note.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Note.h
+iostream
+-
 iostream
 -
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/RegularPolygon.cpp
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/RegularPolygon.cpp
 ../include/RegularPolygon.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+iostream
+-
 iostream
 -
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Source.cpp
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Source.cpp
 glad/glad.h
 -
 GLFW/glfw3.h
 -
 ../include/Triangle.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
 ../include/VariableObjects/Shaders.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.h
 ../include/RegularPolygon.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+iostream
+-
 iostream
 -
 vector
 -
 ../include/Note.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Note.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Note.h
 ../include/DebugVertexController.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
 ../include/VariableObjects/RenderingObjects.hpp
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/RenderingObjects.hpp
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/RenderingObjects.hpp
+../include/VariableObjects/Controls.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Controls.h
+../include/DebugVertexController.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
+../include/Conductor.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Conductor.h
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/TextureLoading.cpp
-stb_image.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/stb_image.h
-GLFW/glfw3.h
--
-GLAD/glad.h
--
-
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Triangle.cpp
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Triangle.cpp
 ../include/Triangle.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Triangle.h
+iostream
+-
 iostream
 -
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Vector3.cpp
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Vector3.cpp
 ../include/VariableObjects/Vector3.h
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
-
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/stb_image.cpp
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Vector3.h
 

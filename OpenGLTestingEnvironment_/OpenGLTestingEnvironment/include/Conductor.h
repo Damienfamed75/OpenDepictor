@@ -1,8 +1,12 @@
 #include <iostream>
-#ifndef _CONDUCTOR_TIME_H
+#ifndef CONDUCTOR_TIME
 	#include <chrono>
 	#include <ctime>
-#define _CONDUCTOR_TIME_H
+	#include "ChronoTypes.h"
+#endif
+
+#ifndef _GLIBCXX_MATH_H
+	#include <math.h>
 #endif
 
 using std::cin;
@@ -18,13 +22,15 @@ class Conductor {
 	
 
 public:
-	std::chrono::high_resolution_clock::time_point startTime;
-	std::chrono::high_resolution_clock::time_point currTime;
-	std::chrono::milliseconds timeDiff;
+	ChronoTimePoint startTime;
+	ChronoTimePoint currTime;
+	ChronoMs timeDiff;
 	double totalBeats;
 	double offsetBeats;
 	double currBeat;
-	
+	double beatSinceRefresh;
+	float numBeatsSinceRefresh;	
+
 	float calcTotalBeats(double lengthInS, int bpm) {
 		return (lengthInS / 60) * bpm;
 	}
@@ -33,9 +39,6 @@ public:
 		_bpm = bpm;
 		_lengthInS = lengthInS;
 		_offsetInMs = offsetInMs;
-		startTime = std::chrono::high_resolution_clock::now(); 
-		totalBeats = calcTotalBeats(_lengthInS, _bpm) - offsetBeats; 
-		offsetBeats = calcTotalBeats((double) _offsetInMs / 1000, _bpm);
 	}
 
 	float calcCurrentBeat();

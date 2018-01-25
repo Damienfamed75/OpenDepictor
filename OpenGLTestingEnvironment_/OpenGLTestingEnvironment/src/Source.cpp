@@ -58,6 +58,10 @@
 
 #include "../include/DebugVertexController.h"
 
+#ifndef CONDUCTOR_H
+	#include "../include/Conductor.h"
+#endif
+
 #define DEBUG
 #define TAU (M_PI * 2.0)
 
@@ -158,6 +162,7 @@ int main(int argc, char** argv) {
 	double lengthInS = std::stod(argv[2], NULL);
 	int offsetInMs = std::stoi(argv[3]);
 	Conductor mainConductor(bpm, lengthInS, offsetInMs);
+	mainConductor.startTimer();	
 	
 	objects.Add(firstPolygon);
 	objects.Add(secondPolygon);
@@ -189,7 +194,7 @@ int main(int argc, char** argv) {
 		a += deltaTime * speed;
 		if (a > TAU) a -= TAU;
 
-		myNote.x = cos(a) * 0.8f;
+		//myNote.x = cos(a) * 0.8f;
 		myNote.Setup();
 #endif //!DEBUG
 		/// rendering commands (drawing new shapes and such)
@@ -219,11 +224,14 @@ int main(int argc, char** argv) {
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
-	    	cout << "\n\nStart time: " << std::chrono::system_clock::to_time_t(mainConductor.startTime);
+	    	std::cout << "\n\nStart time: " << std::chrono::system_clock::to_time_t(mainConductor.startTime);
 	    	mainConductor.refreshMembers();
-	    	cout << "\nCurr time: " << std::chrono::system_clock::to_time_t(mainConductor.currTime);
-	    	cout << "\nCurr beat: " << mainConductor.calcCurrentBeat(); 
-
+	    	std::cout << "\nCurr time: " << std::chrono::system_clock::to_time_t(mainConductor.currTime);
+	    	std::cout << "\nCurr beat: " << mainConductor.currBeat;
+		std::cout << "\nBeats since last refresh: " << mainConductor.numBeatsSinceRefresh;
+		myNote.MoveByBeats(window, mainConductor.numBeatsSinceRefresh); 
+		mainConductor.beatSinceRefresh = mainConductor.currBeat;
+		system("clear");
 	}
 
 	glfwTerminate(); // Properly cleans and deletes all resources that were allocated.

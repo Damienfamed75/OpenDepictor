@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/assets/glad.c
+/home/moltenpopsicle/media/projects/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/assets/glad.c
 stdio.h
 -
 stdlib.h

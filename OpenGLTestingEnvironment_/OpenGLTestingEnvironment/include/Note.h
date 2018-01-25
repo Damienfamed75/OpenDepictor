@@ -22,6 +22,7 @@ public:
 	~Note();
 
 	void Update();
+	void MoveByBeats(GLFWwindow *window, float beats);
 	bool Hit();
 	/** Finding speed:
 	 * Vav = ((x - xo)/(t - to));
