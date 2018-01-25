@@ -51,6 +51,9 @@
     <ClInclude Include="include\ChronoTypes.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Errors.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Color.cpp">

@@ -70,9 +70,9 @@
 	#endif //!_STRING_
 #endif //!_WIN32
 
-#define NOT_ENOUGH_ARGS_ERROR 1
-#define DEBUG
-#define TAU (M_PI * 2.0)
+#ifndef ERRORS_H
+	#include "../include/Errors.h"
+#endif //!ERRORS_H
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -84,8 +84,6 @@ const unsigned int SCR_WIDTH  = 800;
 const unsigned int SCR_HEIGHT = 600;
 const GLint JOY_SENSITIVITY = 12;
 const GLfloat JOY_MODIFIER = 0.001f;
-int keyPrevState = GLFW_RELEASE;
-int keyCurrentState;
 Conductor mainConductor;
 
 
@@ -97,7 +95,7 @@ Conductor mainConductor;
 int main(int argc, char** argv) {
 	if (argc < 4) {
 		std::cout << "Not enough arguments supplied.";
-		return NOT_ENOUGH_ARGS_ERROR;
+		return IdolScheme_ErrorCodes::NOT_ENOUGH_ARGS_ERROR;
 	}
 #pragma region GLFW_INITIALIZATION
 	// glfw: initialize and configure
@@ -137,20 +135,8 @@ int main(int argc, char** argv) {
 
 #pragma region INSTANTIATIONS
 	/// Instantiation
-#ifdef DEBUG	
-	double currentFrame = glfwGetTime();
-	double lastFrame = currentFrame;
-	double deltaTime;
-	double startFrame = currentFrame;
 
-	double a = 0;
-	double speed = 2.5;
-#endif //!DEBUG
-	//! TODO make lists able to carry multiple types of objects.
-	//RenderingObjects<RegularPolygon> *polygons = new RenderingObjects<RegularPolygon>();
 	RenderingObjects<RegularPolygon> objects = RenderingObjects<RegularPolygon>();
-	
-	//Note myNote(window, 0.5f, 0.3f, -0.3f, -0.2f, 1.5, GLFW_KEY_Y, XBOX::BUTTON_Y);
 	Note myNote(window, -.3f, 0.f, 0.f, 0.f, 1.1, GLFW_KEY_Y, XBOX::BUTTON_Y);
 
 	int bpm = std::stoi(argv[1]);
@@ -174,17 +160,7 @@ int main(int argc, char** argv) {
 		/// inputs (button presses, mouse movements, etc.)
 		/// ----------------------------------------------
 		processInput(window);
-#ifdef DEBUG
-		currentFrame = glfwGetTime();
-		deltaTime = currentFrame - lastFrame;
-		lastFrame = currentFrame;
 
-		a += deltaTime * speed;
-		if (a > TAU) a -= TAU;
-
-		//myNote.x = cos(a) * 0.8f;
-		//myNote.Setup();
-#endif //!DEBUG
 		/// rendering commands (drawing new shapes and such)
 		/// ------------------------------------------------
 		glClearColor(0.08f, 0.04f, 0.3f, 1.0f);

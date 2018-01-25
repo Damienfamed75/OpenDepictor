@@ -22,6 +22,7 @@
     <ClInclude Include="include\ChronoTypes.h" />
     <ClInclude Include="include\Conductor.h" />
     <ClInclude Include="include\DebugVertexController.h" />
+    <ClInclude Include="include\Errors.h" />
     <ClInclude Include="include\Note.h" />
     <ClInclude Include="include\RegularPolygon.h" />
     <ClInclude Include="include\Triangle.h" />
