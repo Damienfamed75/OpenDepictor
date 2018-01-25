@@ -180,3 +180,7 @@ void RegularPolygon::Translate(float x_, float y_, float z_, double time) {
 void RegularPolygon::TranslateTo(float x_, float y_, float z_, float time) {
 	return;
 }
+
+void RegularPolygon::MoveToBeatPos(Conductor conductor) {
+	conductor.refreshMembers();
+}

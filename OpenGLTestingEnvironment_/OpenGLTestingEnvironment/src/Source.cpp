@@ -31,9 +31,15 @@
 #endif //!_GLIBCXX_IOSTREAM
 
 #include "../include/DebugVertexController.h"
-
+/*
+#ifndef CONDUCTOR_CPP
+#include "Conductor.cpp"
+#define CONDUCTOR_CPP
+#endif
+*/
 #define DEBUG
 
+#define NOT_ENOUGH_ARGS_ERROR 1
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -52,7 +58,10 @@ const GLfloat JOY_MODIFIER = 0.001f;
 
 
 int main(int argc, char** argv) {
-
+	if (argc < 4) {
+		std::cout << "Not enough arguments supplied.";
+		return NOT_ENOUGH_ARGS_ERROR;
+	}
 #pragma region GLFW_INITIALIZATION
 	// glfw: initialize and configure
 	// ------------------------------
@@ -105,13 +114,10 @@ int main(int argc, char** argv) {
 	firstPolygon.UpdateColor(0.9f, 0.0f, 0.2f);
 	thirdPolygon.UpdateColor(0.3f, 0.8f, 0.1f);
 
-	// deleting pointers
-	delete(k1);
-	delete(k2);
-	delete(k3);
-
-#pragma endregion
-
+	int bpm = std::stoi(argv[1]);
+	double lengthInS = std::stod(argv[2], NULL);
+	int offsetInMs = std::stoi(argv[3]);
+	Conductor mainConductor(bpm, lengthInS, offsetInMs);
 
 	/// Render Loop
 	/* Keeps glfw running and refreshing until the window
@@ -140,6 +146,11 @@ int main(int argc, char** argv) {
 		/// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+
+	    	cout << "\n\nStart time: " << std::chrono::system_clock::to_time_t(mainConductor.startTime);
+	    	mainConductor.refreshMembers();
+	    	cout << "\nCurr time: " << std::chrono::system_clock::to_time_t(mainConductor.currTime);
+	    	cout << "\nCurr beat: " << mainConductor.calcCurrentBeat(); 
 
 	}
 
