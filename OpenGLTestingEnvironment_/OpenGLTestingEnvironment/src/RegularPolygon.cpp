@@ -2,24 +2,34 @@
 	#include "../include/RegularPolygon.h"
 #endif //!REGULARPOLYGON_H
 
-#ifndef _GLIBCXX_IOSTREAM
-	#include <iostream>
-#endif //!_GLIBCXX_IOSTREAM
+#ifdef _WIN32
+	#ifndef _IOSTREAM_
+		#include <iostream>
+	#endif //!_IOSTREAM_
+#else // !_WIN32
+	#ifndef _GLIBCXX_IOSTREAM
+		#include <iostream>
+	#endif //!_GLIBCXX_IOSTREAM
+#endif //!_WIN32
 
+#ifndef TAU
+	#define TAU (M_PI * 2.0)
+#endif //!TAU
 
 
 using std::cout;
 using std::endl;
 
+int MOVE_KEY = GLFW_KEY_K;
+int moveKeyPreviousState = GLFW_RELEASE;
+int moveKeyCurrentState;
 
-
-RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_) {
-	x = x_;
-	y = y_;
-	z = z_;
-	r = r_;
-	numOfSides = numOfSides_;
-	numOfVertices = numOfSides + 2;
+RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_) 
+	: x(x_), y(y_), z(z_), r(r_), numOfSides(numOfSides_), numOfVertices(numOfSides + 2) {
+	
+	currentFrame = glfwGetTime();
+	lastFrame = currentFrame;
+	startFrame = -999; // find better way to do this.
 	
 	polygonVerticesX   = new GLfloat[numOfVertices];
 	polygonVerticesY   = new GLfloat[numOfVertices];
@@ -35,10 +45,6 @@ RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, G
 	}
 
 	Setup();
-	CreateVBO();
-	CreateShaders();
-	DestroyShaders();
-	DestroyVBO();
 }
 
 void RegularPolygon::Setup() {
@@ -66,7 +72,7 @@ void RegularPolygon::CreateVBO() {
 
 	glGenBuffers(1, &VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VAO);
-	glBufferData(GL_ARRAY_BUFFER, 512, allPolygonVertices, GL_STATIC_DRAW); // It works but I don't know why
+	glBufferData(GL_ARRAY_BUFFER, 1024, allPolygonVertices, GL_STATIC_DRAW); // It works but I'd like it redone.
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
 
@@ -127,11 +133,12 @@ void RegularPolygon::CleanUp() {
 	DestroyVBO();
 }
 
-void RegularPolygon::UpdateColor(float r, float g, float b) {
+void RegularPolygon::UpdateColor(float r, float g, float b, float a) {
 	for (int i = 0; i < numOfVertices; i++) {
 		Colors[i * 4]	    = r;
 		Colors[(i * 4) + 1] = g;
 		Colors[(i * 4) + 2] = b;
+		Colors[(i * 4) + 3] = a;
 	}
 }
 
@@ -177,10 +184,48 @@ void RegularPolygon::Translate(float x_, float y_, float z_, double time) {
 	return;
 }
 
-void RegularPolygon::TranslateTo(float x_, float y_, float z_, float time) {
+///! TODO fix to make more predictable.
+void RegularPolygon::TranslateTo(GLFWwindow *window, float x_, float y_, float z_, double time) {
+	
+
+	currentFrame = glfwGetTime();
+	deltaTime = currentFrame - lastFrame;
+	lastFrame = currentFrame;
+	
+	int moveKey = glfwGetKey(window, MOVE_KEY);
+	moveKeyPreviousState = moveKeyCurrentState;
+	moveKeyCurrentState = moveKey;
+
+	if (moveKey == GLFW_PRESS && moveKey != moveKeyPreviousState) {
+		startFrame = glfwGetTime() + time;
+		currentFrame = glfwGetTime();
+		initX = x;
+		initY = y;
+		initZ = z;
+	}
+
+	if (startFrame != -999 && currentFrame < startFrame && ((x != x_) || (y != y_) || (z != z_))) {
+		velocityX = deltaTime * ((x_ - initX) / time);
+		velocityY = deltaTime * ((y_ - initY) / time);
+		velocityZ = deltaTime * ((z_ - initZ) / time);
+		
+		x += velocityX;
+		y += velocityY;
+		z += velocityZ;
+
+		Setup();
+	}
+}
+
+void RegularPolygon::Update() {
 	return;
 }
 
-void RegularPolygon::MoveToBeatPos(Conductor conductor) {
-	conductor.refreshMembers();
+double *RegularPolygon::GetSpeedTo(float x_, float y_, float z_, double time) {
+	double resultX = ((x - x_) / time);
+	double resultY = ((y - y_) / time);
+	double resultZ = ((z - z_) / time);
+	double *result[3] = { &resultX, &resultY, &resultZ };
+
+	return *result;
 }

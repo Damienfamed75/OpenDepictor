@@ -17,7 +17,6 @@
 #endif // !M_PI
 
 
-
 extern const GLchar* VertexShader;
 extern const GLchar* FragmentShader;
 
@@ -39,12 +38,15 @@ public:
 	GLfloat *polygonVerticesZ;
 	GLfloat *allPolygonVertices;
 	GLfloat *Colors;
-	
-	RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_);
 
+	friend class Note;
+
+	RegularPolygon() {}
+	RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_);
 	void Setup();
 	void CreateVBO();
 	void Draw();
+	void Update();
 	void DestroyVBO();
 	void CreateShaders();
 	void DestroyShaders();
@@ -52,12 +54,15 @@ public:
 	void Rotate(float angle);
 	void MoveTo(float x_, float y_, float z_);
 	void Move(float x_, float y_, float z_);
+	double *GetSpeedTo(float x_, float y_, float z_, double time);
 	void Translate(float x_, float y_, float z_, double time);
-	void TranslateTo(float x_, float y_, float z_, float time);
-	void UpdateColor(float r, float g, float b);
+	void TranslateTo(GLFWwindow *window, float x_, float y_, float z_, double time);
+	void UpdateColor(float r, float g, float b, float a);
 private:
 	GLuint vertexShaderId, fragmentShaderId,
 		colorBuffer, VAO, VBO, shaderProgram;
+	GLdouble currentFrame, lastFrame, deltaTime, startFrame,
+		velocityX, velocityY, velocityZ, initX, initY, initZ;
 };
 
 #endif // !REGULARPOLYGON_H

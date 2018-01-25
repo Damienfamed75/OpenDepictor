@@ -16,6 +16,10 @@ Triangle.h
 RegularPolygon.h
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
 
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Note.h
+RegularPolygon.h
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
+
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
 glad/glad.h
 -
@@ -36,6 +40,10 @@ VariableObjects/Color.h
 
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Color.h
 
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/RenderingObjects.hpp
+cstring
+-
+
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/Shaders.h
 glad/glad.h
 -
@@ -49,6 +57,12 @@ glad/glad.h
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/DebugVertexController.cpp
 ../include/DebugVertexController.h
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
+iostream
+-
+
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/Note.cpp
+../include/Note.h
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Note.h
 iostream
 -
 
@@ -71,8 +85,14 @@ GLFW/glfw3.h
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/RegularPolygon.h
 iostream
 -
+vector
+-
+../include/Note.h
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/Note.h
 ../include/DebugVertexController.h
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/DebugVertexController.h
+../include/VariableObjects/RenderingObjects.hpp
+/home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/include/VariableObjects/RenderingObjects.hpp
 
 /home/damien/Documents/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/src/TextureLoading.cpp
 stb_image.h

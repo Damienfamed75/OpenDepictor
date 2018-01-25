@@ -17,18 +17,19 @@
 #endif // !REGULARPOLYGON_H
 
 
+
 extern const GLint JOY_SENSITIVITY;
 extern const GLfloat JOY_MODIFIER;
 
 
 
-#ifndef DEBUVERTEXCONTROLLER_H
+#ifndef DEBUGVERTEXCONTROLLER_H
 #define DEBUGVERTEXCONTROLLER_H
 
 
 class DebugVertexController {
 public:
-	static void controlTriangle(GLFWwindow *window, Triangle *triangle, RegularPolygon *selector, int joystick);
+	static void Update(GLFWwindow *window, Triangle *triangle, RegularPolygon *selector, int joystick);
 
 	/// Xbox controller Layout (Buttons)
 	// 0: A			7: Start

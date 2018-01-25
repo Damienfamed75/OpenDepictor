@@ -2,11 +2,11 @@
 
 #ifndef __glad_h_
 	#include <glad/glad.h>
-#endif
+#endif //!__glad_h_
 
 #ifndef _glfw3_h_
 	#include <GLFW/glfw3.h>
-#endif
+#endif //!_glfw3_h_
 
 #ifndef VECTOR3_H
 	#include "VariableObjects/Vector3.h"
@@ -50,6 +50,7 @@ public:
 	void CreateVBO();
 	void DestroyVBO();
 	void Draw();
+	int Update();
 	void CreateShaders();
 	void DestroyShaders();
 	void Move(float x, float y);
