@@ -113,17 +113,17 @@ int main(int argc, char** argv) {
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
-	    std::cout << "\n\nStart time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.startTime);
-	    std::cout << "\nCurr time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.currTime);
-	    std::cout << "\nCurr beat: " << mainConductor.currBeat;
-		std::cout << "\nBeats since last refresh: " << mainConductor.numBeatsSinceRefresh;
+	    //std::cout << "\n\nStart time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.startTime);
+	    //std::cout << "\nCurr time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.currTime);
+	    //std::cout << "\nCurr beat: " << mainConductor.currBeat;
+		//std::cout << "\nBeats since last refresh: " << mainConductor.numBeatsSinceRefresh;
 		
 		mainConductor.beatSinceRefresh = mainConductor.currBeat;
 
 #ifdef _WIN32
 		system("cls"); // Windows cmd is dumb.
 #else
-		system("clear");
+		//system("clear");
 #endif //!_WIN32
 
 	}
