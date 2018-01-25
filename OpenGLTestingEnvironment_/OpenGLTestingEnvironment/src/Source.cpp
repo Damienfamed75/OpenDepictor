@@ -10,6 +10,7 @@ const unsigned int SCR_HEIGHT = 600;
 const GLint JOY_SENSITIVITY = 12;
 const GLfloat JOY_MODIFIER = 0.001f;
 Conductor mainConductor;
+double deltaTime;
 
 
 // TODO - ADD TEXT
@@ -64,6 +65,9 @@ int main(int argc, char** argv) {
 	RenderingObjects<RegularPolygon> objects = RenderingObjects<RegularPolygon>();
 	Note myNote(window, -.3f, 0.f, 0.f, 0.f, 1.1, GLFW_KEY_Y, XBOX::BUTTON_Y);
 
+	double currentFrame = glfwGetTime();
+	double lastFrame = currentFrame;
+
 	int bpm = std::stoi(argv[1]);
 	double lengthInS = std::stod(argv[2], NULL);
 	int offsetInMs = std::stoi(argv[3]);
@@ -85,6 +89,10 @@ int main(int argc, char** argv) {
 		/// inputs (button presses, mouse movements, etc.)
 		/// ----------------------------------------------
 		processInput(window);
+
+		currentFrame = glfwGetTime();
+		deltaTime = currentFrame - lastFrame;
+		lastFrame = currentFrame;
 
 		/// rendering commands (drawing new shapes and such)
 		/// ------------------------------------------------

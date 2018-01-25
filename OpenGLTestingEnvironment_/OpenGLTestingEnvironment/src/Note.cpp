@@ -12,9 +12,14 @@
 	#endif //!_GLIBCXX_IOSTREAM
 #endif //!_WIN32
 
-#include "../include/Conductor.h"
+#ifndef CONDUCTOR_H
+	#include "../include/Conductor.h"
+#endif //!CONDUCTOR_H
+
 
 extern Conductor mainConductor;
+extern double deltaTime;
+
 
 Note::Note(GLFWwindow *window_, GLfloat xInit, GLfloat yInit, GLfloat xFinal, GLfloat yFinal, GLdouble time_, int key, int button)
 	: RegularPolygon(x = (xInit), y = (yInit), 0.f, noteRadius, noteNumOfSides),
@@ -59,7 +64,7 @@ void Note::Update() {
 		this->UpdateColor(NOTECOL_R, NOTECOL_G, NOTECOL_B, 1.0f);
 	}
 	shadow->Draw();
-	MoveByBeats(&window, ::mainConductor.numBeatsSinceRefresh);	
+	MoveByBeats(&window, ::mainConductor.numBeatsSinceRefresh);
 }
 
 void Note::MoveByBeats(GLFWwindow *window, float beats) {
