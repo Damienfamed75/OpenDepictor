@@ -189,10 +189,10 @@ int main(int argc, char** argv) {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		myNote.Update();
+
 		for (unsigned int i = 0; i < objects.GetSize(); i++) {
 			objects.DrawShape(i);
 		}
-
 
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
@@ -211,8 +211,6 @@ int main(int argc, char** argv) {
 #else
 		system("clear");
 #endif //!_WIN32
-		
-
 	}
 
 	glfwTerminate(); // Properly cleans and deletes all resources that were allocated.

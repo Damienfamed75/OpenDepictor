@@ -1,7 +1,7 @@
 #include "../include/Conductor.h"
 
 
-float calcBeatsInMs(int bpm) {
+float Conductor::calcBeatsInMs(int bpm) {
 	return bpm / 60 / 1000;
 }
 
@@ -40,18 +40,3 @@ void Conductor::conduct() {
 		std::system("clear");
 	}
 }
-/*
-int main(int argc, char **argv) {
-	if (argc < 4) {
-		cout << "Error: not all arguments supplied";
-		return 1;
-	}
-	
-	int bpm = std::stoi(argv[1]);
-	double lengthInS = std::stod(argv[2], NULL);
-	int offsetInMs = std::stoi(argv[3]);
-
-	Conductor conductor(bpm, lengthInS, offsetInMs);
-	conductor.conduct();
-	return 0;
-*/

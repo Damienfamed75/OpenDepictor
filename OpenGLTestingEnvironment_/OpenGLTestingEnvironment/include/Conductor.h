@@ -28,8 +28,6 @@
 using std::cin;
 using std::cout;
 
-double calcTimeDiffInMs();
-double calcBeatsInMs();
 
 class Conductor {
 	int _bpm;
@@ -58,7 +56,7 @@ public:
 	}
 
 	float calcCurrentBeat();
-	float calcBeatsInMs();
+	float calcBeatsInMs(int bpm);
 	void startTimer();
 	void refreshMembers();	
 	void conduct();
