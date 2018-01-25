@@ -1,13 +1,29 @@
-#include <iostream>
+#ifdef _WIN32
+	#ifndef _IOSTREAM_
+		#include <iostream>
+	#endif //!_IOSTREAM_
+#else // !_WIN32
+	#ifndef _GLIBCXX_IOSTREAM
+		#include <iostream>
+	#endif //!_GLIBCXX_IOSTREAM
+#endif //!_WIN32
+
 #ifndef CONDUCTOR_TIME
 	#include <chrono>
 	#include <ctime>
 	#include "ChronoTypes.h"
 #endif
 
-#ifndef _GLIBCXX_MATH_H
-	#include <math.h>
-#endif
+#ifdef _WIN32
+	#ifndef _INC_MATH
+		#include <math.h>
+	#endif //!_INC_MATH
+#else
+	#ifndef _GLIBCXX_MATH_H
+		#include <math.h>
+	#endif //!_GLIBCXX_MATH_H
+#endif //!_WIN32
+
 
 using std::cin;
 using std::cout;

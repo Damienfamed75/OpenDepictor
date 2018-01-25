@@ -61,11 +61,15 @@
 #ifndef CONDUCTOR_H
 	#include "../include/Conductor.h"
 #endif
+#ifndef _STRING_
+	#include <string>
+#endif //!_STRING_
 
+
+#define NOT_ENOUGH_ARGS_ERROR 1
 #define DEBUG
 #define TAU (M_PI * 2.0)
 
-#define NOT_ENOUGH_ARGS_ERROR 1
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -137,26 +141,12 @@ int main(int argc, char** argv) {
 	double a = 0;
 	double speed = 2.5;
 #endif //!DEBUG
-	
 	//! TODO make lists able to carry multiple types of objects.
 	//RenderingObjects<RegularPolygon> *polygons = new RenderingObjects<RegularPolygon>();
 	RenderingObjects<RegularPolygon> objects = RenderingObjects<RegularPolygon>();
 	
-	Vector3 *k1 = new Vector3(-0.8f, 0.8f, 0.0f);
-	Vector3 *k3 = new Vector3(-0.8f, 0.0f, 0.0f);
-	Vector3 *k2 = new Vector3( 0.5f, 0.5f, 0.0f);
-
-	Triangle myTriangle(*k1, *k2, *k3);
-	RegularPolygon firstPolygon(0.25f, 0.25f, 0.0f, 0.2f, 40);
-	RegularPolygon secondPolygon(-0.4f, -0.6f, 0.0f, 0.35f, 8);
-	RegularPolygon thirdPolygon(0.7f, -0.4f, 0.0f, 0.2f, 4);
-	RegularPolygon selector(0.0f, 0.0f, 0.0f, 0.01f, 8);
 	//Note myNote(window, 0.5f, 0.3f, -0.3f, -0.2f, 1.5, GLFW_KEY_Y, XBOX::BUTTON_Y);
 	Note myNote(window, -.3f, 0.f, 0.f, 0.f, 1.1, GLFW_KEY_Y, XBOX::BUTTON_Y);
-	secondPolygon.UpdateColor(0.5f, 0.0f, 0.9f, 1.f);
-	firstPolygon.UpdateColor(0.9f, 0.0f, 0.2f, 1.f);
-	thirdPolygon.UpdateColor(0.3f, 0.8f, 0.1f, 1.f);
-
 
 	int bpm = std::stoi(argv[1]);
 	double lengthInS = std::stod(argv[2], NULL);
@@ -164,15 +154,7 @@ int main(int argc, char** argv) {
 	Conductor mainConductor(bpm, lengthInS, offsetInMs);
 	mainConductor.startTimer();	
 	
-	objects.Add(firstPolygon);
-	objects.Add(secondPolygon);
-	objects.Add(thirdPolygon);
 	objects.Add(myNote);
-	
-	// deleting pointers
-	delete(k1);
-	delete(k2);
-	delete(k3);
 
 #pragma endregion
 
@@ -202,21 +184,10 @@ int main(int argc, char** argv) {
 		glClearColor(0.08f, 0.04f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		
-		myTriangle.Draw();
-		
-		DebugVertexController::Update(window, &myTriangle, &selector, GLFW_JOYSTICK_1);
 		myNote.Update();
-		// Using obj
-		// AVG MEM USAGE: 57MB
-		// AVG CPU USAGE: 8-13%
 		for (unsigned int i = 0; i < objects.GetSize(); i++) {
 			objects.DrawShape(i);
 		}
-		
-		//((testObj->getptr())[0])();
-		//((int)testObj[0].getptr())();
-		//(testObj->Update(0));
 
 
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -224,14 +195,20 @@ int main(int argc, char** argv) {
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
-	    	std::cout << "\n\nStart time: " << std::chrono::system_clock::to_time_t(mainConductor.startTime);
+	    	std::cout << "\n\nStart time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.startTime);
 	    	mainConductor.refreshMembers();
-	    	std::cout << "\nCurr time: " << std::chrono::system_clock::to_time_t(mainConductor.currTime);
+	    	std::cout << "\nCurr time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.currTime);
 	    	std::cout << "\nCurr beat: " << mainConductor.currBeat;
 		std::cout << "\nBeats since last refresh: " << mainConductor.numBeatsSinceRefresh;
 		myNote.MoveByBeats(window, mainConductor.numBeatsSinceRefresh); 
 		mainConductor.beatSinceRefresh = mainConductor.currBeat;
+#ifdef _WIN32
+		system("cls");
+#else
 		system("clear");
+#endif //!_WIN32
+		
+
 	}
 
 	glfwTerminate(); // Properly cleans and deletes all resources that were allocated.

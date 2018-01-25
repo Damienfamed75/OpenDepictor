@@ -45,6 +45,12 @@
     <ClInclude Include="include\VariableObjects\Controls.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Conductor.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ChronoTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Color.cpp">
@@ -69,6 +75,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Note.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Conductor.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
