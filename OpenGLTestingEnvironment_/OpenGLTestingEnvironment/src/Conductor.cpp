@@ -25,7 +25,7 @@ void Conductor::refreshMembers() {
 	numBeatsSinceRefresh = fabs(currBeat) - fabs(beatSinceRefresh);
 }
 
-void Conductor::conduct() {
+void Conductor::conduct() { // This isn't being used.
 	auto startTimeT = ChronoSysClock::to_time_t((std::chrono::system_clock::time_point&)startTime);
 	time_t currTimeT;
 	while(timeDiff.count() / 1000 < _lengthInS) {
@@ -37,6 +37,10 @@ void Conductor::conduct() {
 		cout << "\nTime (s): " << (double) timeDiff.count() / 1000 << " / " << _lengthInS;
 		cout << "\nOffset beats: " << offsetBeats;
 		cout << "\nCurrent beat: " << currBeat << " / " << totalBeats << std::endl;
+#ifdef _WIN32
+		std::system("cls"); // Windows is dumb.
+#else
 		std::system("clear");
+#endif
 	}
 }

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef _WIN32
 	#ifndef _IOSTREAM_
 		#include <iostream>
@@ -12,7 +14,7 @@
 	#include <chrono>
 	#include <ctime>
 	#include "ChronoTypes.h"
-#endif
+#endif //!CONDUCTOR_TIME
 
 #ifdef _WIN32
 	#ifndef _INC_MATH
@@ -27,6 +29,10 @@
 
 using std::cin;
 using std::cout;
+
+
+#ifndef CONDUCTOR_H
+#define CONDUCTOR_H
 
 
 class Conductor {
@@ -63,3 +69,5 @@ public:
 	void refreshMembers();	
 	void conduct();
 };
+
+#endif //!CONDUCTOR_H

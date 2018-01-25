@@ -22,6 +22,7 @@ int main(int argc, char** argv) {
 		std::cout << "Not enough arguments supplied.";
 		return IdolScheme_ErrorCodes::NOT_ENOUGH_ARGS_ERROR;
 	}
+
 #pragma region GLFW_INITIALIZATION
 	// glfw: initialize and configure
 	// ------------------------------
@@ -29,7 +30,6 @@ int main(int argc, char** argv) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this to fix compilation on OS X
 #endif
@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
 	int bpm = std::stoi(argv[1]);
 	double lengthInS = std::stod(argv[2], NULL);
 	int offsetInMs = std::stoi(argv[3]);
-	//Conductor mainConductor(bpm, lengthInS, offsetInMs);
+	
 	mainConductor = Conductor(bpm, lengthInS, offsetInMs);
 	mainConductor.startTimer();	
 	
@@ -91,7 +91,9 @@ int main(int argc, char** argv) {
 		glClearColor(0.08f, 0.04f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		//! Must be before Note Update
 		mainConductor.refreshMembers();
+		
 		myNote.Update();
 
 		for (unsigned int i = 0; i < objects.GetSize(); i++) {
@@ -111,7 +113,7 @@ int main(int argc, char** argv) {
 		mainConductor.beatSinceRefresh = mainConductor.currBeat;
 
 #ifdef _WIN32
-		system("cls");
+		system("cls"); // Windows cmd is dumb.
 #else
 		system("clear");
 #endif //!_WIN32

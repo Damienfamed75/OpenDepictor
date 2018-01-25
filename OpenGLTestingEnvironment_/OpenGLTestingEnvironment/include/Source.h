@@ -62,7 +62,7 @@
 
 #ifndef CONDUCTOR_H
 	#include "../include/Conductor.h"
-#endif
+#endif //!CONDUCTOR_H
 
 #ifdef _WIN32
 	#ifndef _STRING_

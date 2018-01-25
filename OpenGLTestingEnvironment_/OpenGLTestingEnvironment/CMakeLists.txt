@@ -26,7 +26,7 @@ LINK_DIRECTORIES(KHR_DIR STATIC "/usr/local/include/KHR")
 LINK_DIRECTORIES(GLAD_DIR STATIC "/usr/local/include/glad")
 
 target_include_directories(IdolScheme PRIVATE ${IdolSchemeProj_INCLUDE_DIRS} GLFW_DIR GLAD_DIR KHR_DIR)
-target_link_libraries(IdolScheme glfw GL X11 pthread Xrandr Xi dl)
+target_link_libraries(IdolScheme glfw3 glfw GL X11 pthread Xrandr Xi dl)
 # Acts like -l  ^
 
 ### !Linking
