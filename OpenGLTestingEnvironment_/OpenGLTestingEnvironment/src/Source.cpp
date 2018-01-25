@@ -86,6 +86,7 @@ const GLint JOY_SENSITIVITY = 12;
 const GLfloat JOY_MODIFIER = 0.001f;
 int keyPrevState = GLFW_RELEASE;
 int keyCurrentState;
+Conductor mainConductor;
 
 
 // TODO - ADD TEXT
@@ -155,7 +156,8 @@ int main(int argc, char** argv) {
 	int bpm = std::stoi(argv[1]);
 	double lengthInS = std::stod(argv[2], NULL);
 	int offsetInMs = std::stoi(argv[3]);
-	Conductor mainConductor(bpm, lengthInS, offsetInMs);
+	//Conductor mainConductor(bpm, lengthInS, offsetInMs);
+	mainConductor = Conductor(bpm, lengthInS, offsetInMs);
 	mainConductor.startTimer();	
 	
 	objects.Add(myNote);
@@ -181,13 +183,14 @@ int main(int argc, char** argv) {
 		if (a > TAU) a -= TAU;
 
 		//myNote.x = cos(a) * 0.8f;
-		myNote.Setup();
+		//myNote.Setup();
 #endif //!DEBUG
 		/// rendering commands (drawing new shapes and such)
 		/// ------------------------------------------------
 		glClearColor(0.08f, 0.04f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		mainConductor.refreshMembers();
 		myNote.Update();
 
 		for (unsigned int i = 0; i < objects.GetSize(); i++) {
@@ -199,18 +202,19 @@ int main(int argc, char** argv) {
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
-	    	std::cout << "\n\nStart time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.startTime);
-	    	mainConductor.refreshMembers();
-	    	std::cout << "\nCurr time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.currTime);
-	    	std::cout << "\nCurr beat: " << mainConductor.currBeat;
+	    std::cout << "\n\nStart time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.startTime);
+	    std::cout << "\nCurr time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.currTime);
+	    std::cout << "\nCurr beat: " << mainConductor.currBeat;
 		std::cout << "\nBeats since last refresh: " << mainConductor.numBeatsSinceRefresh;
-		myNote.MoveByBeats(window, mainConductor.numBeatsSinceRefresh); 
+		
 		mainConductor.beatSinceRefresh = mainConductor.currBeat;
+
 #ifdef _WIN32
 		system("cls");
 #else
 		system("clear");
 #endif //!_WIN32
+
 	}
 
 	glfwTerminate(); // Properly cleans and deletes all resources that were allocated.

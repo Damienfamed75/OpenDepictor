@@ -49,6 +49,8 @@ public:
 		return (lengthInS / 60) * bpm;
 	}
 
+	Conductor() {}
+
 	Conductor(int bpm, double lengthInS, int offsetInMs) {
 		_bpm = bpm;
 		_lengthInS = lengthInS;
