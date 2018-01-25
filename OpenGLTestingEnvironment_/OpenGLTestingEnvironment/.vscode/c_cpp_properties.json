@@ -31,7 +31,7 @@
                 "/usr/include/c++/6.2.0",
                 "/usr/include/c++/6.2.0/x86_64-unknown-linux",
                 "/usr/include/linux",
-                "${workspaceRoot}/assets",
+                "/code/git/assets",
                 "${workspaceRoot}"
             ],
             "defines": [],
@@ -41,7 +41,7 @@
                     "/usr/include",
                     "/usr/local/include",
                     "/usr/include/linux",
-                    "${workspaceRoot}/assets",
+                    "/code/git/assets",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": false,
