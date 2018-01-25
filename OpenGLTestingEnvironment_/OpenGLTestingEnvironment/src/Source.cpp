@@ -56,15 +56,19 @@
 	#include "../include/VariableObjects/Controls.h"
 #endif //!CONTROLS_H
 
-#include "../include/DebugVertexController.h"
+#ifndef DEBUGVERTEXCONTROLLER_H
+	#include "../include/DebugVertexController.h"
+#endif //!DEBUGVERTEXCONTROLLER_H
 
 #ifndef CONDUCTOR_H
 	#include "../include/Conductor.h"
 #endif
-#ifndef _STRING_
-	#include <string>
-#endif //!_STRING_
 
+#ifdef _WIN32
+	#ifndef _STRING_
+		#include <string>
+	#endif //!_STRING_
+#endif //!_WIN32
 
 #define NOT_ENOUGH_ARGS_ERROR 1
 #define DEBUG
