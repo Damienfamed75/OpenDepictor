@@ -91,7 +91,10 @@ This should quickly run and install *CMake* for you.
 3. Now locate where you cloned the repository and direct your terminal to the root folder. Now what you'll want to do is run these commands.
 `cmake .`
 `make`
-`make install`
+`sudo make install`
+`sudo apt-get update`
+`sudo apt-get install libglfw3`
+`sudo apt-get install libglfw3-dev`
 These commands should install the library to `usr/local/include`
 
 4. Now that we have GLFW let's [install GLAD.](#GLADInstall)
@@ -130,9 +133,12 @@ clone the official repository and compile it for ourselves using CMake.
 1. [Clone the repository.](https://github.com/Dav1dde/glad)
 2. Locate the directory and direct your terminal to the root folder.
 3. Run these commands
+`sudo apt-get install python-pip`
+`pip install --user glad`
+`python main.py --generator=c --extensions=GL_EXT_framebuffer_multisample,GL_EXT_texture_filter_anisotropic --out-path=GL`
 `cmake .`
 `make`
-`make install`
+`sudo make install`
 4. And you're finished! Now you should have GLAD in the same directory as GLFW.
 Which should be `usr/local/include` You're now ready to [setup your Development Environment.](#DevEnvSetup)
 
