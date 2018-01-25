@@ -17,7 +17,7 @@ endforeach(_headerFile ${IdolSchemeProj_HEADERS})
 list(REMOVE_DUPLICATES IdolSchemeProj_INCLUDE_DIRS)
 
 # Compiles glad.c before Source files.
-add_executable(IdolScheme "assets/glad.c" ${IdolSchemeProj_SOURCES})
+add_executable(IdolScheme "src/glad.c" ${IdolSchemeProj_SOURCES})
 
 ### Linking
 
