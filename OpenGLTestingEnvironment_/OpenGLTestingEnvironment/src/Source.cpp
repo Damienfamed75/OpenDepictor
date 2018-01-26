@@ -1,5 +1,6 @@
 #include "../include/Source.h"
 
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 
@@ -17,6 +18,8 @@ double deltaTime;
 // https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_Text_Rendering_01
 // https://www.freetype.org/download.html
 
+// TODO - ADD BEATMAP LANGUAGE
+// Making lua scripts or txt files to create beatmaps
 
 int main(int argc, char** argv) {
 	if (argc < 4) {
@@ -61,7 +64,7 @@ int main(int argc, char** argv) {
 
 #pragma region INSTANTIATIONS
 	/// Instantiation
-
+	/// -------------
 	RenderingObjects<RegularPolygon> objects = RenderingObjects<RegularPolygon>();
 	Note myNote(window, -.3f, 0.f, 0.f, 0.f, 1.1, GLFW_KEY_Y, XBOX::BUTTON_Y);
 
@@ -73,7 +76,7 @@ int main(int argc, char** argv) {
 	int offsetInMs = std::stoi(argv[3]);
 	
 	mainConductor = Conductor(bpm, lengthInS, offsetInMs);
-	mainConductor.startTimer();	
+	mainConductor.startTimer();
 	
 	objects.Add(myNote);
 
@@ -104,9 +107,8 @@ int main(int argc, char** argv) {
 		
 		myNote.Update();
 
-		for (unsigned int i = 0; i < objects.GetSize(); i++) {
+		for (unsigned int i = 0; i < objects.GetSize(); i++)
 			objects.DrawShape(i);
-		}
 
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
@@ -121,7 +123,7 @@ int main(int argc, char** argv) {
 		mainConductor.beatSinceRefresh = mainConductor.currBeat;
 
 #ifdef _WIN32
-		system("cls"); // Windows cmd is dumb.
+		//system("cls"); // Windows cmd is dumb.
 #else
 		//system("clear");
 #endif //!_WIN32

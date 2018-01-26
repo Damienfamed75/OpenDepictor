@@ -61,8 +61,8 @@ void Note::Update() {
 	if (noteHit) {
 		this->UpdateColor(1.0f, 0.f, 0.f, 1.0f);
 		//std::cout << ::mainConductor.currBeat << std::endl;
-		if(::mainConductor.currBeat - (int)::mainConductor.currBeat > 0.9) std::cout << "PERFECT" << std::endl;
-		else if(x % shadow->x > 0.7) std::cout << "OKAY" << std::endl;
+		if(x - shadow->x > -.1 && x - shadow->x < 0.1) std::cout << "PERFECT" << std::endl;
+		else if(x - shadow->x > -.2 && x - shadow->x < 0.2) std::cout << "OKAY" << std::endl;
 		//std::cout << (::mainConductor.currBeat % 1.0 == 0 ? "PERFECT!" : ::mainConductor.currBeat % 1.0 < 0.25 ? "Okay" : "MISS!") << std::endl;
 	} else {
 		this->UpdateColor(NOTECOL_R, NOTECOL_G, NOTECOL_B, 1.0f);

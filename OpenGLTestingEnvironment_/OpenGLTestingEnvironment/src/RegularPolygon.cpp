@@ -43,7 +43,7 @@ RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, G
 		Colors[(i * 4) + 2] = 1.0f;
 		Colors[(i * 4) + 3] = 1.0f;
 	}
-
+	
 	Setup();
 }
 
@@ -62,6 +62,8 @@ void RegularPolygon::Setup() {
 		allPolygonVertices[(i * 3) + 1] = polygonVerticesY[i];
 		allPolygonVertices[(i * 3) + 2] = polygonVerticesZ[i];
 	}
+	shader.Compile(VertexShader, FragmentShader);
+	shader.Use();
 }
 
 void RegularPolygon::CreateVBO() {
@@ -96,7 +98,7 @@ void RegularPolygon::DestroyVBO() {
 	glBindVertexArray(0);
 	glDeleteVertexArrays(1, &VAO);
 }
-
+/*
 void RegularPolygon::CreateShaders() {
 
 	vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
@@ -127,9 +129,10 @@ void RegularPolygon::DestroyShaders() {
 
 	glDeleteProgram(shaderProgram);
 }
+*/
 
 void RegularPolygon::CleanUp() {
-	DestroyShaders();
+	//DestroyShaders();
 	DestroyVBO();
 }
 
@@ -143,10 +146,13 @@ void RegularPolygon::UpdateColor(float r, float g, float b, float a) {
 }
 
 void RegularPolygon::Draw() {
-	CreateShaders();
+	//shader.Compile(VertexShader,FragmentShader);
+	//shader.Use();
+	//CreateShaders();
 	CreateVBO();
 	glDrawArrays(GL_TRIANGLE_FAN, 0, numOfVertices);
-	CleanUp();
+	DestroyVBO();
+	//CleanUp();
 }
 
 void RegularPolygon::Rotate(float angle) { // TODO FINISH
