@@ -62,8 +62,8 @@ void RegularPolygon::Setup() {
 		allPolygonVertices[(i * 3) + 1] = polygonVerticesY[i];
 		allPolygonVertices[(i * 3) + 2] = polygonVerticesZ[i];
 	}
-	shader.Compile(VertexShader, FragmentShader);
-	shader.Use();
+	//shader.Compile(VertexShader, FragmentShader);
+	//shader.Use();
 }
 
 void RegularPolygon::CreateVBO() {
@@ -146,12 +146,12 @@ void RegularPolygon::UpdateColor(float r, float g, float b, float a) {
 }
 
 void RegularPolygon::Draw() {
-	//shader.Compile(VertexShader,FragmentShader);
-	//shader.Use();
+	shader.Compile(VertexShader,FragmentShader);
+	shader.Use();
 	//CreateShaders();
 	CreateVBO();
 	glDrawArrays(GL_TRIANGLE_FAN, 0, numOfVertices);
-	DestroyVBO();
+	//DestroyVBO();
 	//CleanUp();
 }
 

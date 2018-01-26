@@ -25,6 +25,10 @@
     <ClInclude Include="include\Errors.h" />
     <ClInclude Include="include\Note.h" />
     <ClInclude Include="include\RegularPolygon.h" />
+    <ClInclude Include="include\Shader.h" />
+    <ClInclude Include="include\Source.h" />
+    <ClInclude Include="include\SpriteRenderer.h" />
+    <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\Triangle.h" />
     <ClInclude Include="include\VariableObjects\Color.h" />
     <ClInclude Include="include\VariableObjects\Controls.h" />
@@ -33,13 +37,16 @@
     <ClInclude Include="include\VariableObjects\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="assets\glad.c" />
     <ClCompile Include="src\Color.cpp" />
     <ClCompile Include="src\Conductor.cpp" />
     <ClCompile Include="src\DebugVertexController.cpp" />
+    <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\Note.cpp" />
     <ClCompile Include="src\RegularPolygon.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Source.cpp" />
+    <ClCompile Include="src\SpriteRenderer.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Triangle.cpp" />
     <ClCompile Include="src\Vector3.cpp" />
   </ItemGroup>
@@ -96,7 +103,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>C:\Users\damie\Desktop\OpenGL\lib-vc2015;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\damie\Desktop\OpenGL\include;C:\Users\damie\Desktop\glad\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\damie\Desktop\glm-0.9.9-a2\glm-0.9.9-a2;C:\Users\damie\Desktop\OpenGL\include;C:\Users\damie\Desktop\glad\include;$(IncludePath)</IncludePath>
     <CustomBuildAfterTargets />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

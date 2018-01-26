@@ -54,6 +54,18 @@
     <ClInclude Include="include\Errors.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Shader.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Source.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpriteRenderer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Texture.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Color.cpp">
@@ -71,9 +83,6 @@
     <ClCompile Include="src\Vector3.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="assets\glad.c">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\DebugVertexController.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -81,6 +90,18 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Conductor.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpriteRenderer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glad.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
