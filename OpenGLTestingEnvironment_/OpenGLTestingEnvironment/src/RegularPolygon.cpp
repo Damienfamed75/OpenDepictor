@@ -17,9 +17,6 @@
 #endif //!TAU
 
 
-using std::cout;
-using std::endl;
-
 int MOVE_KEY = GLFW_KEY_K;
 int moveKeyPreviousState = GLFW_RELEASE;
 int moveKeyCurrentState;
@@ -43,7 +40,8 @@ RegularPolygon::RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, G
 		Colors[(i * 4) + 2] = 1.0f;
 		Colors[(i * 4) + 3] = 1.0f;
 	}
-	
+	Shader shader("../shaders/sprite.vs", "../shaders/sprite.frag");
+	Texture text("../textures/testimg.png");
 	Setup();
 }
 
@@ -62,8 +60,9 @@ void RegularPolygon::Setup() {
 		allPolygonVertices[(i * 3) + 1] = polygonVerticesY[i];
 		allPolygonVertices[(i * 3) + 2] = polygonVerticesZ[i];
 	}
-	shader.Compile(VertexShader, FragmentShader);
-	shader.Use();
+	
+	//shader.Compile(VertexShader, FragmentShader);
+	//shader.Use();
 }
 
 void RegularPolygon::CreateVBO() {
@@ -83,6 +82,14 @@ void RegularPolygon::CreateVBO() {
 	glBufferData(GL_ARRAY_BUFFER, 1024, Colors, GL_STATIC_DRAW); // It works but I don't know why
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(1);
+
+	glGenBuffers(1, &TBO);
+	glBindBuffer(GL_ARRAY_BUFFER, TBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(texCoords), texCoords, GL_STATIC_DRAW);
+	glVertexAttribPointer(2, 2, GL_FLOAT, 2 * sizeof(float), 0, 0);
+	glEnableVertexAttribArray(2);
+
+
 }
 
 void RegularPolygon::DestroyVBO() {
@@ -98,7 +105,7 @@ void RegularPolygon::DestroyVBO() {
 	glBindVertexArray(0);
 	glDeleteVertexArrays(1, &VAO);
 }
-/*
+
 void RegularPolygon::CreateShaders() {
 
 	vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
@@ -129,7 +136,7 @@ void RegularPolygon::DestroyShaders() {
 
 	glDeleteProgram(shaderProgram);
 }
-*/
+
 
 void RegularPolygon::CleanUp() {
 	//DestroyShaders();
@@ -149,10 +156,12 @@ void RegularPolygon::Draw() {
 	//shader.Compile(VertexShader,FragmentShader);
 	//shader.Use();
 	//CreateShaders();
+	
 	CreateVBO();
 	glDrawArrays(GL_TRIANGLE_FAN, 0, numOfVertices);
-	DestroyVBO();
-	//CleanUp();
+	
+	//DestroyVBO();
+	CleanUp();
 }
 
 void RegularPolygon::Rotate(float angle) { // TODO FINISH

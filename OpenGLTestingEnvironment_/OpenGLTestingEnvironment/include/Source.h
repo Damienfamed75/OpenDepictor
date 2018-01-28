@@ -73,3 +73,27 @@
 #ifndef ERRORS_H
 	#include "../include/Errors.h"
 #endif //!ERRORS_H
+
+#ifndef GLM_HPP
+	#define GLM_HPP
+	#include <glm/glm.hpp>
+#endif //!GLM_HPP
+
+#include <stdio.h>
+
+#ifdef _WIN32
+	#include <direct.h>
+	#define GetCurrentDir _getcwd
+#else
+	#include <unistd.h>
+	#define GetCurrentDir getcwd
+#endif //!_WIN32
+
+#ifndef SHADER_H
+	#include "../include/Shader.hpp"
+#endif //!SHADER_H
+
+#ifndef STBI_INCLUDE_STB_IMAGE_H
+	#define STB_IMAGE_STATIC
+	#include "../include/stb_image.h"
+#endif //!STBI_INCLUDE_STB_IMAGE_H

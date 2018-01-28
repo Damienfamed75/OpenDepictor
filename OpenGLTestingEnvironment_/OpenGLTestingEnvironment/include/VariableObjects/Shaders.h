@@ -9,7 +9,7 @@
 
 
 
-const GLchar* VertexShader = {
+const GLchar *VertexShader = {
 	"#version 400\n"\
 
 	"layout(location=0) in vec4 in_Position;\n"\
@@ -23,7 +23,7 @@ const GLchar* VertexShader = {
 	"}\n"
 };
 
-const GLchar* FragmentShader =
+const GLchar *FragmentShader =
 {
 	"#version 400\n"\
 
@@ -36,7 +36,7 @@ const GLchar* FragmentShader =
 	"}\n"
 };
 
-const GLchar* UniformFragmentShader =
+const GLchar *UniformFragmentShader =
 {
 	"#version 150 core\n"\
 
@@ -49,5 +49,40 @@ const GLchar* UniformFragmentShader =
 	"	outColor = vec4(triangleColor, 1.0);\n"\
 	"}\n"
 };
+
+const GLchar *TexVertexShader =
+{
+	"#version 330 core\n"\
+
+	"layout (location = 0) in vec4 vertex;\n"\
+
+	"out vec2 TexCoords;\n"\
+	
+	"uniform mat4 model;\n"\
+	"uniform mat4 projection;\n"\
+
+	"void main()\n"\
+	"{\n"\
+	"	TexCoords = vertex.zw;\n"\
+	"	gl_Position = projection * model * vec4(vertex.xy, 0.0, 1.0);\n"
+	"}\n"
+};
+
+const GLchar *TexFragmentShader =
+{
+	"#version 330 core\n"\
+
+	"in vec2 TexCoords;\n"\
+	"out vec4 color;\n"\
+
+	"uniform sampler2D image;\n"\
+	"uniform vec3 spriteColor;\n"\
+
+	"void main()\n"\
+	"{\n"\
+	"	color = vec4(spriteColor, 1.0) * texture(image, TexCoords);\n"\
+	"}\n"
+};
+
 
 #endif

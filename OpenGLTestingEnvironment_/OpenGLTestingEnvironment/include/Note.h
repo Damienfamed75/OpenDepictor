@@ -5,7 +5,6 @@
 #endif // !REGULARPOLYGON_H
 
 
-
 #ifndef NOTE_H
 #define NOTE_H
 
@@ -24,6 +23,7 @@ public:
 	void Update();
 	void MoveByBeats(GLFWwindow *window, float beats);
 	bool Hit();
+	//Texture noteText("../textures/wall.jpg");
 	/** Finding speed:
 	 * Vav = ((x - xo)/(t - to));
 	*/

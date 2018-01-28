@@ -12,14 +12,12 @@
 	#include <math.h>
 #endif //!_GLIBCXX_MATH_H
 
+#include "Texture.hpp"
+#include "Shader.hpp"
+
 #ifndef M_PI
 	#define M_PI 3.14159265358979323846f
 #endif // !M_PI
-
-#ifndef SHADER_H
-	#include "Shader.h"
-#endif //!SHADER_H
-
 
 extern const GLchar* VertexShader;
 extern const GLchar* FragmentShader;
@@ -37,6 +35,17 @@ public:
 	GLint numOfSides;
 	int numOfVertices;
 	
+	GLfloat texCoords[8] = {
+		1.f, 1.f,
+		1.f, 0.f,
+		0.f, 0.f,
+		0.f, 1.f
+	};
+	GLfloat indices[6] = {
+		0, 1, 3,
+		1, 2, 3
+	};
+
 	GLfloat *polygonVerticesX;
 	GLfloat *polygonVerticesY;
 	GLfloat *polygonVerticesZ;
@@ -45,6 +54,7 @@ public:
 
 	friend class Note;
 
+	//Shader shader("../shaders/sprite.vs", "../shaders/sprite.frag");
 	RegularPolygon() {}
 	RegularPolygon(GLfloat x_, GLfloat y_, GLfloat z_, GLfloat r_, GLint numOfSides_);
 	void Setup();
@@ -52,8 +62,8 @@ public:
 	void Draw();
 	void Update();
 	void DestroyVBO();
-	//void CreateShaders();
-	//void DestroyShaders();
+	void CreateShaders();
+	void DestroyShaders();
 	void CleanUp();
 	void Rotate(float angle);
 	void MoveTo(float x_, float y_, float z_);
@@ -63,9 +73,8 @@ public:
 	void TranslateTo(GLFWwindow *window, float x_, float y_, float z_, double time);
 	void UpdateColor(float r, float g, float b, float a);
 private:
-	Shader shader;
 	GLuint vertexShaderId, fragmentShaderId,
-		colorBuffer, VAO, VBO, shaderProgram;
+		colorBuffer, VAO, VBO, TBO, shaderProgram;
 	GLdouble currentFrame, lastFrame, deltaTime, startFrame,
 		velocityX, velocityY, velocityZ, initX, initY, initZ;
 };

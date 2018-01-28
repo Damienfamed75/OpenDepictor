@@ -1,5 +1,6 @@
 #include "../include/Source.h"
 
+#include "../include/Texture.hpp"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -46,28 +47,26 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 	glfwMakeContextCurrent(window); // makes the window's context current
+	
+
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	
 	/// Glad Initilization
-	/* passing GLAD the function to load the address of the
-	* OpenGL function pointers which is OS-specific. GLFW
-	* gives us "glfwGetProcAddress" that defines the correct
-	* function based on which OS we're compiling for.
-	*/
+	/// ------------------
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
-	
 
 #pragma endregion
 
 #pragma region INSTANTIATIONS
 	/// Instantiation
 	/// -------------
-	RenderingObjects<RegularPolygon> objects = RenderingObjects<RegularPolygon>();
+	RenderingObjects<RegularPolygon> objects = RenderingObjects<RegularPolygon>(); // This should be something more versatile.
 	Note myNote(window, -.3f, 0.f, 0.f, 0.f, 1.1, GLFW_KEY_Y, XBOX::BUTTON_Y);
-
+	
+	//std::cout << ResourceManager::GetTexture("testimg").height << std::endl;
 	double currentFrame = glfwGetTime();
 	double lastFrame = currentFrame;
 
@@ -79,6 +78,108 @@ int main(int argc, char** argv) {
 	mainConductor.startTimer();
 	
 	objects.Add(myNote);
+
+	//////////////////////////////////////////////////////
+	////// CONSTRUCTION ZONE
+	//////////////////////////////////////////////////////
+
+	char buff[FILENAME_MAX];
+	GetCurrentDir( buff, FILENAME_MAX );
+	std::string current_working_dir(buff);
+	std::cout << current_working_dir << std::endl;
+
+
+
+	Shader myShader("../shaders/sprite.vs","../shaders/sprite.frag");
+		// "/code/git/OpenDepictor/OpenGLTestingEnvironment_/OpenGLTestingEnvironment/sprite.frag");
+	float vertices[] = {
+        // positions          // colors           // texture coords
+         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
+         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
+        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+		 0.0f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f
+    
+	};
+	
+	float testvertices[] = {
+		0.5f, 0.5f, 0.f,  1.f, 0.f, 0.f,
+		0.5f, -0.5f, 0.f, 0.f, 1.f, 0.f,
+	   -0.5f, -0.5f, 0.f, 0.f, 0.f, 1.f,
+	   -0.5f, 0.5f, 0.f,  1.f, 1.f, 0.f
+	};
+	
+	float texCoords[] = {
+		1.f, 1.f,
+		1.f, 0.f,
+		0.f, 0.f,
+		0.f, 1.f
+	};
+	unsigned int indices[] = {  
+        0, 1, 3, // first triangle
+        1, 2, 3  // second triangle
+    };
+	unsigned int VBO, VAO, EBO, TBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
+	//glGenBuffers(1, &TBO);
+	
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	//glBindBuffer(GL_TEXTURE_BUFFER, TBO);
+	//glBufferData(GL_TEXTURE_BUFFER, sizeof(texCoords), texCoords, GL_STATIC_DRAW); // It works but I don't know why
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	
+	
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	//glEnableVertexAttribArray(2);
+
+    // position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    // color attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    
+	// texture coord attribute
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+
+	unsigned int ID;
+
+	glGenTextures(1, &ID);
+	glBindTexture(GL_TEXTURE_2D, ID); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
+	// set the texture wrapping parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// set texture filtering parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// load image, create texture and generate mipmaps
+	int width, height, nrChannels;
+	//stbi_set_flip_vertically_on_load(true);
+
+	unsigned char *data = stbi_load("../textures/testimg.png", &width, &height, &nrChannels, 0);
+	if(data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	} else {
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(data);
+
+
+	//Texture texture("../textures/wall.jpg");
+
+	//////////////////////////////////////////////////////
+	////// CONSTRUCTION ZONE
+	//////////////////////////////////////////////////////
 
 #pragma endregion
 
@@ -105,31 +206,27 @@ int main(int argc, char** argv) {
 		//! Must be before Note Update
 		mainConductor.refreshMembers();
 		
-		myNote.Update();
-
+		myNote.Update(); //NOTE OBJECT IS CAUSING LEAKAGE WHEN USING NEW SHADER OBJ
+		
+		myShader.use();
+		
+		glBindVertexArray(VAO);
+		//glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLE_FAN, 6, GL_UNSIGNED_INT, 0);
 		for (unsigned int i = 0; i < objects.GetSize(); i++)
 			objects.DrawShape(i);
 
+		
+		//glDeleteVertexArrays(1, &VAO);
+   	 	//glDeleteBuffers(1, &VBO);
+  	  	//glDeleteBuffers(1, &EBO);
+		
 		/// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		/// -------------------------------------------------------------------------------
+		mainConductor.beatSinceRefresh = mainConductor.currBeat;
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-
-	    //std::cout << "\n\nStart time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.startTime);
-	    //std::cout << "\nCurr time: " << std::chrono::system_clock::to_time_t((std::chrono::system_clock::time_point&)mainConductor.currTime);
-	    //std::cout << "\nCurr beat: " << mainConductor.currBeat;
-		//std::cout << "\nBeats since last refresh: " << mainConductor.numBeatsSinceRefresh;
-		
-		mainConductor.beatSinceRefresh = mainConductor.currBeat;
-
-#ifdef _WIN32
-		//system("cls"); // Windows cmd is dumb.
-#else
-		//system("clear");
-#endif //!_WIN32
-
 	}
-
 	glfwTerminate(); // Properly cleans and deletes all resources that were allocated.
 	return 0;
 }
