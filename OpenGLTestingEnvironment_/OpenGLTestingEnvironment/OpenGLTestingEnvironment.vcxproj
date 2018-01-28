@@ -26,9 +26,12 @@
     <ClInclude Include="include\Note.h" />
     <ClInclude Include="include\RegularPolygon.h" />
     <ClInclude Include="include\Shader.h" />
+    <ClInclude Include="include\Shader.hpp" />
     <ClInclude Include="include\Source.h" />
     <ClInclude Include="include\SpriteRenderer.h" />
+    <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="include\Texture.h" />
+    <ClInclude Include="include\Texture.hpp" />
     <ClInclude Include="include\Triangle.h" />
     <ClInclude Include="include\VariableObjects\Color.h" />
     <ClInclude Include="include\VariableObjects\Controls.h" />
@@ -43,10 +46,7 @@
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\Note.cpp" />
     <ClCompile Include="src\RegularPolygon.cpp" />
-    <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Source.cpp" />
-    <ClCompile Include="src\SpriteRenderer.cpp" />
-    <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Triangle.cpp" />
     <ClCompile Include="src\Vector3.cpp" />
   </ItemGroup>

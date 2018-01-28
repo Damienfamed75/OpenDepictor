@@ -60,10 +60,6 @@ void RegularPolygon::Setup() {
 		allPolygonVertices[(i * 3) + 1] = polygonVerticesY[i];
 		allPolygonVertices[(i * 3) + 2] = polygonVerticesZ[i];
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> 3fc97d8c14ac70b413fccb4adeb635b6a14afd9e
 	//shader.Compile(VertexShader, FragmentShader);
 	//shader.Use();
 }
@@ -156,8 +152,6 @@ void RegularPolygon::UpdateColor(float r, float g, float b, float a) {
 }
 
 void RegularPolygon::Draw() {
-	shader.Compile(VertexShader,FragmentShader);
-	shader.Use();
 	//CreateShaders();
 	
 	CreateVBO();
